@@ -1,0 +1,6 @@
+framework module Pods_ANIDESU_POI {
+  umbrella header "Pods-ANIDESU-POI-umbrella.h"
+
+  export *
+  module * { export * }
+}
