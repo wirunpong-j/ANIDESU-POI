@@ -13,6 +13,8 @@ target 'ANIDESU-POI' do
   pod 'Hero'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
   target 'ANIDESU-POITests' do
     inherit! :search_paths

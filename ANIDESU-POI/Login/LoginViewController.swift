@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import RxCocoa
+import RxSwift
 
 class LoginViewController: BaseViewController {
     
@@ -15,29 +18,31 @@ class LoginViewController: BaseViewController {
     
     var loginViewModel: LoginViewModel!
     
-
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setViewModel()
+        self.setUpViewModel()
+        
+        
     }
     
-    func setViewModel() {
+    func setUpViewModel() {
         self.loginViewModel = LoginViewModel()
+        self.loginViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         let email = emailTextField.text!
         let password = passwordTextField.text!
-        self.loginViewModel.login(email: email, password: password) { (error) in
-            if let error = error {
-                self.showAlert(title: "ERROR", message: error.localizedDescription)
-            } else {
-                self.showAlert(title: "SUCCESS", message: "Login Successful.")
-            }
+        self.loginViewModel.login(email: email, password: password) {
+            self.showAlert(title: "SUCCESS", message: "Login Successful.")
         }
     }
     
     @IBAction func registerBtnPressed(_ sender: Any) {
-        
+        self.showStoryboard(storyboardName: .Register)
     }
 }

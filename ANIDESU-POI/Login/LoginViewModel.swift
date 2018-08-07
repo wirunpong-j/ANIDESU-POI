@@ -8,18 +8,19 @@
 
 import Foundation
 import Firebase
+import RxSwift
+import RxCocoa
 
 class LoginViewModel {
     
     var firebaseManager = FirebaseManager()
+    let errorRelay: PublishRelay<String> = PublishRelay()
     
-    func login(email: String, password: String, completion: @escaping (Error?) -> ()) {
-        firebaseManager.signIn(email: email, password: password) { (error) in
-            if let error = error {
-                completion(error)
-                return
-            }
-            completion(nil)
+    func login(email: String, password: String, completion: @escaping () -> ()) {
+        firebaseManager.signIn(email: email, password: password, success: {
+            completion()
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
         }
     }
 }
