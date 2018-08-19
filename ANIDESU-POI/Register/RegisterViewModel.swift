@@ -18,23 +18,23 @@ class RegisterViewModel {
     let errorRelay: PublishRelay<String> = PublishRelay()
     
     func register(displayName: String, email: String, password: String, image: UIImage, completion: @escaping () -> ()) {
-        firebaseManager.signUp(displayName: displayName, email: email, password: password, image: image, success: { (imageURL) in
-            self.createInitialUserProfile(uid: (Auth.auth().currentUser?.uid)!, displayName: displayName, email: email, imageURL: imageURL, success: {
+        firebaseManager.signUp(displayName: displayName, email: email, password: password, image: image, onSuccess: { (imageURL) in
+            self.createInitialUserProfile(uid: (Auth.auth().currentUser?.uid)!, displayName: displayName, email: email, imageURL: imageURL, onSuccess: {
                 completion()
                 
-            }, failure: { (error) in
+            }, onFailure: { (error) in
                 self.errorRelay.accept(error.localizedDescription)
             })
-        }, failure: { (error) in
+        }, onFailure: { (error) in
             self.errorRelay.accept(error.localizedDescription)
         })
     }
     
-    private func createInitialUserProfile(uid: String, displayName: String, email: String, imageURL: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
-        firebaseManager.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL, success: {
-            success()
-        }, failure: { (error) in
-            failure(error)
+    private func createInitialUserProfile(uid: String, displayName: String, email: String, imageURL: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        firebaseManager.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL, onSuccess: {
+            onSuccess()
+        }, onFailure: { (error) in
+            onFailure(error)
         })
     }
     

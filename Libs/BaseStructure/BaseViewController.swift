@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 public enum AnidesuStoryboard {
     case Login
@@ -52,11 +53,13 @@ class BaseViewController: UIViewController {
     }
     
     func showLoading() {
-        
+        let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = "Loading"
     }
     
     func hideLoading() {
-        
+        MBProgressHUD.hide(for: view, animated: true)
     }
     
     func showStoryboard(storyboardName: AnidesuStoryboard) {
@@ -73,7 +76,7 @@ class BaseViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    func showAlert(title: String, message: String, with handler: @escaping (()->()) ) {
+    func showAlert(title: String, message: String, completion handler: @escaping (()->()) ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction((UIAlertAction(title: "Ok", style: .default, handler: { (_) in
             handler()

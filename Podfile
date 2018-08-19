@@ -15,6 +15,8 @@ target 'ANIDESU-POI' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'MBProgressHUD'
+  pod 'Tabman'
 
   target 'ANIDESU-POITests' do
     inherit! :search_paths

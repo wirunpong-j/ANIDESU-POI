@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AnimeCell" id="D93-fa-6MI" customClass="AnimeCell" customModule="ANIDESU_POI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="animeImage" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-MR-APd">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfG-Cb-m4D">
+                        <rect key="frame" x="0.0" y="116.5" width="150" height="83.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lQF-vw-0Iv">
+                                <rect key="frame" x="4" y="8" width="142" height="67.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danganronpa V3: Killing Harmony " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-YB-ROp">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="38.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="shadowOffset" width="1" height="0.0"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tvU-EL-cxm">
+                                        <rect key="frame" x="0.0" y="43.5" width="142" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4f0-td-rS0">
+                                                <rect key="frame" x="0.0" y="0.0" width="47.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FINISH AIRING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvG-B5-lAX">
+                                                <rect key="frame" x="47.5" y="0.0" width="47" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="64.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsu-I0-Rie">
+                                                <rect key="frame" x="94.5" y="0.0" width="47.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lQF-vw-0Iv" secondAttribute="bottom" constant="8" id="CIh-0F-CKN"/>
+                            <constraint firstAttribute="trailing" secondItem="lQF-vw-0Iv" secondAttribute="trailing" constant="4" id="aQL-My-gsY"/>
+                            <constraint firstItem="lQF-vw-0Iv" firstAttribute="top" secondItem="mfG-Cb-m4D" secondAttribute="top" constant="8" id="hzT-wv-Yp2"/>
+                            <constraint firstItem="lQF-vw-0Iv" firstAttribute="leading" secondItem="mfG-Cb-m4D" secondAttribute="leading" constant="4" id="n5K-J6-Kgg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="d9L-MR-APd" secondAttribute="trailing" id="0PF-oE-XLD"/>
+                <constraint firstAttribute="bottom" secondItem="d9L-MR-APd" secondAttribute="bottom" id="4fa-RC-BrM"/>
+                <constraint firstItem="d9L-MR-APd" firstAttribute="top" secondItem="D93-fa-6MI" secondAttribute="top" id="IxV-vm-w8R"/>
+                <constraint firstAttribute="bottom" secondItem="mfG-Cb-m4D" secondAttribute="bottom" id="msd-VW-hN8"/>
+                <constraint firstItem="mfG-Cb-m4D" firstAttribute="leading" secondItem="D93-fa-6MI" secondAttribute="leading" id="nI0-RU-O8U"/>
+                <constraint firstItem="d9L-MR-APd" firstAttribute="leading" secondItem="D93-fa-6MI" secondAttribute="leading" id="o9I-5q-Qqh"/>
+                <constraint firstAttribute="trailing" secondItem="mfG-Cb-m4D" secondAttribute="trailing" id="xDL-32-h2w"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="IpE-DX-HdH"/>
+            <connections>
+                <outlet property="airingStatusLabel" destination="UvG-B5-lAX" id="Q2Z-Gq-T3G"/>
+                <outlet property="animeImg" destination="d9L-MR-APd" id="N5n-ZX-766"/>
+                <outlet property="animeTitleLabel" destination="Y1R-YB-ROp" id="v3h-jm-q2z"/>
+                <outlet property="avgLabel" destination="nsu-I0-Rie" id="yMf-d2-aDV"/>
+                <outlet property="seriesTypeLabel" destination="4f0-td-rS0" id="mug-JM-X4e"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="animeImage" width="16" height="16"/>
+    </resources>
+</document>

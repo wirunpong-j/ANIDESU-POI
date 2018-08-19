@@ -12,5 +12,25 @@ class BaseNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpNavBar()
+    }
+    
+    func setUpNavBar() {
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AnidesuColor.White.color()]
+        self.setUpProfileImage()
+    }
+    
+    func setUpProfileImage() {
+        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        image.setImageWithRounded(urlStr: UserDataModel.instance.image_url_profile)
+        containView.addSubview(image)
+        containView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.profileImageAction(sender:))))
+        let rightBarButton = UIBarButtonItem(customView: containView)
+        self.navigationBar.topItem?.rightBarButtonItem = rightBarButton
+    }
+    
+    @objc func profileImageAction(sender: UITapGestureRecognizer) {
+        print("Touch")
     }
 }

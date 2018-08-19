@@ -56,6 +56,7 @@ class RegisterViewController: BaseViewController {
     }
     
     @objc func submitBtnPressed() {
+        self.showLoading()
         let displayName = displayNameTextField.text!
         let email = emailTextField.text!
         let password = passwordTextField.text!
@@ -64,9 +65,13 @@ class RegisterViewController: BaseViewController {
         
         if password == rePassword {
             registerViewModel.register(displayName: displayName, email: email, password: password, image: image) {
-                self.dismiss(animated: true, completion: nil)
+                self.hideLoading()
+                self.showAlert(title: "Success", message: "Register Completed.", completion: {
+                    self.dismiss(animated: true, completion: nil)
+                })
             }
         } else {
+            self.hideLoading()
             self.showAlert(title: "Error", message: "Password and Re-Password not match.")
         }
     }

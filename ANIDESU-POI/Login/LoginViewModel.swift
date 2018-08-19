@@ -14,10 +14,32 @@ import RxCocoa
 class LoginViewModel {
     
     var firebaseManager = FirebaseManager()
+    var userManager = UserManager()
+    var anilistManager = AniListManager()
     let errorRelay: PublishRelay<String> = PublishRelay()
     
     func login(email: String, password: String, completion: @escaping () -> ()) {
-        firebaseManager.signIn(email: email, password: password, success: {
+        firebaseManager.signIn(email: email, password: password, onSuccess: {
+            self.getUserData {
+                completion()
+            }
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
+    
+    func getUserData(completion: @escaping () -> ()) {
+        userManager.getUserData(onCompleted: {
+            self.authenAnilist(completion: {
+                completion()
+            })
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
+    
+    private func authenAnilist(completion: @escaping () -> ()) {
+        anilistManager.authenAnilist(onCompleted: {
             completion()
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
