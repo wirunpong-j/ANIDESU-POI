@@ -17,6 +17,7 @@ target 'ANIDESU-POI' do
   pod 'Firebase/Storage'
   pod 'MBProgressHUD'
   pod 'Tabman'
+  pod 'WCLShineButton'
 
   target 'ANIDESU-POITests' do
     inherit! :search_paths

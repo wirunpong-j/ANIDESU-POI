@@ -17,12 +17,12 @@ extension UIImageView {
         self.kf.setImage(with: url)
     }
     
-    func setImageWithRounded(urlStr: String) {
+    func setImageWithRounded(urlStr: String, borderColor: AnidesuColor) {
         let url = URL(string: urlStr)
         self.kf.setImage(with: url)
         self.layer.borderWidth = 1
         self.layer.masksToBounds = false
-        self.layer.borderColor = AnidesuColor.White.color().cgColor
+        self.layer.borderColor = borderColor.color().cgColor
         self.layer.cornerRadius = self.frame.height / 2
         self.contentMode = .scaleToFill
         self.clipsToBounds = true

@@ -30,7 +30,7 @@ class BaseViewController: UIViewController {
         setBackNavigationItem()
     }
     
-    func setBackNavigationItem() {
+    private func setBackNavigationItem() {
         if self.navigationController?.viewControllers.count ?? 0 > 0 {
             // BarButtonItems
             let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))

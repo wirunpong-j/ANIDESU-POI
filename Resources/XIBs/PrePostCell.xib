@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PrePostCell" rowHeight="140" id="4VJ-qC-AwF" customClass="PrePostCell" customModule="ANIDESU_POI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4VJ-qC-AwF" id="nUd-Sq-ojW">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oiz-bz-sQt">
+                        <rect key="frame" x="8" y="8" width="359" height="124"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="202-ra-ggP">
+                                <rect key="frame" x="20" y="20" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="DwH-yw-h3j"/>
+                                    <constraint firstAttribute="height" constant="50" id="Yon-ei-VOI"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="k2J-3R-tgn">
+                                <rect key="frame" x="80" y="26" width="259" height="38"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B'Bell Kung Desu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMY-sw-Wed">
+                                        <rect key="frame" x="0.0" y="0.0" width="259" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to AniDesu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YC6-Bp-4nd">
+                                        <rect key="frame" x="0.0" y="22.5" width="259" height="15.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's on your mind?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izw-Qe-Kzd">
+                                <rect key="frame" x="20" y="85" width="319" height="23.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="k2J-3R-tgn" secondAttribute="trailing" constant="20" id="19i-u0-K19"/>
+                            <constraint firstItem="k2J-3R-tgn" firstAttribute="centerY" secondItem="202-ra-ggP" secondAttribute="centerY" id="40y-YG-2Wn"/>
+                            <constraint firstItem="202-ra-ggP" firstAttribute="leading" secondItem="Oiz-bz-sQt" secondAttribute="leading" constant="20" id="JBJ-lR-iJu"/>
+                            <constraint firstAttribute="bottom" secondItem="izw-Qe-Kzd" secondAttribute="bottom" constant="15.5" id="M07-ri-SjX"/>
+                            <constraint firstItem="k2J-3R-tgn" firstAttribute="leading" secondItem="202-ra-ggP" secondAttribute="trailing" constant="10" id="Xri-gZ-ysw"/>
+                            <constraint firstAttribute="trailing" secondItem="izw-Qe-Kzd" secondAttribute="trailing" constant="20" id="afk-SX-5P0"/>
+                            <constraint firstItem="202-ra-ggP" firstAttribute="top" secondItem="Oiz-bz-sQt" secondAttribute="top" constant="20" id="hVo-YF-f03"/>
+                            <constraint firstItem="izw-Qe-Kzd" firstAttribute="top" secondItem="202-ra-ggP" secondAttribute="bottom" constant="15" id="lan-WX-tBY"/>
+                            <constraint firstItem="izw-Qe-Kzd" firstAttribute="leading" secondItem="Oiz-bz-sQt" secondAttribute="leading" constant="20" id="z7M-GT-QqZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Oiz-bz-sQt" firstAttribute="top" secondItem="nUd-Sq-ojW" secondAttribute="top" constant="8" id="2vk-NS-EJi"/>
+                    <constraint firstAttribute="bottom" secondItem="Oiz-bz-sQt" secondAttribute="bottom" constant="8" id="CEj-aH-LoK"/>
+                    <constraint firstItem="Oiz-bz-sQt" firstAttribute="leading" secondItem="nUd-Sq-ojW" secondAttribute="leading" constant="8" id="JTy-O5-ThN"/>
+                    <constraint firstAttribute="trailing" secondItem="Oiz-bz-sQt" secondAttribute="trailing" constant="8" id="NC4-iS-UhT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <connections>
+                <outlet property="aboutLabel" destination="YC6-Bp-4nd" id="pbu-ef-SPn"/>
+                <outlet property="bgView" destination="Oiz-bz-sQt" id="l69-nv-Wlj"/>
+                <outlet property="displayNameLabel" destination="jMY-sw-Wed" id="Bo1-ec-pq8"/>
+                <outlet property="profileImage" destination="202-ra-ggP" id="mSh-rv-CuT"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="-99"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profileDefault" width="16" height="16"/>
+    </resources>
+</document>

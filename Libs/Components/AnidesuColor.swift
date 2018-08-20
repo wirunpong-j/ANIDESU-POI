@@ -15,6 +15,11 @@ public enum AnidesuColor {
     case Blue
     case Orange
     case Green
+    case Black
+    case Gray
+    case LightGray
+    case DarkGray
+    case Clear
     
     public func color() -> UIColor {
         switch self {
@@ -28,6 +33,16 @@ public enum AnidesuColor {
             return #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         case .Green:
             return #colorLiteral(red: 0.2666666667, green: 0.8784313725, blue: 0.07843137255, alpha: 1)
+        case .Black:
+            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case .Gray:
+            return #colorLiteral(red: 0.7999204993, green: 0.8000556827, blue: 0.7999026775, alpha: 1)
+        case .LightGray:
+            return #colorLiteral(red: 0.9410838485, green: 0.9412414432, blue: 0.9410631061, alpha: 1)
+        case .DarkGray:
+            return #colorLiteral(red: 0.5741485357, green: 0.5741624236, blue: 0.574154973, alpha: 1)
+        case .Clear:
+            return UIColor.clear
         }
     }
 }

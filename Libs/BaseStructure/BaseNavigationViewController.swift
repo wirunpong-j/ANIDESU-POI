@@ -23,7 +23,7 @@ class BaseNavigationViewController: UINavigationController {
     func setUpProfileImage() {
         let containView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        image.setImageWithRounded(urlStr: UserDataModel.instance.image_url_profile)
+        image.setImageWithRounded(urlStr: UserDataModel.instance.image_url_profile, borderColor: AnidesuColor.White)
         containView.addSubview(image)
         containView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.profileImageAction(sender:))))
         let rightBarButton = UIBarButtonItem(customView: containView)

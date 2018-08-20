@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4306CCD2212A6E64008DAFB1 /* PrePostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4306CCD0212A6E64008DAFB1 /* PrePostCell.xib */; };
+		4306CCD4212A70A3008DAFB1 /* PrePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCD3212A70A3008DAFB1 /* PrePostCell.swift */; };
+		4306CCD7212A7B7E008DAFB1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCD5212A7B7E008DAFB1 /* PostCell.swift */; };
+		4306CCD8212A7B7E008DAFB1 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4306CCD6212A7B7E008DAFB1 /* PostCell.xib */; };
+		4306CCDA212A8979008DAFB1 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */; };
 		4307BA7A21184BAD001FF8A1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BA7921184BAD001FF8A1 /* BaseViewController.swift */; };
 		4307BA7D21184C73001FF8A1 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4307BA7B21184C73001FF8A1 /* Login.storyboard */; };
 		4307BA80211850FB001FF8A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BA7F211850FB001FF8A1 /* LoginViewController.swift */; };
@@ -65,6 +70,11 @@
 
 /* Begin PBXFileReference section */
 		3DB934EC51330398AFEF3B13 /* Pods-ANIDESU-POI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANIDESU-POI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ANIDESU-POI/Pods-ANIDESU-POI.debug.xcconfig"; sourceTree = "<group>"; };
+		4306CCD0212A6E64008DAFB1 /* PrePostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrePostCell.xib; sourceTree = "<group>"; };
+		4306CCD3212A70A3008DAFB1 /* PrePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrePostCell.swift; sourceTree = "<group>"; };
+		4306CCD5212A7B7E008DAFB1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		4306CCD6212A7B7E008DAFB1 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		4307BA7921184BAD001FF8A1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4307BA7C21184C73001FF8A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		4307BA7F211850FB001FF8A1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +153,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4306CCCE212A6E4B008DAFB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4306CCD3212A70A3008DAFB1 /* PrePostCell.swift */,
+				4306CCD5212A7B7E008DAFB1 /* PostCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4307BA7721184B5B001FF8A1 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +239,9 @@
 		43747D4E211D7A2F005879F7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4306CCCE212A6E4B008DAFB1 /* View */,
 				43747D4F211D7A4B005879F7 /* HomeViewController.swift */,
+				4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -346,6 +367,8 @@
 		43E8388B2129A9DE00E8C32F /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				4306CCD6212A7B7E008DAFB1 /* PostCell.xib */,
+				4306CCD0212A6E64008DAFB1 /* PrePostCell.xib */,
 				43E8388D2129AA1400E8C32F /* AnimeCell.xib */,
 			);
 			path = XIBs;
@@ -494,7 +517,9 @@
 				43E8388F2129AA1400E8C32F /* AnimeCell.xib in Resources */,
 				43939F1A211432BB001CCC48 /* LaunchScreen.storyboard in Resources */,
 				4307BA9021185DA7001FF8A1 /* GoogleService-Info.plist in Resources */,
+				4306CCD8212A7B7E008DAFB1 /* PostCell.xib in Resources */,
 				43939F17211432BB001CCC48 /* Assets.xcassets in Resources */,
+				4306CCD2212A6E64008DAFB1 /* PrePostCell.xib in Resources */,
 				43939F15211432B7001CCC48 /* Main.storyboard in Resources */,
 				4307BA9321195ED0001FF8A1 /* Register.storyboard in Resources */,
 			);
@@ -571,6 +596,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
+				"${BUILT_PRODUCTS_DIR}/WCLShineButton/WCLShineButton.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -587,6 +613,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WCLShineButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -625,6 +652,8 @@
 				437285512126CBAC007388C6 /* AniListManager.swift in Sources */,
 				437ACED121242DAF00DF56F2 /* UserManager.swift in Sources */,
 				437ACECC212412A500DF56F2 /* Image+KF+RoundView.swift in Sources */,
+				4306CCD7212A7B7E008DAFB1 /* PostCell.swift in Sources */,
+				4306CCD4212A70A3008DAFB1 /* PrePostCell.swift in Sources */,
 				437ACEC8212410A800DF56F2 /* DiscoverAnimeViewController.swift in Sources */,
 				437285532126CE30007388C6 /* APIManager.swift in Sources */,
 				43E8388A2129A03D00E8C32F /* DiscoverAnimeMenuViewController.swift in Sources */,
@@ -640,6 +669,7 @@
 				4307BA8921185A94001FF8A1 /* LoginViewModel.swift in Sources */,
 				43E8388E2129AA1400E8C32F /* AnimeCell.swift in Sources */,
 				4307BAA521199BF0001FF8A1 /* RegisterViewModel.swift in Sources */,
+				4306CCDA212A8979008DAFB1 /* CreatePostViewController.swift in Sources */,
 				4307BA832118517D001FF8A1 /* AnidesuButton.swift in Sources */,
 				437ACECA212410B900DF56F2 /* DiscoverAnimeViewModel.swift in Sources */,
 				4307BA982119602A001FF8A1 /* BaseNavigationViewController.swift in Sources */,
@@ -835,6 +865,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -853,6 +884,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

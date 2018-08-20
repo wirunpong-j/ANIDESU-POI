@@ -80,6 +80,7 @@ PODS:
   - Tabman (1.9.2):
     - AutoInsetter (~> 1.2.0)
     - Pageboy (~> 2.5.0)
+  - WCLShineButton (1.0.7)
 
 DEPENDENCIES:
   - Alamofire
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - Tabman
+  - WCLShineButton
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -118,6 +120,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - Tabman
+    - WCLShineButton
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -142,7 +145,8 @@ SPEC CHECKSUMS:
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   Tabman: a09f7d7aa62b231ec475ca9eb9171f7cc973a3d7
+  WCLShineButton: d8b979b6f6f9f6709f9e241e6e1a4712a1a9b36b
 
-PODFILE CHECKSUM: 6a90882c2c73b0c818ffad6cc601f02d8986d23f
+PODFILE CHECKSUM: 85050ed7f4b1a05ad1da308c1e8b87086bb2c0d4
 
 COCOAPODS: 1.5.3
