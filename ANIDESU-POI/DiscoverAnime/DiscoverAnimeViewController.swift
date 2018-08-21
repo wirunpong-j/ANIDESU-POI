@@ -15,30 +15,45 @@ class DiscoverAnimeViewController: BaseViewController {
     
     @IBOutlet weak var listAnimeCollectionView: UICollectionView!
     
-    var listAnime: [AnimeResponse]?
+    var discoverAnimeViewModel: DiscoverAnimeViewModel!
+    var animeSeason: AnimeSeason!
+    var listAnime = [AnimeResponse]()
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpNib()
+        self.setUpViewModel()
+        self.setUpCollectionView()
     }
     
-    func setUpNib() {
-        listAnimeCollectionView.register(AnimeCell.nib, forCellWithReuseIdentifier: AnimeCell.identifier)
-        listAnimeCollectionView.dataSource = self
-        listAnimeCollectionView.delegate = self
+    func setUpViewModel() {
+        self.discoverAnimeViewModel = DiscoverAnimeViewModel()
+        
+        self.discoverAnimeViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
-
+    
+    func setUpCollectionView() {
+        self.listAnimeCollectionView.dataSource = self
+        self.listAnimeCollectionView.delegate = self
+        self.listAnimeCollectionView.register(AnimeCell.nib, forCellWithReuseIdentifier: AnimeCell.identifier)
+        
+        self.discoverAnimeViewModel.fetchListAnimeBySeason(season: animeSeason) { (listAnime) in
+            self.listAnime = listAnime
+            self.listAnimeCollectionView.reloadData()
+        }
+    }
 }
 
 extension DiscoverAnimeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (listAnime?.count)!
+        return self.listAnime.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnimeCell.identifier, for: indexPath) as? AnimeCell {
-            cell.setUpView(anime: listAnime![indexPath.row])
+            cell.setUpView(anime: self.listAnime[indexPath.row])
             return cell
         }
         

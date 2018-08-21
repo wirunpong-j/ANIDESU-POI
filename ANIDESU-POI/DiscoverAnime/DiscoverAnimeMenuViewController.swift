@@ -14,22 +14,12 @@ import RxCocoa
 
 class DiscoverAnimeMenuViewController: TabmanViewController, PageboyViewControllerDataSource {
     
-    var discoverAnimeViewModel: DiscoverAnimeViewModel!
-    let disposeBag = DisposeBag()
-    var menuViewController = [UIViewController]()
+    var menus = [UIViewController]()
     let ALL_SEASON = [AnimeSeason.Winter, AnimeSeason.Spring, AnimeSeason.Fall, AnimeSeason.Summer]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpViewModel()
         self.setUpView()
-    }
-    
-    func setUpViewModel() {
-        self.discoverAnimeViewModel = DiscoverAnimeViewModel()
-        self.discoverAnimeViewModel.errorRelay.subscribe(onNext: { (errorString) in
-            print("ERROR: \(errorString)")
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
     func setUpView() {
@@ -54,22 +44,26 @@ class DiscoverAnimeMenuViewController: TabmanViewController, PageboyViewControll
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 0.1336890757, green: 0.1912626624, blue: 0.2462295294, alpha: 1)
         
-        self.fetchAnimeBySeason()
+        for season in ALL_SEASON {
+            let discoverAnimeViewController = self.setDiscoverAnimeViewController(animeSeason: season)
+            self.menus.append(discoverAnimeViewController)
+        }
+        
+        self.reloadPages()
     }
     
-    func fetchAnimeBySeason() {
-        self.discoverAnimeViewModel.fetchAnimeAllSeason(currentViewController: self) { (menuViewController) in
-            self.menuViewController = menuViewController
-            self.reloadPages()
-        }
+    private func setDiscoverAnimeViewController(animeSeason: AnimeSeason) -> UIViewController {
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: DiscoverAnimeViewController.identifier) as? DiscoverAnimeViewController
+        viewController?.animeSeason = animeSeason
+        return viewController!
     }
 
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
-        return self.menuViewController.count
+        return self.menus.count
     }
     
     func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
-        return self.menuViewController[index]
+        return self.menus[index]
     }
     
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
