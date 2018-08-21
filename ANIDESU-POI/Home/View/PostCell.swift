@@ -9,6 +9,11 @@
 import UIKit
 import WCLShineButton
 
+protocol PostCellDidTapDelegate {
+    func likeBtnDidTap()
+    func commentBtnDidTap(indexPath: IndexPath)
+}
+
 class PostCell: UITableViewCell {
     static let nib = UINib(nibName: "PostCell", bundle: .main)
     static let identifier = "PostCell"
@@ -22,13 +27,34 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var likeCountBtn: UILabel!
     
+    var postCellDidTapDelegate: PostCellDidTapDelegate?
+    var indexPath: IndexPath?
+    
+    @IBOutlet weak var bgViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bgViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bgViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bgViewLeftConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
-    func setUpCell() {
-        self.setUpBorder()
+    func setUpCell(post: PostResponse, isBorder: Bool) {
+        profileImage.setImageWithRounded(urlStr: (post.user?.image_url_profile)!, borderColor: AnidesuColor.Clear)
+        displayNameLabel.text = (post.user?.display_name)!
+        dateTimeLabel.text = Date().showAnidesuDateTime(timeStr: post.post_date!)
+        messageLabel.text = post.message!
+        likeCountBtn.text = "\(post.like_count!) Likes"
+        likeBtn.addTarget(self, action: #selector(likeBtnPressed), for: .valueChanged)
+        
+        if isBorder {
+            self.setUpBorder()
+        } else {
+            self.bgViewBottomConstraint.constant = 0
+            self.bgViewRightConstraint.constant = 0
+            self.bgViewTopConstraint.constant = 0
+            self.bgViewLeftConstraint.constant = 0
+        }
     }
     
     private func setUpBorder() {
@@ -38,4 +64,11 @@ class PostCell: UITableViewCell {
         bgView.layer.shadowRadius = 5
     }
     
+    @objc func likeBtnPressed() {
+        self.postCellDidTapDelegate?.likeBtnDidTap()
+    }
+    
+    @IBAction func commentBtnPressed(_ sender: Any) {
+        self.postCellDidTapDelegate?.commentBtnDidTap(indexPath: self.indexPath!)
+    }
 }

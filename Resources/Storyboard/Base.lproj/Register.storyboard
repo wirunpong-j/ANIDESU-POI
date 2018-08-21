@@ -127,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="1212" y="130.88455772113943"/>
         </scene>
-        <!--Base Navigation View Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="9zd-Md-lwD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ORn-es-9qh" customClass="BaseNavigationViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ORn-es-9qh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="elj-N3-0ex">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>

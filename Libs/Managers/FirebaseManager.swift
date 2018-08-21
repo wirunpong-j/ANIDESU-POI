@@ -13,11 +13,14 @@ import FirebaseDatabase
 
 public enum FirebaseUrl {
     case userData(uid: String)
+    case post
     
     func getUrl() -> String {
         switch self {
         case .userData(let uid):
             return "anidesu/users/\(uid)/profile"
+        case .post:
+            return "anidesu/posts"
         }
     }
 }
@@ -82,6 +85,62 @@ class FirebaseManager {
             } else {
                 onFailure(error!)
             }
+        }
+    }
+    
+    func createPost(message: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        let postInfo: [String: Any] = [
+            "uid": UserDataModel.instance.uid,
+            "message": message,
+            "post_date": Date().getCurrentTime(),
+            "like_count": 0
+        ]
+        ref.child(FirebaseUrl.post.getUrl()).childByAutoId().setValue(postInfo) { (error, dataRef) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
+        }
+    }
+    
+    func fetchAllPost(onSuccess: @escaping ([PostResponse]) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        ref.child(FirebaseUrl.post.getUrl()).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let allData = snapshot.value as! [String: Any]
+            var allPost = [PostResponse]()
+            
+            for key in allData.keys {
+                let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
+                let post = try! JSONDecoder().decode(PostResponse.self, from: jsonData)
+                post.key = key
+                self.fetchUserData(uid: post.uid!, onSuccess: { (userResponse) in
+                    post.user = userResponse
+                    allPost.append(post)
+                    
+                    if allPost.count == allData.count {
+                        allPost = allPost.sorted(by: { $0.post_date! > $1.post_date! })
+                        onSuccess(allPost)
+                    }
+                }, onFailure: { (error) in
+                    onFailure(error)
+                })
+            }
+        }) { (error) in
+            onFailure(error)
+        }
+    }
+    
+    private func fetchUserData(uid: String, onSuccess: @escaping (UserResponse) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        ref.child(FirebaseUrl.userData(uid: uid).getUrl()).observeSingleEvent(of: .value, with: { (snaphot) in
+            let jsonData = try! JSONSerialization.data(withJSONObject: snaphot.value)
+            let user = try! JSONDecoder().decode(UserResponse.self, from: jsonData)
+            onSuccess(user)
+        }) { (error) in
+            onFailure(error)
         }
     }
 }

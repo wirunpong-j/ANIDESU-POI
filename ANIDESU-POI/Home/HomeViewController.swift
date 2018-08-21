@@ -7,10 +7,15 @@
 //
 
 import UIKit
-import Kingfisher
+import RxSwift
+import RxCocoa
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var postTableView: UITableView!
+    
+    var allPost: [PostResponse]!
+    var postViewModel: PostViewModel!
+    var disposeBag = DisposeBag()
     
     private enum HomeSection: Int {
         case PrePost, Post
@@ -18,26 +23,92 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpTableView()
         self.setUpViewModel()
-        self.setUpNib()
         self.setUpView()
     }
     
-    func setUpNib() {
+    private func setUpTableView() {
         self.postTableView.delegate = self
         self.postTableView.dataSource = self
         self.postTableView.estimatedRowHeight = 140
         self.postTableView.rowHeight = UITableViewAutomaticDimension
         self.postTableView.register(PrePostCell.nib, forCellReuseIdentifier: PrePostCell.identifier)
         self.postTableView.register(PostCell.nib, forCellReuseIdentifier: PostCell.identifier)
+        
+        // set refresh control
+        var refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
+        if #available(iOS 10.0, *) {
+            self.postTableView.refreshControl = refreshControl
+        } else {
+            self.postTableView.backgroundView = refreshControl
+        }
     }
     
-    func setUpView() {
+    private func setUpViewModel() {
+        self.allPost = [PostResponse]()
+        self.postViewModel = PostViewModel()
+        
+        self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.postViewModel.createPostCompleted.subscribe(onNext: { (isCompleted) in
+            if isCompleted {
+                self.fetchAllPost()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+    }
+    
+    private func setUpView() {
+        self.title = "Home"
+        self.fetchAllPost()
+    }
+    
+    private func fetchAllPost() {
+        self.postViewModel.fetchAllPost { (allPost) in
+            self.allPost = allPost
+            self.postTableView.reloadData()
+        }
+    }
+    
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
+        self.fetchAllPost()
+        refreshControl.endRefreshing()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case CreatePostViewController.identifier:
+            let navbar = segue.destination as? UINavigationController
+            if let viewController = navbar?.viewControllers.first as? CreatePostViewController {
+                viewController.createPostDelegate = self
+            }
+        case PostDetailViewController.identifier:
+            if let viewController = segue.destination as? PostDetailViewController {
+                viewController.post = sender as! PostResponse
+            }
+        default:
+            break
+        }
+    }
+}
+
+extension HomeViewController: CreatePostDelegate {
+    func createPostCompleted() {
+        self.fetchAllPost()
+    }
+}
+
+extension HomeViewController: PostCellDidTapDelegate {
+    func likeBtnDidTap() {
         
     }
     
-    func setUpViewModel() {
-        
+    func commentBtnDidTap(indexPath: IndexPath) {
+        self.performSegue(withIdentifier: PostDetailViewController.identifier, sender: self.allPost[indexPath.row])
     }
 }
 
@@ -51,7 +122,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         case .PrePost:
             return 1
         case .Post:
-            return 3
+            return self.allPost.count
         }
     }
     
@@ -63,7 +134,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case .Post:
             if let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.identifier, for: indexPath) as? PostCell {
-                cell.setUpCell()
+                cell.setUpCell(post: self.allPost[indexPath.row], isBorder: true)
+                cell.indexPath = indexPath
+                cell.postCellDidTapDelegate = self
                 return cell
             }
         }
@@ -76,7 +149,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         case .PrePost:
             self.performSegue(withIdentifier: CreatePostViewController.identifier, sender: nil)
         case .Post:
-            break
+            self.performSegue(withIdentifier: PostDetailViewController.identifier, sender: self.allPost[indexPath.row])
         }
     }
 }

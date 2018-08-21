@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserDataModel: Decodable {
+class UserDataModel {
     
     static var instance = UserDataModel()
     

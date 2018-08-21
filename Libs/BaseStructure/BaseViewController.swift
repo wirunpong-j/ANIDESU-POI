@@ -27,29 +27,6 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackNavigationItem()
-    }
-    
-    private func setBackNavigationItem() {
-        if self.navigationController?.viewControllers.count ?? 0 > 0 {
-            // BarButtonItems
-            let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            backButton.setTitle("Cancel", for: .normal)
-            backButton.setTitleColor(AnidesuColor.DarkBlue.color(), for: .normal)
-            backButton.setTitleColor(AnidesuColor.Blue.color(), for: .highlighted)
-            backButton.addTarget(self, action: #selector(self.backBtnPressed), for: .touchUpInside)
-            
-            let backButtonItem = UIBarButtonItem(customView: backButton)
-            self.navigationItem.leftBarButtonItem = backButtonItem
-        }
-    }
-    
-    @objc func backBtnPressed() {
-        if let navBar = self.navigationController, navBar.viewControllers.first != self {
-            navBar.popViewController(animated: true)
-        } else {
-            self.dismiss(animated: true)
-        }
     }
     
     func showLoading() {

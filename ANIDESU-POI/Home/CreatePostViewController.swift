@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol CreatePostDelegate {
+    func createPostCompleted()
+}
 
 class CreatePostViewController: BaseViewController {
     static let identifier = "CreatePostViewController"
@@ -18,10 +24,23 @@ class CreatePostViewController: BaseViewController {
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var messageTextView: UITextView!
     
+    var postViewModel: PostViewModel!
+    let disposeBag = DisposeBag()
+    var createPostDelegate: CreatePostDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpViewModel()
         self.setTapGestureRecognizer()
         self.setUpView()
+    }
+    
+    private func setUpViewModel() {
+        self.postViewModel = PostViewModel()
+        self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.hideLoading()
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
     private func setUpView() {
@@ -41,9 +60,20 @@ class CreatePostViewController: BaseViewController {
     }
     
     @IBAction func shareBtnPressed(_ sender: Any) {
+        self.showLoading()
+        let message = messageTextView.text!
+        self.postViewModel.createPost(message: message) {
+            self.hideLoading()
+            self.dismiss(animated: true, completion: {
+                self.createPostDelegate.createPostCompleted()
+            })
+        }
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: {
+            self.createPostDelegate.createPostCompleted()
+        })
     }
 }
 

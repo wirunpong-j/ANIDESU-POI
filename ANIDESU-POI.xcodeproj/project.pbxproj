@@ -12,6 +12,14 @@
 		4306CCD7212A7B7E008DAFB1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCD5212A7B7E008DAFB1 /* PostCell.swift */; };
 		4306CCD8212A7B7E008DAFB1 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4306CCD6212A7B7E008DAFB1 /* PostCell.xib */; };
 		4306CCDA212A8979008DAFB1 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */; };
+		4306CCDC212A9490008DAFB1 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCDB212A9490008DAFB1 /* PostViewModel.swift */; };
+		4306CCDF212A9B6B008DAFB1 /* DateTimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCDE212A9B6B008DAFB1 /* DateTimeFormat.swift */; };
+		4306CCE1212A9C57008DAFB1 /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCE0212A9C57008DAFB1 /* PostResponse.swift */; };
+		4306CCE3212AA1CE008DAFB1 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCE2212AA1CE008DAFB1 /* UserResponse.swift */; };
+		4306CCE5212ABE3C008DAFB1 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCE4212ABE3C008DAFB1 /* CommentResponse.swift */; };
+		4306CCE7212ABFD8008DAFB1 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCE6212ABFD8008DAFB1 /* PostDetailViewController.swift */; };
+		4306CCE9212AD4B1008DAFB1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCE8212AD4B1008DAFB1 /* CommentCell.swift */; };
+		4306CCEB212AD5E1008DAFB1 /* AnidesuRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306CCEA212AD5E1008DAFB1 /* AnidesuRoundView.swift */; };
 		4307BA7A21184BAD001FF8A1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BA7921184BAD001FF8A1 /* BaseViewController.swift */; };
 		4307BA7D21184C73001FF8A1 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4307BA7B21184C73001FF8A1 /* Login.storyboard */; };
 		4307BA80211850FB001FF8A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BA7F211850FB001FF8A1 /* LoginViewController.swift */; };
@@ -75,6 +83,14 @@
 		4306CCD5212A7B7E008DAFB1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		4306CCD6212A7B7E008DAFB1 /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		4306CCDB212A9490008DAFB1 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		4306CCDE212A9B6B008DAFB1 /* DateTimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeFormat.swift; sourceTree = "<group>"; };
+		4306CCE0212A9C57008DAFB1 /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
+		4306CCE2212AA1CE008DAFB1 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		4306CCE4212ABE3C008DAFB1 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		4306CCE6212ABFD8008DAFB1 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		4306CCE8212AD4B1008DAFB1 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		4306CCEA212AD5E1008DAFB1 /* AnidesuRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnidesuRoundView.swift; sourceTree = "<group>"; };
 		4307BA7921184BAD001FF8A1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4307BA7C21184C73001FF8A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		4307BA7F211850FB001FF8A1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +174,7 @@
 			children = (
 				4306CCD3212A70A3008DAFB1 /* PrePostCell.swift */,
 				4306CCD5212A7B7E008DAFB1 /* PostCell.swift */,
+				4306CCE8212AD4B1008DAFB1 /* CommentCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +210,7 @@
 				4307BA822118517D001FF8A1 /* AnidesuButton.swift */,
 				4307BA9921197986001FF8A1 /* AnidesuColor.swift */,
 				4307BA9C21198D5A001FF8A1 /* ImageRoundView.swift */,
+				4306CCEA212AD5E1008DAFB1 /* AnidesuRoundView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -223,6 +241,7 @@
 			children = (
 				4307BAA2211991B7001FF8A1 /* UIImage+JPEG.swift */,
 				437ACECB212412A500DF56F2 /* Image+KF+RoundView.swift */,
+				4306CCDE212A9B6B008DAFB1 /* DateTimeFormat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,6 +251,9 @@
 			children = (
 				437285552126DB9F007388C6 /* AuthenResponse.swift */,
 				437285572126E130007388C6 /* AnimeResponse.swift */,
+				4306CCE0212A9C57008DAFB1 /* PostResponse.swift */,
+				4306CCE2212AA1CE008DAFB1 /* UserResponse.swift */,
+				4306CCE4212ABE3C008DAFB1 /* CommentResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -242,6 +264,8 @@
 				4306CCCE212A6E4B008DAFB1 /* View */,
 				43747D4F211D7A4B005879F7 /* HomeViewController.swift */,
 				4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */,
+				4306CCDB212A9490008DAFB1 /* PostViewModel.swift */,
+				4306CCE6212ABFD8008DAFB1 /* PostDetailViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -651,6 +675,7 @@
 				4307BA9D21198D5A001FF8A1 /* ImageRoundView.swift in Sources */,
 				437285512126CBAC007388C6 /* AniListManager.swift in Sources */,
 				437ACED121242DAF00DF56F2 /* UserManager.swift in Sources */,
+				4306CCE1212A9C57008DAFB1 /* PostResponse.swift in Sources */,
 				437ACECC212412A500DF56F2 /* Image+KF+RoundView.swift in Sources */,
 				4306CCD7212A7B7E008DAFB1 /* PostCell.swift in Sources */,
 				4306CCD4212A70A3008DAFB1 /* PrePostCell.swift in Sources */,
@@ -665,12 +690,19 @@
 				43747D50211D7A4B005879F7 /* HomeViewController.swift in Sources */,
 				4307BA9A21197986001FF8A1 /* AnidesuColor.swift in Sources */,
 				437285582126E130007388C6 /* AnimeResponse.swift in Sources */,
+				4306CCE7212ABFD8008DAFB1 /* PostDetailViewController.swift in Sources */,
+				4306CCE9212AD4B1008DAFB1 /* CommentCell.swift in Sources */,
+				4306CCEB212AD5E1008DAFB1 /* AnidesuRoundView.swift in Sources */,
 				4307BA9621195EF0001FF8A1 /* RegisterViewController.swift in Sources */,
 				4307BA8921185A94001FF8A1 /* LoginViewModel.swift in Sources */,
 				43E8388E2129AA1400E8C32F /* AnimeCell.swift in Sources */,
+				4306CCDF212A9B6B008DAFB1 /* DateTimeFormat.swift in Sources */,
 				4307BAA521199BF0001FF8A1 /* RegisterViewModel.swift in Sources */,
 				4306CCDA212A8979008DAFB1 /* CreatePostViewController.swift in Sources */,
+				4306CCE5212ABE3C008DAFB1 /* CommentResponse.swift in Sources */,
 				4307BA832118517D001FF8A1 /* AnidesuButton.swift in Sources */,
+				4306CCDC212A9490008DAFB1 /* PostViewModel.swift in Sources */,
+				4306CCE3212AA1CE008DAFB1 /* UserResponse.swift in Sources */,
 				437ACECA212410B900DF56F2 /* DiscoverAnimeViewModel.swift in Sources */,
 				4307BA982119602A001FF8A1 /* BaseNavigationViewController.swift in Sources */,
 				43939F10211432B7001CCC48 /* AppDelegate.swift in Sources */,

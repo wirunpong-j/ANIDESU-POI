@@ -17,6 +17,7 @@ class BaseNavigationViewController: UINavigationController {
     
     func setUpNavBar() {
         self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AnidesuColor.White.color()]
+        self.navigationItem.backBarButtonItem?.tintColor = AnidesuColor.White.color()
         self.setUpProfileImage()
     }
     

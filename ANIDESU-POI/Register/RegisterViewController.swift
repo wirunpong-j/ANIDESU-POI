@@ -25,25 +25,38 @@ class RegisterViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate()
-        setUpViewModel()
-        setUpNavBar()
-    }
-    
-    func setDelegate() {
-        imagePicker.delegate = self
+        self.setUpViewModel()
+        self.setUpView()
     }
     
     func setUpViewModel() {
-        registerViewModel = RegisterViewModel()
-        registerViewModel.errorRelay.subscribe(onNext: { (errorString) in
+        self.imagePicker.delegate = self
+        self.registerViewModel = RegisterViewModel()
+        
+        self.registerViewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
     }
     
-    func setUpNavBar() {
+    private func setUpView() {
         self.title = "Create Account"
+        self.createRightBarBtnItem()
+        self.createRightBarBtnItem()
+    }
+    
+    private func createLeftBarBtnItem() {
+        // Create Back Button
+        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        backButton.setTitle("Cancel", for: .normal)
+        backButton.setTitleColor(AnidesuColor.DarkBlue.color(), for: .normal)
+        backButton.setTitleColor(AnidesuColor.Blue.color(), for: .highlighted)
+        backButton.addTarget(self, action: #selector(self.backBtnPressed), for: .touchUpInside)
         
+        let backButtonItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backButtonItem
+    }
+    
+    private func createRightBarBtnItem() {
         // Create Submit Button
         let submitBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         submitBtn.setTitle("Submit", for: .normal)
@@ -53,6 +66,14 @@ class RegisterViewController: BaseViewController {
         
         let submitButtonItem = UIBarButtonItem(customView: submitBtn)
         self.navigationItem.rightBarButtonItem = submitButtonItem
+    }
+    
+    @objc func backBtnPressed() {
+        if let navBar = self.navigationController, navBar.viewControllers.first != self {
+            navBar.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true)
+        }
     }
     
     @objc func submitBtnPressed() {

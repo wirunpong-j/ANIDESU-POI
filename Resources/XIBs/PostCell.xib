@@ -74,6 +74,9 @@
                                         <rect key="frame" x="50" y="0.0" width="62" height="30"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="Comment"/>
+                                        <connections>
+                                            <action selector="commentBtnPressed:" destination="rJQ-Ah-YSD" eventType="touchUpInside" id="Ndo-tn-TJp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -114,6 +117,10 @@
             <color key="backgroundColor" red="0.94118285180000005" green="0.94116520879999999" blue="0.94117718939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <connections>
                 <outlet property="bgView" destination="G8B-3Q-a4n" id="mDm-mt-KGS"/>
+                <outlet property="bgViewBottomConstraint" destination="3iR-Ha-AST" id="PWR-UT-7js"/>
+                <outlet property="bgViewLeftConstraint" destination="wyv-7b-4sj" id="FqN-px-ycZ"/>
+                <outlet property="bgViewRightConstraint" destination="Eo5-00-Pxx" id="KDV-U8-uYW"/>
+                <outlet property="bgViewTopConstraint" destination="ORf-CP-bC6" id="oXt-tx-v5y"/>
                 <outlet property="commentBtn" destination="aCk-2G-cMo" id="SAi-YS-JHV"/>
                 <outlet property="dateTimeLabel" destination="sWR-2n-flt" id="KRm-nT-OlI"/>
                 <outlet property="displayNameLabel" destination="gET-lj-qMM" id="sIK-Ys-NMy"/>
