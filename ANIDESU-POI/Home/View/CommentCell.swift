@@ -28,5 +28,11 @@ class CommentCell: UITableViewCell {
         messageLabel.text = comment.comment_message!
         commentDateTimeLabel.text = Date().showAnidesuDateTime(timeStr: comment.comment_date!)
     }
+    
+    override func layoutSubviews() {
+        DispatchQueue.main.async { [weak self] in
+            self?.layoutIfNeeded()
+        }
+    }
 
 }

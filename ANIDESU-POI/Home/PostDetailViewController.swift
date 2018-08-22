@@ -49,7 +49,7 @@ class PostDetailViewController: BaseViewController {
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
         
-        self.reloadData()
+        self.fetchAllComment()
     }
     
     private func setUpView() {
@@ -68,8 +68,13 @@ class PostDetailViewController: BaseViewController {
         self.view.endEditing(true)
         
         self.postViewModel.addComment(postKey: post.key!, message: message) {
-            self.reloadData()
             self.clearTextView()
+            self.postViewModel.fetchAllComment(postKey: self.post.key!, completion: { (allComment) in
+                self.post.comments = allComment
+                let indexPath = IndexPath(row: allComment.count - 1, section: PostSection.Comments.rawValue)
+                self.postDetailTableView.insertRows(at: [indexPath], with: .fade)
+                self.postDetailTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            })
         }
     }
     
@@ -79,7 +84,7 @@ class PostDetailViewController: BaseViewController {
         self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
     }
     
-    private func reloadData() {
+    private func fetchAllComment() {
         self.postViewModel.fetchAllComment(postKey: self.post.key!) { (allComment) in
             self.post.comments = allComment
             self.postDetailTableView.reloadData()
@@ -135,7 +140,6 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         case .Comments:
             if let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.identifier, for: indexPath) as? CommentCell {
                 cell.setUpCell(comment: self.post.comments![indexPath.row])
-                cell.layoutIfNeeded()
                 return cell
             }
         }

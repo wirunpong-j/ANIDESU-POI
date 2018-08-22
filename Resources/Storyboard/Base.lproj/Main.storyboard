@@ -293,11 +293,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="84" id="FYg-yP-gP7" customClass="CommentCell" customModule="ANIDESU_POI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="84"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="90" id="FYg-yP-gP7" customClass="CommentCell" customModule="ANIDESU_POI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYg-yP-gP7" id="B6l-8Y-mbP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_default" translatesAutoresizingMaskIntoConstraints="NO" id="UMj-Cs-vqv">
@@ -308,7 +308,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="07n-JW-yNW" customClass="AnidesuRoundView" customModule="ANIDESU_POI" customModuleProvider="target">
-                                                    <rect key="frame" x="61" y="5" width="128.5" height="52.5"/>
+                                                    <rect key="frame" x="61" y="5" width="128.5" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="B'Bell Kung Desu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHg-X1-uL5">
                                                             <rect key="frame" x="8" y="8" width="112.5" height="17"/>
@@ -326,10 +326,10 @@
                                                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstItem="gI8-Tg-HAY" firstAttribute="top" secondItem="EHg-X1-uL5" secondAttribute="bottom" constant="5" id="37v-MG-dmF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gI8-Tg-HAY" secondAttribute="bottom" constant="8" id="3kf-Bx-wWJ"/>
                                                         <constraint firstAttribute="trailing" secondItem="EHg-X1-uL5" secondAttribute="trailing" constant="8" id="PTA-RW-geX"/>
                                                         <constraint firstItem="gI8-Tg-HAY" firstAttribute="leading" secondItem="07n-JW-yNW" secondAttribute="leading" constant="8" id="aCH-RM-KjA"/>
                                                         <constraint firstItem="EHg-X1-uL5" firstAttribute="top" secondItem="07n-JW-yNW" secondAttribute="top" constant="8" id="gye-dr-4QZ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="gI8-Tg-HAY" secondAttribute="bottom" constant="8" id="jZJ-LU-re2"/>
                                                         <constraint firstItem="EHg-X1-uL5" firstAttribute="leading" secondItem="07n-JW-yNW" secondAttribute="leading" constant="8" id="uiA-5f-e9H"/>
                                                         <constraint firstAttribute="trailing" secondItem="gI8-Tg-HAY" secondAttribute="trailing" constant="8" id="ziZ-j5-yI7"/>
                                                     </constraints>
@@ -344,8 +344,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="20 Aug 2018 - 17:50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLd-c1-e02">
-                                                    <rect key="frame" x="61" y="61.5" width="98.5" height="12"/>
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="10"/>
+                                                    <rect key="frame" x="65" y="69" width="81" height="10"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="8"/>
                                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -353,8 +353,8 @@
                                             <constraints>
                                                 <constraint firstItem="UMj-Cs-vqv" firstAttribute="top" secondItem="B6l-8Y-mbP" secondAttribute="top" constant="10" id="2p3-85-iMv"/>
                                                 <constraint firstAttribute="bottom" secondItem="HLd-c1-e02" secondAttribute="bottom" constant="5" id="3ai-M1-Flh"/>
-                                                <constraint firstItem="HLd-c1-e02" firstAttribute="leading" secondItem="UMj-Cs-vqv" secondAttribute="trailing" constant="10" id="5dr-Ii-KuG"/>
-                                                <constraint firstItem="HLd-c1-e02" firstAttribute="top" secondItem="07n-JW-yNW" secondAttribute="bottom" constant="4" id="F5d-JZ-HQC"/>
+                                                <constraint firstItem="HLd-c1-e02" firstAttribute="leading" secondItem="UMj-Cs-vqv" secondAttribute="trailing" constant="14" id="5dr-Ii-KuG"/>
+                                                <constraint firstItem="HLd-c1-e02" firstAttribute="top" secondItem="07n-JW-yNW" secondAttribute="bottom" constant="2" id="F5d-JZ-HQC"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="07n-JW-yNW" secondAttribute="trailing" constant="16" id="duf-n0-1Le"/>
                                                 <constraint firstItem="07n-JW-yNW" firstAttribute="leading" secondItem="UMj-Cs-vqv" secondAttribute="trailing" constant="10" id="isO-YZ-tZC"/>
                                                 <constraint firstItem="07n-JW-yNW" firstAttribute="top" secondItem="B6l-8Y-mbP" secondAttribute="top" constant="5" id="jjj-4q-sDt"/>

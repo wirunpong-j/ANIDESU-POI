@@ -180,7 +180,7 @@ class FirebaseManager {
                         allComment.append(comment)
                         
                         if allComment.count == allData.count {
-                            allComment = allComment.sorted(by: { $0.comment_date! > $1.comment_date! })
+                            allComment = allComment.sorted(by: { $0.comment_date! < $1.comment_date! })
                             onSuccess(allComment)
                         }
                     }, onFailure: { (error) in
