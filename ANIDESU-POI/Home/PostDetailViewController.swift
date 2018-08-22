@@ -48,6 +48,8 @@ class PostDetailViewController: BaseViewController {
         self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.reloadData()
     }
     
     private func setUpView() {
@@ -66,6 +68,7 @@ class PostDetailViewController: BaseViewController {
         self.view.endEditing(true)
         
         self.postViewModel.addComment(postKey: post.key!, message: message) {
+            self.reloadData()
             self.clearTextView()
         }
     }
@@ -74,6 +77,13 @@ class PostDetailViewController: BaseViewController {
         self.messageTextField.text = "Write a comment..."
         self.messageTextField.textColor = AnidesuColor.DarkGray.color()
         self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
+    }
+    
+    private func reloadData() {
+        self.postViewModel.fetchAllComment(postKey: self.post.key!) { (allComment) in
+            self.post.comments = allComment
+            self.postDetailTableView.reloadData()
+        }
     }
 }
 
@@ -111,8 +121,7 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         case .PostDetail:
             return 1
         case .Comments:
-            return 0
-//            return (self.post.comments?.count)!
+            return self.post.comments != nil ? (self.post.comments?.count)! : 0
         }
     }
     
@@ -120,11 +129,13 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         switch PostSection(rawValue: indexPath.section)! {
         case .PostDetail:
             if let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.identifier, for: indexPath) as? PostCell {
-                cell.setUpCell(post: post, isBorder: false)
+                cell.setUpCell(post: self.post, isBorder: false)
                 return cell
             }
         case .Comments:
             if let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.identifier, for: indexPath) as? CommentCell {
+                cell.setUpCell(comment: self.post.comments![indexPath.row])
+                cell.layoutIfNeeded()
                 return cell
             }
         }

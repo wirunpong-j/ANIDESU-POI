@@ -290,10 +290,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGn-Ru-j8c">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="84" id="FYg-yP-gP7" customClass="CommentCell" customModule="ANIDESU_POI" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="84" id="FYg-yP-gP7" customClass="CommentCell" customModule="ANIDESU_POI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYg-yP-gP7" id="B6l-8Y-mbP">
@@ -447,9 +447,9 @@
                             <constraint firstItem="JGn-Ru-j8c" firstAttribute="leading" secondItem="ZuV-TC-mMd" secondAttribute="leading" id="6mT-Xt-XVN"/>
                             <constraint firstItem="ZuV-TC-mMd" firstAttribute="trailing" secondItem="JGn-Ru-j8c" secondAttribute="trailing" id="8k7-IF-qwN"/>
                             <constraint firstItem="ZuV-TC-mMd" firstAttribute="bottom" secondItem="Kdn-Jb-AKA" secondAttribute="bottom" id="Afa-qx-U8j"/>
+                            <constraint firstItem="Kdn-Jb-AKA" firstAttribute="top" secondItem="JGn-Ru-j8c" secondAttribute="bottom" id="W8O-1S-wCa"/>
                             <constraint firstItem="ZuV-TC-mMd" firstAttribute="trailing" secondItem="Kdn-Jb-AKA" secondAttribute="trailing" id="pOz-r0-Oz6"/>
                             <constraint firstItem="JGn-Ru-j8c" firstAttribute="top" secondItem="ZuV-TC-mMd" secondAttribute="top" id="q3z-mU-GLp"/>
-                            <constraint firstItem="ZuV-TC-mMd" firstAttribute="bottom" secondItem="JGn-Ru-j8c" secondAttribute="bottom" id="zqN-A0-NOD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZuV-TC-mMd"/>
                     </view>

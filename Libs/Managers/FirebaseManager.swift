@@ -14,7 +14,7 @@ import FirebaseDatabase
 public enum FirebaseUrl {
     case userData(uid: String)
     case post
-    case addComment(postKey: String)
+    case comment(postKey: String)
     
     func getUrl() -> String {
         switch self {
@@ -22,7 +22,7 @@ public enum FirebaseUrl {
             return "anidesu/users/\(uid)/profile"
         case .post:
             return "anidesu/posts"
-        case .addComment(let postKey):
+        case .comment(let postKey):
             return "anidesu/posts/\(postKey)/comment"
         }
     }
@@ -155,12 +155,43 @@ class FirebaseManager {
             "comment_date": Date().getCurrentTime()
         ]
         
-        ref.child(FirebaseUrl.addComment(postKey: postKey).getUrl()).childByAutoId().setValue(commentInfo) { (error, dataRef) in
+        ref.child(FirebaseUrl.comment(postKey: postKey).getUrl()).childByAutoId().setValue(commentInfo) { (error, dataRef) in
             if let error = error {
                 onFailure(error)
             } else {
                 onSuccess()
             }
+        }
+    }
+    
+    public func fetchAllComment(postKey: String, onSuccess: @escaping ([CommentResponse]) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        ref.child(FirebaseUrl.comment(postKey: postKey).getUrl()).observeSingleEvent(of: .value, with: { (snapshot) in
+            var allComment = [CommentResponse]()
+            
+            if let allData = snapshot.value as? [String: Any] {
+                for key in allData.keys {
+                    let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
+                    let comment = try! JSONDecoder().decode(CommentResponse.self, from: jsonData)
+                    comment.key = key
+                    
+                    self.fetchUserData(uid: comment.uid!, onSuccess: { (userResponse) in
+                        comment.user = userResponse
+                        allComment.append(comment)
+                        
+                        if allComment.count == allData.count {
+                            allComment = allComment.sorted(by: { $0.comment_date! > $1.comment_date! })
+                            onSuccess(allComment)
+                        }
+                    }, onFailure: { (error) in
+                        onFailure(error)
+                    })
+                }
+            } else {
+                onSuccess(allComment)
+            }
+        }) { (error) in
+            onFailure(error)
         }
     }
 }

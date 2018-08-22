@@ -41,4 +41,12 @@ class PostViewModel {
             self.errorRelay.accept(error.localizedDescription)
         }
     }
+    
+    public func fetchAllComment(postKey: String, completion: @escaping ([CommentResponse]) -> ()) {
+        self.firebaseManager.fetchAllComment(postKey: postKey, onSuccess: { (allComment) in
+            completion(allComment)
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
 }

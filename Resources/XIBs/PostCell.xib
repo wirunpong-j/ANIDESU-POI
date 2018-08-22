@@ -86,6 +86,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLj-Ko-rvr">
+                                <rect key="frame" x="59" y="307" width="240" height="9"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="jSJ-Kh-8ac"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -94,6 +101,9 @@
                             <constraint firstAttribute="trailing" secondItem="GkU-ji-cDk" secondAttribute="trailing" constant="20" id="TjB-eG-OSN"/>
                             <constraint firstItem="tMw-Bp-F4Z" firstAttribute="top" secondItem="G8B-3Q-a4n" secondAttribute="top" constant="20" id="Wxd-tt-oh6"/>
                             <constraint firstItem="QGf-z9-vbJ" firstAttribute="top" secondItem="tMw-Bp-F4Z" secondAttribute="bottom" constant="15" id="bRZ-3s-uDi"/>
+                            <constraint firstAttribute="bottom" secondItem="OLj-Ko-rvr" secondAttribute="bottom" id="cOu-Ul-I5w"/>
+                            <constraint firstItem="OLj-Ko-rvr" firstAttribute="leading" secondItem="G8B-3Q-a4n" secondAttribute="leading" id="gGs-DJ-Ia6"/>
+                            <constraint firstAttribute="trailing" secondItem="OLj-Ko-rvr" secondAttribute="trailing" id="gWz-ef-cHY"/>
                             <constraint firstItem="HaZ-Ot-vZs" firstAttribute="bottom" secondItem="G8B-3Q-a4n" secondAttribute="bottomMargin" constant="-20" id="hGN-ni-PRP"/>
                             <constraint firstItem="QGf-z9-vbJ" firstAttribute="leading" secondItem="G8B-3Q-a4n" secondAttribute="leading" constant="20" id="k9U-PR-vf4"/>
                             <constraint firstItem="HaZ-Ot-vZs" firstAttribute="leading" secondItem="G8B-3Q-a4n" secondAttribute="leading" constant="20" id="mQC-a5-I60"/>
@@ -128,6 +138,7 @@
                 <outlet property="likeCountBtn" destination="XSf-Oh-KbQ" id="1qh-h9-qRn"/>
                 <outlet property="messageLabel" destination="QGf-z9-vbJ" id="Fof-E5-Sdu"/>
                 <outlet property="profileImage" destination="tMw-Bp-F4Z" id="3wt-Z8-hrA"/>
+                <outlet property="separatorView" destination="OLj-Ko-rvr" id="9j5-fK-CUQ"/>
             </connections>
             <point key="canvasLocation" x="69.5" y="132"/>
         </tableViewCell>

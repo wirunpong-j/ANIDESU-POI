@@ -26,6 +26,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likeBtn: WCLShineButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var likeCountBtn: UILabel!
+    @IBOutlet weak var separatorView: UIView!
     
     var postCellDidTapDelegate: PostCellDidTapDelegate?
     var indexPath: IndexPath?
@@ -46,6 +47,7 @@ class PostCell: UITableViewCell {
         messageLabel.text = post.message!
         likeCountBtn.text = "\(post.like_count!) Likes"
         likeBtn.addTarget(self, action: #selector(likeBtnPressed), for: .valueChanged)
+        self.separatorView.isHidden = true
         
         if isBorder {
             self.setUpBorder()
@@ -54,6 +56,7 @@ class PostCell: UITableViewCell {
             self.bgViewRightConstraint.constant = 0
             self.bgViewTopConstraint.constant = 0
             self.bgViewLeftConstraint.constant = 0
+            self.separatorView.isHidden = false
         }
     }
     
