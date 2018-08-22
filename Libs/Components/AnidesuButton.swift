@@ -34,5 +34,9 @@ class AnidesuButton: UIButton {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor.cgColor
     }
-
+    
+    public func switchButton(isEnabled: Bool, tintColor: AnidesuColor) {
+        self.tintColor = tintColor.color()
+        self.isEnabled = isEnabled
+    }
 }

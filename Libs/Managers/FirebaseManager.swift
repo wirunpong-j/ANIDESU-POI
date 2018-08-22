@@ -14,6 +14,7 @@ import FirebaseDatabase
 public enum FirebaseUrl {
     case userData(uid: String)
     case post
+    case addComment(postKey: String)
     
     func getUrl() -> String {
         switch self {
@@ -21,6 +22,8 @@ public enum FirebaseUrl {
             return "anidesu/users/\(uid)/profile"
         case .post:
             return "anidesu/posts"
+        case .addComment(let postKey):
+            return "anidesu/posts/\(postKey)/comment"
         }
     }
 }
@@ -141,6 +144,23 @@ class FirebaseManager {
             onSuccess(user)
         }) { (error) in
             onFailure(error)
+        }
+    }
+    
+    public func addComment(postKey: String, message: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        let commentInfo: [String: Any] = [
+            "uid": UserDataModel.instance.uid,
+            "comment_message": message,
+            "comment_date": Date().getCurrentTime()
+        ]
+        
+        ref.child(FirebaseUrl.addComment(postKey: postKey).getUrl()).childByAutoId().setValue(commentInfo) { (error, dataRef) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
         }
     }
 }

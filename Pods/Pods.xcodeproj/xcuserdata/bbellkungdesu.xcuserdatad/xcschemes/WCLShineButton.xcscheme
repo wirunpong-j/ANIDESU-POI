@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5D97C2E4D6E9F8F2AF891EE8665F8D9"
+               BlueprintIdentifier = "70111DE17BB247E5CF55CA0155AE1706"
                BlueprintName = "WCLShineButton"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "WCLShineButton.framework">

@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import IHKeyboardAvoiding
 
 class PostDetailViewController: BaseViewController {
     static let identifier = "PostDetailViewController"
     
     @IBOutlet weak var postDetailTableView: UITableView!
     @IBOutlet weak var messageTextField: UITextView!
-    @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var sendBtn: AnidesuButton!
     
+    var postViewModel: PostViewModel!
+    var disposeBag = DisposeBag()
     var post: PostResponse!
     
     private enum PostSection: Int {
@@ -37,28 +43,62 @@ class PostDetailViewController: BaseViewController {
     }
     
     private func setUpViewModel() {
+        self.postViewModel = PostViewModel()
         
+        self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
     private func setUpView() {
-        self.title = (post.user?.display_name)! + "'s Post"
-        self.setTapGestureRecognizer()
-        self.setAutoKeyBoard()
-    }
-    
-    private func setAutoKeyBoard() {
+        KeyboardAvoiding.avoidingView = self.commentView
+        self.messageTextField.delegate = self
         
+        self.title = (post.user?.display_name)! + "'s Post"
+        let btnImage = UIImage(named: "ic_send")!
+        let tintImage = btnImage.withRenderingMode(.alwaysTemplate)
+        self.sendBtn.setImage(tintImage, for: .normal)
+        self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.DarkGray)
     }
     
-    private func setTapGestureRecognizer() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
+    @IBAction func sendBtnPressed(_ sender: Any) {
+        let message = messageTextField.text!
+        self.view.endEditing(true)
+        
+        self.postViewModel.addComment(postKey: post.key!, message: message) {
+            self.clearTextView()
+        }
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    private func clearTextView() {
+        self.messageTextField.text = "Write a comment..."
+        self.messageTextField.textColor = AnidesuColor.DarkGray.color()
+        self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
     }
+}
 
+extension PostDetailViewController: UITextViewDelegate{
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
+        } else {
+            self.sendBtn.switchButton(isEnabled: true, tintColor: AnidesuColor.MiddleBlue)
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Write a comment..." {
+            textView.text = ""
+            textView.textColor = AnidesuColor.DarkBlue.color()
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            self.clearTextView()
+        }
+    }
 }
 
 extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
@@ -90,5 +130,9 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.endEditing(true)
     }
 }

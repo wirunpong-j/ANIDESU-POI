@@ -33,4 +33,12 @@ class PostViewModel {
             self.errorRelay.accept(error.localizedDescription)
         }
     }
+    
+    public func addComment(postKey: String, message: String, completion: @escaping () -> ()) {
+        self.firebaseManager.addComment(postKey: postKey, message: message, onSuccess: {
+            completion()
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
 }

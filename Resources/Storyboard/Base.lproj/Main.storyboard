@@ -373,26 +373,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kdn-Jb-AKA">
                                 <rect key="frame" x="0.0" y="557" width="375" height="46"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bft-5H-skA" userLabel="Separator">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="CTd-Cw-cZ6"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gs0-4J-4TG" customClass="AnidesuRoundView" customModule="ANIDESU_POI" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="8" width="305" height="30"/>
+                                        <rect key="frame" x="8" y="8" width="321" height="30"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LpQ-ah-bnj">
-                                                <rect key="frame" x="2" y="2" width="301" height="26"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Write a comment..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LpQ-ah-bnj">
+                                                <rect key="frame" x="4" y="0.0" width="313" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="eHZ-3o-Dlv"/>
-                                                </constraints>
-                                                <color key="textColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="LpQ-ah-bnj" secondAttribute="trailing" constant="2" id="5kw-Ag-yrp"/>
-                                            <constraint firstAttribute="bottom" secondItem="LpQ-ah-bnj" secondAttribute="bottom" constant="2" id="PY7-qt-vBI"/>
-                                            <constraint firstItem="LpQ-ah-bnj" firstAttribute="leading" secondItem="gs0-4J-4TG" secondAttribute="leading" constant="2" id="XMc-zQ-rmB"/>
-                                            <constraint firstItem="LpQ-ah-bnj" firstAttribute="top" secondItem="gs0-4J-4TG" secondAttribute="top" constant="2" id="y7A-bp-rfN"/>
+                                            <constraint firstAttribute="trailing" secondItem="LpQ-ah-bnj" secondAttribute="trailing" constant="4" id="5kw-Ag-yrp"/>
+                                            <constraint firstItem="LpQ-ah-bnj" firstAttribute="leading" secondItem="gs0-4J-4TG" secondAttribute="leading" constant="4" id="XMc-zQ-rmB"/>
+                                            <constraint firstAttribute="bottom" secondItem="LpQ-ah-bnj" secondAttribute="bottom" id="dGh-EQ-fTo"/>
+                                            <constraint firstItem="LpQ-ah-bnj" firstAttribute="top" secondItem="gs0-4J-4TG" secondAttribute="top" id="y7A-bp-rfN"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -410,20 +414,31 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ed7-hR-pZu">
-                                        <rect key="frame" x="321" y="8" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ed7-hR-pZu" customClass="AnidesuButton" customModule="ANIDESU_POI" customModuleProvider="target">
+                                        <rect key="frame" x="337" y="8" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="XJ0-om-ujf"/>
+                                            <constraint firstAttribute="height" constant="30" id="cOR-yj-Hmg"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button" image="ic_send"/>
+                                        <connections>
+                                            <action selector="sendBtnPressed:" destination="ZW2-HP-2WZ" eventType="touchUpInside" id="iAc-wd-evY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Ed7-hR-pZu" firstAttribute="leading" secondItem="gs0-4J-4TG" secondAttribute="trailing" constant="8" id="2YJ-19-Yvp"/>
                                     <constraint firstAttribute="trailing" secondItem="Ed7-hR-pZu" secondAttribute="trailing" constant="8" id="Ei7-C8-aWN"/>
                                     <constraint firstAttribute="bottom" secondItem="Ed7-hR-pZu" secondAttribute="bottom" constant="8" id="OvS-0t-ogJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="gs0-4J-4TG" secondAttribute="bottom" constant="8" id="f8K-wW-AOM"/>
+                                    <constraint firstAttribute="bottom" secondItem="gs0-4J-4TG" secondAttribute="bottom" constant="8" id="hwW-8H-6KE"/>
                                     <constraint firstItem="Ed7-hR-pZu" firstAttribute="top" secondItem="Kdn-Jb-AKA" secondAttribute="top" constant="8" id="jPi-3B-C1S"/>
+                                    <constraint firstItem="bft-5H-skA" firstAttribute="top" secondItem="Kdn-Jb-AKA" secondAttribute="top" id="ljS-e0-chA"/>
                                     <constraint firstItem="gs0-4J-4TG" firstAttribute="top" secondItem="Kdn-Jb-AKA" secondAttribute="top" constant="8" id="o8i-VH-vZ2"/>
-                                    <constraint firstItem="Ed7-hR-pZu" firstAttribute="leading" secondItem="gs0-4J-4TG" secondAttribute="trailing" constant="8" id="oac-OE-21e"/>
                                     <constraint firstItem="gs0-4J-4TG" firstAttribute="leading" secondItem="Kdn-Jb-AKA" secondAttribute="leading" constant="8" id="rUt-Y2-syI"/>
+                                    <constraint firstAttribute="trailing" secondItem="bft-5H-skA" secondAttribute="trailing" id="tts-Ub-MWO"/>
+                                    <constraint firstItem="bft-5H-skA" firstAttribute="leading" secondItem="Kdn-Jb-AKA" secondAttribute="leading" id="zlL-Nt-vWZ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -439,9 +454,10 @@
                         <viewLayoutGuide key="safeArea" id="ZuV-TC-mMd"/>
                     </view>
                     <connections>
-                        <outlet property="commentBtn" destination="Ed7-hR-pZu" id="dCe-OG-83L"/>
+                        <outlet property="commentView" destination="Kdn-Jb-AKA" id="MPg-Fe-EhX"/>
                         <outlet property="messageTextField" destination="LpQ-ah-bnj" id="c2j-vc-hwa"/>
                         <outlet property="postDetailTableView" destination="JGn-Ru-j8c" id="CEG-RW-gQB"/>
+                        <outlet property="sendBtn" destination="Ed7-hR-pZu" id="GpU-XE-fPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaH-Jr-qy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -472,6 +488,7 @@
         <image name="ic_home" width="25" height="25"/>
         <image name="ic_mylist" width="25" height="25"/>
         <image name="ic_review" width="25" height="25"/>
+        <image name="ic_send" width="25" height="25"/>
         <image name="ic_user_default" width="400" height="400"/>
     </resources>
 </document>

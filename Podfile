@@ -18,6 +18,7 @@ target 'ANIDESU-POI' do
   pod 'MBProgressHUD'
   pod 'Tabman'
   pod 'WCLShineButton'
+  pod 'IHKeyboardAvoiding'
 
   target 'ANIDESU-POITests' do
     inherit! :search_paths
