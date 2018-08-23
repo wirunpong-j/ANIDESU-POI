@@ -20,6 +20,8 @@ class AnimeStatsCell: UITableViewCell {
     
     @IBOutlet weak var tableViewHeightContraint: NSLayoutConstraint!
     
+    var links: [ExternalLink]?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpTableView()
@@ -31,18 +33,26 @@ class AnimeStatsCell: UITableViewCell {
         self.externalLinkTableView.register(ExternalLinkCell.nib, forCellReuseIdentifier: ExternalLinkCell.identifier)
     }
     
-    func setUpCell() {
-        self.tableViewHeightContraint.constant = 50 * 3
+    func setUpCell(links: [ExternalLink]?) {
+        if let links = links {
+            self.links = links
+            self.tableViewHeightContraint.constant = CGFloat(50 * links.count)
+            self.externalLinkTableView.reloadData()
+        }
     }
 }
 
 extension AnimeStatsCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if let links = self.links {
+            return links.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ExternalLinkCell.identifier) as? ExternalLinkCell {
+            cell.setUpCell(link: self.links![indexPath.row])
             return cell
         }
         

@@ -15,6 +15,9 @@ class AnimeExtrasCell: UITableViewCell {
     @IBOutlet weak var characterCollectionView: UICollectionView!
     @IBOutlet weak var staffCollectionView: UICollectionView!
     
+    var characters: [CharacterStaff]?
+    var staffs: [CharacterStaff]?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUpTableView()
@@ -28,21 +31,36 @@ class AnimeExtrasCell: UITableViewCell {
         self.characterCollectionView.register(CharacterCell.nib, forCellWithReuseIdentifier: CharacterCell.identifier)
         self.staffCollectionView.register(CharacterCell.nib, forCellWithReuseIdentifier: CharacterCell.identifier)
     }
+    
+    func setUpCell(characters: [CharacterStaff]?, staffs: [CharacterStaff]?) {
+        if let characters = characters, let staffs = staffs {
+            self.characters = characters
+            self.staffs = staffs
+            self.characterCollectionView.reloadData()
+            self.staffCollectionView.reloadData()
+        }
+    }
 }
 
 extension AnimeExtrasCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if collectionView == characterCollectionView {
+            return self.characters?.count != nil ? (self.characters?.count)! : 0
+        } else {
+            return self.staffs?.count != nil ? (self.staffs?.count)! : 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == characterCollectionView {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath) as? CharacterCell {
+                cell.setUpCell(character: self.characters![indexPath.row])
                 return cell
             }
             
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath) as? CharacterCell {
+                cell.setUpCell(character: self.staffs![indexPath.row])
                 return cell
             }
         }

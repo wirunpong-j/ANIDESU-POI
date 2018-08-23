@@ -21,7 +21,8 @@ class AnimeInfoCell: UITableViewCell {
     @IBOutlet weak var animeOriginLabel: UILabel!
     @IBOutlet weak var mainStudioLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
-
+    @IBOutlet weak var stackView: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

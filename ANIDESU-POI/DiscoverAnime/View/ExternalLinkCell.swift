@@ -19,6 +19,10 @@ class ExternalLinkCell: UITableViewCell {
         // Initialization code
     }
     
+    func setUpCell(link: ExternalLink) {
+        self.linkBtn.setTitle(link.site, for: .normal)
+    }
+    
     @IBAction func linkBtnPressed(_ sender: Any) {
     }
     

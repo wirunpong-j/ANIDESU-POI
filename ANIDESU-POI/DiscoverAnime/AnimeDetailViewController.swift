@@ -60,6 +60,7 @@ class AnimeDetailViewController: BaseViewController {
         self.discoverAnimeViewModel.fetchAnimePage(animeID: (self.anime?.id)!) { (anime) in
             self.anime = anime
             self.animeDetailTableView.reloadData()
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -91,10 +92,12 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
             }
         case .stats:
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeStatsCell.identifier) as? AnimeStatsCell {
+                cell.setUpCell(links: self.anime?.externalLinks)
                 return cell
             }
         case .extras:
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeExtrasCell.identifier) as? AnimeExtrasCell {
+                cell.setUpCell(characters: self.anime?.characters, staffs: self.anime?.staff)
                 return cell
             }
         }

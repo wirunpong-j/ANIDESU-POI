@@ -11,10 +11,28 @@ import UIKit
 class CharacterCell: UICollectionViewCell {
     static let nib = UINib(nibName: "CharacterCell", bundle: .main)
     static let identifier = "CharacterCell"
+    
+    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var roleLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    func setUpCell(character: CharacterStaff) {
+        self.coverImage.setImage(urlStr: character.imageUrlLarge!)
+        self.fullNameLabel.text = self.getFullName(character: character)
+        self.roleLabel.text = AnidesuString.checkNilString(str: character.role)
+    }
+    
+    private func getFullName(character: CharacterStaff) -> String {
+        if let firstName = character.firstName, let lastName = character.lastName {
+            return lastName + " " + firstName
+        }
+        
+        return AnidesuString.NULL_TEXT
     }
 
 }

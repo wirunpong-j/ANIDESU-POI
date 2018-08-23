@@ -25,11 +25,46 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cover" translatesAutoresizingMaskIntoConstraints="NO" id="a6p-4C-W1y">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="200"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUx-Nl-gMN">
+                                <rect key="frame" x="0.0" y="146" width="120" height="54"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iXX-z2-yh1">
+                                        <rect key="frame" x="4" y="4" width="112" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danganronpa V3: Killing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vm-0P-jPj">
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="1" height="0.0"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYZ-Zh-TxV">
+                                                <rect key="frame" x="0.0" y="34" width="112" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="iXX-z2-yh1" firstAttribute="top" secondItem="uUx-Nl-gMN" secondAttribute="top" constant="4" id="95f-bY-7xD"/>
+                                    <constraint firstAttribute="trailing" secondItem="iXX-z2-yh1" secondAttribute="trailing" constant="4" id="Hce-GP-F0c"/>
+                                    <constraint firstAttribute="bottom" secondItem="iXX-z2-yh1" secondAttribute="bottom" constant="4" id="Hxq-4W-dXe"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="S8D-ay-jTR"/>
+                                    <constraint firstItem="iXX-z2-yh1" firstAttribute="leading" secondItem="uUx-Nl-gMN" secondAttribute="leading" constant="4" id="bzi-ui-mWD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="uUx-Nl-gMN" secondAttribute="bottom" id="30m-ay-lqE"/>
                             <constraint firstItem="a6p-4C-W1y" firstAttribute="leading" secondItem="76T-pW-Bwz" secondAttribute="leading" id="343-PU-utW"/>
+                            <constraint firstAttribute="trailing" secondItem="uUx-Nl-gMN" secondAttribute="trailing" id="H5w-tH-OAG"/>
                             <constraint firstAttribute="trailing" secondItem="a6p-4C-W1y" secondAttribute="trailing" id="OyY-zf-Kes"/>
+                            <constraint firstItem="uUx-Nl-gMN" firstAttribute="leading" secondItem="76T-pW-Bwz" secondAttribute="leading" id="SlB-8h-f44"/>
                             <constraint firstItem="a6p-4C-W1y" firstAttribute="top" secondItem="76T-pW-Bwz" secondAttribute="top" id="YXM-zd-i94"/>
                             <constraint firstAttribute="bottom" secondItem="a6p-4C-W1y" secondAttribute="bottom" id="ZP0-Uf-aXZ"/>
                         </constraints>
@@ -44,6 +79,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="191" height="207"/>
+            <connections>
+                <outlet property="coverImage" destination="a6p-4C-W1y" id="pWF-Kz-8Qu"/>
+                <outlet property="fullNameLabel" destination="8Vm-0P-jPj" id="Tiv-Gh-6cV"/>
+                <outlet property="roleLabel" destination="lYZ-Zh-TxV" id="fw8-bn-6vg"/>
+            </connections>
             <point key="canvasLocation" x="95" y="130"/>
         </collectionViewCell>
     </objects>
