@@ -9,21 +9,6 @@
 import Foundation
 import Alamofire
 
-public enum AnilistURL {
-    case authen
-    case fetchAnimeBySeason
-    
-    func getUrl() -> String {
-        let BASE_URL = "https://anilist.co/api"
-        switch self {
-        case .authen:
-            return "\(BASE_URL)/auth/access_token"
-        case .fetchAnimeBySeason:
-            return "\(BASE_URL)/browse/anime"
-        }
-    }
-}
-
 public enum AnimeSeason: String {
     case Winter = "winter"
     case Spring = "spring"
@@ -32,6 +17,25 @@ public enum AnimeSeason: String {
 }
 
 class AniListManager {
+    
+    private enum AnilistURL {
+        case authen
+        case fetchAnimeBySeason
+        case fetchAnimePage(animeID: Int)
+        
+        func getUrl() -> String {
+            let BASE_URL = "https://anilist.co/api"
+            switch self {
+            case .authen:
+                return "\(BASE_URL)/auth/access_token"
+            case .fetchAnimeBySeason:
+                return "\(BASE_URL)/browse/anime"
+            case .fetchAnimePage(let animeID):
+                return "\(BASE_URL)/anime/\(animeID)/page"
+            }
+        }
+    }
+    
     let AUTHORIZE_BODY = [
         "grant_type": "client_credentials",
         "client_id": "bbellkungdesu-vstku",
@@ -73,7 +77,7 @@ class AniListManager {
         }
     }
     
-    func fetchAnimeListBySeason(season: AnimeSeason, onSuccess: @escaping ([AnimeResponse]) -> (), onFailure: @escaping (Error) -> ()) {
+    func fetchAnimeListBySeason(season: AnimeSeason, onSuccess: @escaping ([Anime]) -> (), onFailure: @escaping (Error) -> ()) {
         let body: [String: Any] = [
             "season": season.rawValue,
             "full_page": true,
@@ -85,8 +89,29 @@ class AniListManager {
                 onFailure(error)
             } else {
                 let data = response.data
-                let listAnime = try! JSONDecoder().decode([AnimeResponse].self, from: data!)
+                let allAnimeResponse = try! JSONDecoder().decode([AnimeResponse].self, from: data!)
+                
+                var listAnime = [Anime]()
+                for animeResponse in allAnimeResponse {
+                    let anime = Anime(response: animeResponse)
+                    listAnime.append(anime)
+                }
+                
                 onSuccess(listAnime)
+            }
+        }
+    }
+    
+    func fetchAnimePage(animeID: Int, onSuccess: @escaping (Anime) -> (), onFailure: @escaping (Error) -> ()) {
+        Alamofire.request(AnilistURL.fetchAnimePage(animeID: animeID).getUrl(), method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            if let error = response.result.error {
+                onFailure(error)
+            } else {
+                let data = response.data
+                let animeResponse = try! JSONDecoder().decode(AnimeResponse.self, from: data!)
+                let anime = Anime(response: animeResponse)
+                
+                onSuccess(anime)
             }
         }
     }

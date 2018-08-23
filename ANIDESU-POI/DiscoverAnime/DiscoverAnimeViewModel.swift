@@ -17,11 +17,19 @@ class DiscoverAnimeViewModel {
     
     let errorRelay: PublishRelay<String> = PublishRelay()
     
-    func fetchListAnimeBySeason(season: AnimeSeason, completion: @escaping ([AnimeResponse]) -> ()) {
-            anilistManager.fetchAnimeListBySeason(season: season, onSuccess: { (listAnime) in
-                completion(listAnime)
-            }) { (error) in
-                self.errorRelay.accept(error.localizedDescription)
-            }
+    func fetchListAnimeBySeason(season: AnimeSeason, completion: @escaping ([Anime]) -> ()) {
+        self.anilistManager.fetchAnimeListBySeason(season: season, onSuccess: { (listAnime) in
+            completion(listAnime)
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
         }
     }
+    
+    func fetchAnimePage(animeID: Int, completion: @escaping (Anime) -> ()) {
+        self.anilistManager.fetchAnimePage(animeID: animeID, onSuccess: { (anime) in
+            completion(anime)
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
+}

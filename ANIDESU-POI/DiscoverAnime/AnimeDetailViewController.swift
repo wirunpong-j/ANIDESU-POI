@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AnimeDetailViewController: BaseViewController {
     static let identifier = "AnimeDetailViewController"
     
     @IBOutlet weak var animeDetailTableView: UITableView!
+    @IBOutlet weak var animeBannerImage: UIImageView!
+    
+    var discoverAnimeViewModel: DiscoverAnimeViewModel!
+    var disposeBag = DisposeBag()
+    var anime: Anime?
     
     private enum AnimeDetailSections: Int {
         case detail, info, stats, extras
@@ -34,11 +41,26 @@ class AnimeDetailViewController: BaseViewController {
     }
     
     private func setUpViewModel() {
+        self.discoverAnimeViewModel = DiscoverAnimeViewModel()
         
+        self.discoverAnimeViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
     private func setUpView() {
+        self.title = self.anime?.titleRomaji!
         
+        if let bannerImage = self.anime?.imageUrlBanner {
+            self.animeBannerImage.setImage(urlStr: bannerImage)
+        } else {
+            self.animeBannerImage.setImage(urlStr: (self.anime?.imageUrlLarge)!)
+        }
+        
+        self.discoverAnimeViewModel.fetchAnimePage(animeID: (self.anime?.id)!) { (anime) in
+            self.anime = anime
+            self.animeDetailTableView.reloadData()
+        }
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {
@@ -59,10 +81,12 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
         switch AnimeDetailSections(rawValue: indexPath.section)! {
         case .detail:
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeHeaderCell.identifier) as? AnimeHeaderCell {
+                cell.setUpCell(anime: self.anime!)
                 return cell
             }
         case .info:
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeInfoCell.identifier) as? AnimeInfoCell {
+                cell.setUpCell(anime: self.anime!)
                 return cell
             }
         case .stats:

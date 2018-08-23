@@ -11,9 +11,24 @@ import UIKit
 class AnimeHeaderCell: UITableViewCell {
     static let nib = UINib(nibName: "AnimeHeaderCell", bundle: .main)
     static let identifier = "AnimeHeaderCell"
+    
+    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var animeNameLabel: UILabel!
+    @IBOutlet weak var airingLabel: UILabel!
+    @IBOutlet weak var nextEPLabel: UILabel!
+    @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var endLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    func setUpCell(anime: Anime) {
+        self.coverImage.setImage(urlStr: anime.imageUrlLarge!)
+        self.animeNameLabel.text = anime.titleRomaji!
+        self.airingLabel.text = anime.airingStatus!.uppercased()
+        self.nextEPLabel.text = anime.airing?.getNextEpisodeTime()
+        self.startLabel.text = AnidesuString.getDateFuzzy(dateFuzzy: anime.startDateFuzzy)
+        self.endLabel.text = AnidesuString.getDateFuzzy(dateFuzzy: anime.endDateFuzzy)
     }
 }

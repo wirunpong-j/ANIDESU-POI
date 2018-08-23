@@ -17,7 +17,7 @@ class DiscoverAnimeViewController: BaseViewController {
     
     var discoverAnimeViewModel: DiscoverAnimeViewModel!
     var animeSeason: AnimeSeason!
-    var listAnime = [AnimeResponse]()
+    var listAnime = [Anime]()
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -44,6 +44,18 @@ class DiscoverAnimeViewController: BaseViewController {
             self.listAnimeCollectionView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case AnimeDetailViewController.identifier:
+            let navbar = segue.destination as? UINavigationController
+            if let viewController = navbar?.viewControllers.first as? AnimeDetailViewController {
+                viewController.anime = sender as? Anime
+            }
+        default:
+            break
+        }
+    }
 }
 
 extension DiscoverAnimeViewController: UICollectionViewDataSource {
@@ -61,7 +73,7 @@ extension DiscoverAnimeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: AnimeDetailViewController.identifier, sender: nil)
+        self.performSegue(withIdentifier: AnimeDetailViewController.identifier, sender: self.listAnime[indexPath.row])
     }
 }
 

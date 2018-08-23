@@ -23,12 +23,12 @@ class AnimeCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setUpView(anime: AnimeResponse) {
-        animeImg.setImage(urlStr: anime.image_url_lge!)
-        animeTitleLabel.text = anime.title_romaji!
-        seriesTypeLabel.text = anime.series_type!.uppercased()
-        airingStatusLabel.text = anime.airing_status!.uppercased()
-        avgLabel.text = "⭐️ \(anime.average_score!)"
+    func setUpView(anime: Anime) {
+        animeImg.setImage(urlStr: anime.imageUrlLarge!)
+        animeTitleLabel.text = anime.titleRomaji!
+        seriesTypeLabel.text = anime.seriesType!.uppercased()
+        airingStatusLabel.text = anime.airingStatus!.uppercased()
+        avgLabel.text = "⭐️ \(anime.averageScore!)"
     }
 
 }

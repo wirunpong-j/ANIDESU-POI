@@ -38,9 +38,9 @@ class AnimeResponse: Decodable {
     var youtube_id: String?
     var hashtag: String?
     var source: String?
-//    var airing: Airing?
-//    var characters: [CharacterStaff]?
-//    var staff: [CharacterStaff]?
-//    var studio: String?
-//    var external_links: [ExternalLink]?
+    var airing: AiringResponse?
+    var characters: [CharacterStaffResponse]?
+    var staff: [CharacterStaffResponse]?
+    var studio: [StudioResponse]?
+    var external_links: [ExternalLinkResponse]?
 }

@@ -180,6 +180,7 @@
                         </leftBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="animeBannerImage" destination="i4h-5D-ET4" id="I5v-i2-kDa"/>
                         <outlet property="animeDetailTableView" destination="UWd-74-YPB" id="yG3-PL-kme"/>
                     </connections>
                 </viewController>
