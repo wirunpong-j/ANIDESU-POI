@@ -14,7 +14,7 @@ class AnimeDetailViewController: BaseViewController {
     @IBOutlet weak var animeDetailTableView: UITableView!
     
     private enum AnimeDetailSections: Int {
-        case detail, info
+        case detail, info, stats, extras
     }
     
     override func viewDidLoad() {
@@ -29,6 +29,8 @@ class AnimeDetailViewController: BaseViewController {
         self.animeDetailTableView.dataSource = self
         self.animeDetailTableView.register(AnimeHeaderCell.nib, forCellReuseIdentifier: AnimeHeaderCell.identifier)
         self.animeDetailTableView.register(AnimeInfoCell.nib, forCellReuseIdentifier: AnimeInfoCell.identifier)
+        self.animeDetailTableView.register(AnimeStatsCell.nib, forCellReuseIdentifier: AnimeStatsCell.identifier)
+        self.animeDetailTableView.register(AnimeExtrasCell.nib, forCellReuseIdentifier: AnimeExtrasCell.identifier)
     }
     
     private func setUpViewModel() {
@@ -38,11 +40,15 @@ class AnimeDetailViewController: BaseViewController {
     private func setUpView() {
         
     }
+    
+    @IBAction func backBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,6 +65,14 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeInfoCell.identifier) as? AnimeInfoCell {
                 return cell
             }
+        case .stats:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeStatsCell.identifier) as? AnimeStatsCell {
+                return cell
+            }
+        case .extras:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeExtrasCell.identifier) as? AnimeExtrasCell {
+                return cell
+            }
         }
         
         return UITableViewCell()
@@ -68,6 +82,10 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
         switch AnimeDetailSections(rawValue: section)! {
         case .info:
             return SectionHeaderView.loadViewFromNib(title: "Info", backgroundColor: AnidesuColor.DarkBlue)
+        case .stats:
+            return SectionHeaderView.loadViewFromNib(title: "Stats", backgroundColor: AnidesuColor.DarkBlue)
+        case .extras:
+            return SectionHeaderView.loadViewFromNib(title: "Extras", backgroundColor: AnidesuColor.DarkBlue)
         default:
             return nil
         }
@@ -75,7 +93,7 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch AnimeDetailSections(rawValue: section)! {
-        case .info:
+        case .info, .stats, .extras:
             return 50
         default:
             return 0

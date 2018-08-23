@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -169,7 +170,14 @@
                         <viewLayoutGuide key="safeArea" id="hPx-PJ-TtD"/>
                     </view>
                     <navigationItem key="navigationItem" title="Danganronpa V3" id="2cq-Hd-UO8">
-                        <barButtonItem key="leftBarButtonItem" id="bl9-8U-lKy"/>
+                        <leftBarButtonItems>
+                            <barButtonItem id="bl9-8U-lKy"/>
+                            <barButtonItem image="ic_back" id="YYp-Nh-EAP">
+                                <connections>
+                                    <action selector="backBtnPressed:" destination="XPK-7t-waq" id="CsX-6Q-eKH"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="animeDetailTableView" destination="UWd-74-YPB" id="yG3-PL-kme"/>
@@ -549,6 +557,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_back" width="25" height="25"/>
         <image name="ic_discover" width="25" height="25"/>
         <image name="ic_home" width="25" height="25"/>
         <image name="ic_mylist" width="25" height="25"/>

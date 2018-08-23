@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Mg-oo4" userLabel="View" customClass="AnidesuRoundView" customModule="ANIDESU_POI" customModuleProvider="target">
-                        <rect key="frame" x="12" y="0.0" width="351" height="602.5"/>
+                        <rect key="frame" x="12" y="0.0" width="351" height="614.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="zVX-pA-jS9">
-                                <rect key="frame" x="12" y="8" width="327" height="586.5"/>
+                                <rect key="frame" x="12" y="8" width="327" height="598.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Anime English Name:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-0Z-eU2">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="18"/>
@@ -128,7 +128,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrq-4R-mID">
-                                        <rect key="frame" x="0.0" y="429.5" width="327" height="157"/>
+                                        <rect key="frame" x="0.0" y="429.5" width="327" height="169"/>
                                         <string key="text">Danganronpa V3: Killing Harmony, known in Japan as New Dangan Ronpa V3: Everyone's New Semester of Killing (ニューダンガンロンパV3 みんなのコロシアイ新学期) is a Japanese visual novel game developed by Spike Chunsoft. It is the third main title in the Danganronpa series. It was released in Japan on January 12th, 2017 for PlayStation 4 and PlayStation Vita. It was launched on PlayStation 4, PlayStation Vita, and Steam for PC in North America on September 26th, 2017, and in Europe on September 29th, 2017.</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -161,7 +161,7 @@
                     <constraint firstAttribute="trailing" secondItem="bEX-Mg-oo4" secondAttribute="trailing" constant="12" id="axg-J0-6Ib"/>
                     <constraint firstItem="bEX-Mg-oo4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="cHe-6y-p1v"/>
                     <constraint firstItem="bEX-Mg-oo4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ku1-U7-9Ft"/>
-                    <constraint firstAttribute="bottom" secondItem="bEX-Mg-oo4" secondAttribute="bottom" constant="12" id="nTU-vu-PTr"/>
+                    <constraint firstAttribute="bottom" secondItem="bEX-Mg-oo4" secondAttribute="bottom" id="nTU-vu-PTr"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
