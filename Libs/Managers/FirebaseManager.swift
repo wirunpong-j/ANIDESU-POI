@@ -15,6 +15,7 @@ public enum FirebaseUrl {
     case userData(uid: String)
     case post
     case comment(postKey: String)
+    case myAnimeList(uid: String)
     
     func getUrl() -> String {
         switch self {
@@ -24,8 +25,17 @@ public enum FirebaseUrl {
             return "anidesu/posts"
         case .comment(let postKey):
             return "anidesu/posts/\(postKey)/comment"
+        case .myAnimeList(let uid):
+            return "anidesu/users/\(uid)/list_anime"
         }
     }
+}
+
+public enum MyAnimeListStatus: String {
+    case PlanToWatch = "plan to watch"
+    case Watching = "watching"
+    case Completed = "completed"
+    case Dropped = "dropped"
 }
 
 class FirebaseManager {
@@ -62,7 +72,7 @@ class FirebaseManager {
             "email": email,
             "image_url_profile": imageURL,
             "about": "Welcome To AniDesu."]
-        ref.child("anidesu").child("users").child(uid).child("profile").setValue(information) { (error, dataRef) in
+        ref.child(FirebaseUrl.userData(uid: uid).getUrl()).setValue(information) { (error, dataRef) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -190,6 +200,32 @@ class FirebaseManager {
             } else {
                 onSuccess(allComment)
             }
+        }) { (error) in
+            onFailure(error)
+        }
+    }
+    
+    func fetchMyAnimeList(status: MyAnimeListStatus, uid: String, onSuccess: @escaping ([MyAnimeListResponse]) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        ref.child(FirebaseUrl.myAnimeList(uid: uid).getUrl()).observeSingleEvent(of: .value, with: { (snapshot) in
+            var allMyAnimeList = [MyAnimeListResponse]()
+            
+            if let allData = snapshot.value as? [String: Any] {
+                for key in allData.keys {
+                    let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
+                    let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
+                    myAnimeList.key = key
+                    
+                    allMyAnimeList.append(myAnimeList)
+                    if allMyAnimeList.count == allData.count {
+                        allMyAnimeList = allMyAnimeList.filter({ $0.status == status.rawValue })
+                        onSuccess(allMyAnimeList)
+                    }
+                }
+            } else {
+                onSuccess(allMyAnimeList)
+            }
+            
         }) { (error) in
             onFailure(error)
         }

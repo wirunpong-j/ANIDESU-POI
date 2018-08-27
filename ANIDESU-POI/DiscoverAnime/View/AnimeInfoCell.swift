@@ -22,6 +22,9 @@ class AnimeInfoCell: UITableViewCell {
     @IBOutlet weak var mainStudioLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var roundView: AnidesuRoundView!
+    
+    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,5 +40,8 @@ class AnimeInfoCell: UITableViewCell {
         self.animeOriginLabel.text = AnidesuString.checkNilString(str: anime.source)
         self.mainStudioLabel.text = AnidesuString.NULL_TEXT
         self.descLabel.text = AnidesuString.checkNilString(str: anime.description)
+        
+        self.stackView.frame.size = CGSize(width: self.stackView.frame.width, height: 2000)
+        
     }
 }

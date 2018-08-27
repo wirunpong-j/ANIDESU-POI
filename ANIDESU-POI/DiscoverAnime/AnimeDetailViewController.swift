@@ -60,7 +60,6 @@ class AnimeDetailViewController: BaseViewController {
         self.discoverAnimeViewModel.fetchAnimePage(animeID: (self.anime?.id)!) { (anime) in
             self.anime = anime
             self.animeDetailTableView.reloadData()
-            self.view.layoutIfNeeded()
         }
     }
     

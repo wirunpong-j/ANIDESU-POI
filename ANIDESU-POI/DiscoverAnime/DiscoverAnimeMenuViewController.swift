@@ -12,7 +12,7 @@ import Pageboy
 import RxSwift
 import RxCocoa
 
-class DiscoverAnimeMenuViewController: TabmanViewController, PageboyViewControllerDataSource {
+class MenuViewController: TabmanViewController, PageboyViewControllerDataSource {
     
     var menus = [UIViewController]()
     let ALL_SEASON = [AnimeSeason.Winter, AnimeSeason.Spring, AnimeSeason.Fall, AnimeSeason.Summer]

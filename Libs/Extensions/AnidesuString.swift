@@ -32,7 +32,7 @@ public class AnidesuString {
     public static func getArrayString(array: [String]?) -> String {
         if let array = array, !array.isEmpty {
             let newArray = array.filter({ $0 != "" })
-            return newArray.joined(separator: ",")
+            return newArray.joined(separator: ", ")
         }
         
         return NULL_TEXT

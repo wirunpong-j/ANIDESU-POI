@@ -44,21 +44,21 @@
             </objects>
             <point key="canvasLocation" x="774" y="99"/>
         </scene>
-        <!--My List-->
+        <!--My Anime List-->
         <scene sceneID="gpZ-T2-3JF">
             <objects>
-                <viewController id="DqV-Qv-kf9" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MyAnimeListMenuViewController" id="DqV-Qv-kf9" customClass="MenuViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9YW-rF-BPG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0OP-IC-VQv"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My List" image="ic_mylist" landscapeImage="ic_mylist" selectedImage="ic_mylist" id="Eo3-hh-brM"/>
+                    <navigationItem key="navigationItem" title="My Anime List" id="RFp-d7-EW1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWT-ob-DtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3696.8000000000002" y="98.50074962518741"/>
+            <point key="canvasLocation" x="4182" y="99"/>
         </scene>
         <!--Review-->
         <scene sceneID="iBi-aV-FGR">
@@ -74,23 +74,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPR-Tx-uV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4492" y="98.50074962518741"/>
+            <point key="canvasLocation" x="5808.8000000000002" y="98.50074962518741"/>
         </scene>
-        <!--ANIDESU-->
+        <!--Discover Anime-->
         <scene sceneID="QKb-EU-IVL">
             <objects>
-                <viewController id="Z4v-Ha-rZF" customClass="DiscoverAnimeMenuViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DiscoverAnimeMenuViewController" id="Z4v-Ha-rZF" customClass="MenuViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Df2-WI-AEf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="eWR-Vd-i98"/>
                     </view>
-                    <navigationItem key="navigationItem" title="ANIDESU" id="hnH-qo-d59"/>
+                    <navigationItem key="navigationItem" title="Discover Anime" id="hnH-qo-d59"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1h-CE-Y8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2625" y="99"/>
+            <point key="canvasLocation" x="2553" y="99"/>
         </scene>
         <!--Discover Anime View Controller-->
         <scene sceneID="c5z-xi-30W">
@@ -186,7 +186,54 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkZ-gw-NlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2625" y="802"/>
+            <point key="canvasLocation" x="3412" y="802"/>
+        </scene>
+        <!--My Anime List View Controller-->
+        <scene sceneID="U8W-I6-oEr">
+            <objects>
+                <viewController storyboardIdentifier="MyAnimeListViewController" id="DbU-G8-dHp" customClass="MyAnimeListViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2jl-sn-men">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2VU-Eb-kVj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NHJ-dO-ndt">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ygq-59-3L3">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9cf-4P-tew" firstAttribute="bottom" secondItem="2VU-Eb-kVj" secondAttribute="bottom" id="NS0-Tf-DQT"/>
+                            <constraint firstItem="2VU-Eb-kVj" firstAttribute="leading" secondItem="9cf-4P-tew" secondAttribute="leading" id="buq-rj-xGm"/>
+                            <constraint firstItem="2VU-Eb-kVj" firstAttribute="top" secondItem="9cf-4P-tew" secondAttribute="top" id="ie3-UK-BxU"/>
+                            <constraint firstItem="9cf-4P-tew" firstAttribute="trailing" secondItem="2VU-Eb-kVj" secondAttribute="trailing" id="swF-vj-Qjp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9cf-4P-tew"/>
+                    </view>
+                    <connections>
+                        <outlet property="myAnimeListCollectionView" destination="2VU-Eb-kVj" id="rCP-Wn-UKN"/>
+                        <segue destination="UYb-FC-kIq" kind="showDetail" identifier="AnimeDetailViewController" id="ysK-A0-TIn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="72I-Ju-Xqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4182" y="802"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sLz-7r-kry">
@@ -203,7 +250,7 @@
                     <connections>
                         <segue destination="pIr-Tv-fX2" kind="relationship" relationship="viewControllers" id="7va-Gl-6xr"/>
                         <segue destination="CC8-P9-t6T" kind="relationship" relationship="viewControllers" id="SOd-2C-9Y0"/>
-                        <segue destination="DqV-Qv-kf9" kind="relationship" relationship="viewControllers" id="lDW-uI-JbZ"/>
+                        <segue destination="yA7-Hh-5sL" kind="relationship" relationship="viewControllers" id="lDW-uI-JbZ"/>
                         <segue destination="gc2-wU-YFo" kind="relationship" relationship="viewControllers" id="xXK-kP-1Uj"/>
                     </connections>
                 </tabBarController>
@@ -554,7 +601,27 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTU-vZ-Glq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="1472"/>
+            <point key="canvasLocation" x="2553" y="802"/>
+        </scene>
+        <!--My List-->
+        <scene sceneID="Qaw-wW-nWX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yA7-Hh-5sL" customClass="BaseNavigationViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My List" image="ic_mylist" landscapeImage="ic_mylist" selectedImage="ic_mylist" id="Eo3-hh-brM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="gcq-Hx-fc1">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DqV-Qv-kf9" kind="relationship" relationship="rootViewController" id="v20-xD-2hm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3lu-hG-Vpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3412" y="99"/>
         </scene>
     </scenes>
     <resources>
@@ -567,4 +634,7 @@
         <image name="ic_user_default" width="400" height="400"/>
         <image name="img_banner" width="820" height="448"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ysK-A0-TIn"/>
+    </inferredMetricsTieBreakers>
 </document>
