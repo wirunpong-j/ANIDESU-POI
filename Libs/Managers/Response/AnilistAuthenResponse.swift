@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthenResponse: Decodable {
+class AnilistAuthenResponse: Decodable {
     
 //    {
 //    "access_token": "0Hw7GoRLK10Jr7Wh15lWDUaUMq8ye1WO6sc4BGX1",

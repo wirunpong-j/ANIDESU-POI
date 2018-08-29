@@ -21,8 +21,18 @@ class APIManager {
             serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
         )
     }()
-}
-
-extension APIManager {
     
+    public static func request<Result: Decodable>(withRouter router: Router, responseType: Result.Type, completion: @escaping (_ result: Result) -> (), onFailure: @escaping (_ error: Error) -> ()) -> Request? {
+        
+        return manager.request(router).responseData(completionHandler: { (response) in
+            switch response.result {
+            case .success(let data):
+                let responseObj = try! JSONDecoder().decode(responseType, from: data)
+                completion(responseObj)
+                
+            case .failure(let error):
+                onFailure(error)
+            }
+        })
+    }
 }

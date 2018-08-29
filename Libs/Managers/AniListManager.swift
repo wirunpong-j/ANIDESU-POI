@@ -17,47 +17,7 @@ public enum AnimeSeason: String {
 }
 
 class AniListManager {
-    
-    private enum AnilistURL {
-        case authen
-        case fetchAnimeBySeason
-        case fetchAnimePage(animeID: Int)
-        
-        func getUrl() -> String {
-            let BASE_URL = "https://anilist.co/api"
-            switch self {
-            case .authen:
-                return "\(BASE_URL)/auth/access_token"
-            case .fetchAnimeBySeason:
-                return "\(BASE_URL)/browse/anime"
-            case .fetchAnimePage(let animeID):
-                return "\(BASE_URL)/anime/\(animeID)/page"
-            }
-        }
-    }
-    
-    let AUTHORIZE_BODY = [
-        "grant_type": "client_credentials",
-        "client_id": "bbellkungdesu-vstku",
-        "client_secret": "L5gVawdnzKUYaRWD3WioXZRq0rz"
-    ]
-    
-    let API_HEADER = [
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    ]
-    
-    var BEARER_HEADER: [String: String] {
-        get {
-            return [
-                "Authorization": "Bearer \(anilistToken)",
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            ]
-        }
-    }
-    
-    var anilistToken: String {
+    public static var anilistToken: String {
         get {
             return UserDefaults.standard.string(forKey: "anilistToken") ?? ""
         } set {
@@ -66,53 +26,38 @@ class AniListManager {
     }
     
     func authenAnilist(onCompleted: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
-        Alamofire.request(AnilistURL.authen.getUrl(), method: .post, parameters: AUTHORIZE_BODY, encoding: JSONEncoding.default, headers: API_HEADER).responseJSON { (response) in
-            if let error = response.result.error {
-                onFailure(error)
-            } else {
-                let json = try! JSONDecoder().decode(AuthenResponse.self, from: response.data!)
-                self.anilistToken = json.access_token!
-                onCompleted()
-            }
+        let router = Router.authAnilist
+        APIManager.request(withRouter: router, responseType: AnilistAuthenResponse.self, completion: { (response) in
+            AniListManager.anilistToken = response.access_token!
+            onCompleted()
+        }) { (error) in
+            onFailure(error)
         }
     }
     
     func fetchAnimeListBySeason(season: AnimeSeason, onSuccess: @escaping ([Anime]) -> (), onFailure: @escaping (Error) -> ()) {
-        let body: [String: Any] = [
-            "season": season.rawValue,
-            "full_page": true,
-            "airing_data": true
-        ]
-        
-        Alamofire.request(AnilistURL.fetchAnimeBySeason.getUrl(), method: .get, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
-            if let error = response.result.error {
-                onFailure(error)
-            } else {
-                let data = response.data
-                let allAnimeResponse = try! JSONDecoder().decode([AnimeResponse].self, from: data!)
-                
-                var listAnime = [Anime]()
-                for animeResponse in allAnimeResponse {
-                    let anime = Anime(response: animeResponse)
-                    listAnime.append(anime)
-                }
-                
-                onSuccess(listAnime)
+        let router = Router.fetchAnimeBySeason(season: season)
+        APIManager.request(withRouter: router, responseType: [AnimeResponse].self, completion: { (allResponse) in
+            var listAnime = [Anime]()
+            
+            for response in allResponse {
+                let anime = Anime(response: response)
+                listAnime.append(anime)
             }
+            
+            onSuccess(listAnime)
+        }) { (error) in
+            onFailure(error)
         }
     }
     
     func fetchAnimePage(animeID: Int, onSuccess: @escaping (Anime) -> (), onFailure: @escaping (Error) -> ()) {
-        Alamofire.request(AnilistURL.fetchAnimePage(animeID: animeID).getUrl(), method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
-            if let error = response.result.error {
-                onFailure(error)
-            } else {
-                let data = response.data
-                let animeResponse = try! JSONDecoder().decode(AnimeResponse.self, from: data!)
-                let anime = Anime(response: animeResponse)
-                
-                onSuccess(anime)
-            }
+        let router = Router.fetchAnimePage(animeID: animeID)
+        APIManager.request(withRouter: router, responseType: AnimeResponse.self, completion: { (response) in
+            let anime = Anime(response: response)
+            onSuccess(anime)
+        }) { (error) in
+            onFailure(error)
         }
     }
 }

@@ -46,9 +46,10 @@
 		4355718E212D92FC00479886 /* AnimeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4355718C212D92FC00479886 /* AnimeInfoCell.xib */; };
 		43557190212D958000479886 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4355718F212D958000479886 /* SectionHeaderView.xib */; };
 		43557192212D96A300479886 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43557191212D96A300479886 /* SectionHeaderView.swift */; };
+		435CC31C213696870058AF41 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CC31B213696870058AF41 /* Router.swift */; };
 		437285512126CBAC007388C6 /* AniListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285502126CBAC007388C6 /* AniListManager.swift */; };
 		437285532126CE30007388C6 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285522126CE30007388C6 /* APIManager.swift */; };
-		437285562126DB9F007388C6 /* AuthenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285552126DB9F007388C6 /* AuthenResponse.swift */; };
+		437285562126DB9F007388C6 /* AnilistAuthenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285552126DB9F007388C6 /* AnilistAuthenResponse.swift */; };
 		437285582126E130007388C6 /* AnimeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285572126E130007388C6 /* AnimeResponse.swift */; };
 		43747D50211D7A4B005879F7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43747D4F211D7A4B005879F7 /* HomeViewController.swift */; };
 		437ACEC8212410A800DF56F2 /* DiscoverAnimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ACEC7212410A800DF56F2 /* DiscoverAnimeViewController.swift */; };
@@ -148,9 +149,10 @@
 		4355718C212D92FC00479886 /* AnimeInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimeInfoCell.xib; sourceTree = "<group>"; };
 		4355718F212D958000479886 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		43557191212D96A300479886 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		435CC31B213696870058AF41 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		437285502126CBAC007388C6 /* AniListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniListManager.swift; sourceTree = "<group>"; };
 		437285522126CE30007388C6 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		437285552126DB9F007388C6 /* AuthenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenResponse.swift; sourceTree = "<group>"; };
+		437285552126DB9F007388C6 /* AnilistAuthenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnilistAuthenResponse.swift; sourceTree = "<group>"; };
 		437285572126E130007388C6 /* AnimeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeResponse.swift; sourceTree = "<group>"; };
 		43747D4F211D7A4B005879F7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		437ACEC7212410A800DF56F2 /* DiscoverAnimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverAnimeViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		4307BA8A21185B35001FF8A1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				435CC31A213696730058AF41 /* Router */,
 				437285542126DB6B007388C6 /* Response */,
 				4307BA8B21185B4B001FF8A1 /* FirebaseManager.swift */,
 				437ACED021242DAF00DF56F2 /* UserManager.swift */,
@@ -351,10 +354,18 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		435CC31A213696730058AF41 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				435CC31B213696870058AF41 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		437285542126DB6B007388C6 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				437285552126DB9F007388C6 /* AuthenResponse.swift */,
+				437285552126DB9F007388C6 /* AnilistAuthenResponse.swift */,
 				437285572126E130007388C6 /* AnimeResponse.swift */,
 				4306CCE0212A9C57008DAFB1 /* PostResponse.swift */,
 				4306CCE2212AA1CE008DAFB1 /* UserResponse.swift */,
@@ -841,9 +852,10 @@
 				437ACEC8212410A800DF56F2 /* DiscoverAnimeViewController.swift in Sources */,
 				437285532126CE30007388C6 /* APIManager.swift in Sources */,
 				43E8388A2129A03D00E8C32F /* MenuViewController.swift in Sources */,
-				437285562126DB9F007388C6 /* AuthenResponse.swift in Sources */,
+				437285562126DB9F007388C6 /* AnilistAuthenResponse.swift in Sources */,
 				43FF0C35212E7E38005EE970 /* AnimeExtrasCell.swift in Sources */,
 				43FF0C52212EA3B0005EE970 /* StudioResponse.swift in Sources */,
+				435CC31C213696870058AF41 /* Router.swift in Sources */,
 				43939F12211432B7001CCC48 /* ViewController.swift in Sources */,
 				43FF0C42212E96A2005EE970 /* Airing.swift in Sources */,
 				4307BAA3211991B7001FF8A1 /* UIImage+JPEG.swift in Sources */,
