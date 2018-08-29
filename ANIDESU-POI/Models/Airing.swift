@@ -14,7 +14,7 @@ class Airing {
     var nextEP: Int?
     
     init() {
-        self.time = AnidesuString.NULL_TEXT
+        self.time = AnidesuConverter.NULL_TEXT
         self.countdown = 0
         self.nextEP = 0
     }
@@ -26,6 +26,6 @@ class Airing {
     }
     
     public func getNextEpisodeTime() -> String {
-        return self.nextEP! != 0 ? "EP \(self.nextEP!) Airing in \(self.countdown! / 3600)h" : AnidesuString.NULL_TEXT
+        return self.nextEP! != 0 ? "EP \(self.nextEP!) Airing in \(self.countdown! / 3600)h" : AnidesuConverter.NULL_TEXT
     }
 }

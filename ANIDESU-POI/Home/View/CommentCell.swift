@@ -26,7 +26,7 @@ class CommentCell: UITableViewCell {
         profileImage.setImageWithRounded(urlStr: (comment.user?.image_url_profile)!, borderColor: AnidesuColor.Clear)
         displayNameLabel.text = (comment.user?.display_name)!
         messageLabel.text = comment.comment_message!
-        commentDateTimeLabel.text = Date().showAnidesuDateTime(timeStr: comment.comment_date!)
+        commentDateTimeLabel.text = AnidesuConverter.showAnidesuDateTime(timeStr: comment.comment_date!)
     }
     
     override func layoutSubviews() {

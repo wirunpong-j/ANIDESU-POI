@@ -66,6 +66,9 @@ class AnimeDetailViewController: BaseViewController {
     @IBAction func backBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func menuBtnPressed(_ sender: Any) {
+    }
 }
 
 extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource {

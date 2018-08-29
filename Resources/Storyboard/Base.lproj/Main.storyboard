@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -136,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faJ-79-hhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="802"/>
+            <point key="canvasLocation" x="2265" y="869"/>
         </scene>
         <!--Danganronpa V3-->
         <scene sceneID="afx-nD-m5v">
@@ -170,14 +169,18 @@
                         <viewLayoutGuide key="safeArea" id="hPx-PJ-TtD"/>
                     </view>
                     <navigationItem key="navigationItem" title="Danganronpa V3" id="2cq-Hd-UO8">
-                        <leftBarButtonItems>
-                            <barButtonItem id="bl9-8U-lKy"/>
-                            <barButtonItem image="ic_back" id="YYp-Nh-EAP">
-                                <connections>
-                                    <action selector="backBtnPressed:" destination="XPK-7t-waq" id="CsX-6Q-eKH"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="ic_back" id="YYp-Nh-EAP">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="backBtnPressed:" destination="XPK-7t-waq" id="CsX-6Q-eKH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ic_3dots" id="qOA-Jc-R5r">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="menuBtnPressed:" destination="XPK-7t-waq" id="GxE-L4-4tn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="animeBannerImage" destination="i4h-5D-ET4" id="I5v-i2-kDa"/>
@@ -186,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkZ-gw-NlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="802"/>
+            <point key="canvasLocation" x="3041" y="1559"/>
         </scene>
         <!--My Anime List View Controller-->
         <scene sceneID="U8W-I6-oEr">
@@ -233,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="72I-Ju-Xqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4182" y="802"/>
+            <point key="canvasLocation" x="3886" y="869"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sLz-7r-kry">
@@ -601,7 +604,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTU-vZ-Glq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="802"/>
+            <point key="canvasLocation" x="3041" y="869"/>
         </scene>
         <!--My List-->
         <scene sceneID="Qaw-wW-nWX">
@@ -625,6 +628,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_3dots" width="25" height="25"/>
         <image name="ic_back" width="25" height="25"/>
         <image name="ic_discover" width="25" height="25"/>
         <image name="ic_home" width="25" height="25"/>

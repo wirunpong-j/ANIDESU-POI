@@ -24,7 +24,7 @@ class CharacterCell: UICollectionViewCell {
     func setUpCell(character: CharacterStaff) {
         self.coverImage.setImage(urlStr: character.imageUrlLarge!)
         self.fullNameLabel.text = self.getFullName(character: character)
-        self.roleLabel.text = AnidesuString.checkNilString(str: character.role)
+        self.roleLabel.text = AnidesuConverter.checkNilString(str: character.role)
     }
     
     private func getFullName(character: CharacterStaff) -> String {
@@ -32,7 +32,7 @@ class CharacterCell: UICollectionViewCell {
             return lastName + " " + firstName
         }
         
-        return AnidesuString.NULL_TEXT
+        return AnidesuConverter.NULL_TEXT
     }
 
 }

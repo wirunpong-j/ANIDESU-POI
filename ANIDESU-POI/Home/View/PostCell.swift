@@ -43,7 +43,7 @@ class PostCell: UITableViewCell {
     func setUpCell(post: PostResponse, isBorder: Bool) {
         profileImage.setImageWithRounded(urlStr: (post.user?.image_url_profile)!, borderColor: AnidesuColor.Clear)
         displayNameLabel.text = (post.user?.display_name)!
-        dateTimeLabel.text = Date().showAnidesuDateTime(timeStr: post.post_date!)
+        dateTimeLabel.text = AnidesuConverter.showAnidesuDateTime(timeStr: post.post_date!)
         messageLabel.text = post.message!
         likeCountBtn.text = "\(post.like_count!) Likes"
         likeBtn.addTarget(self, action: #selector(likeBtnPressed), for: .valueChanged)

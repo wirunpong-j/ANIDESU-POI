@@ -28,7 +28,7 @@ class AnimeHeaderCell: UITableViewCell {
         self.animeNameLabel.text = anime.titleRomaji!
         self.airingLabel.text = anime.airingStatus!.uppercased()
         self.nextEPLabel.text = anime.airing?.getNextEpisodeTime()
-        self.startLabel.text = AnidesuString.getDateFuzzy(dateFuzzy: anime.startDateFuzzy)
-        self.endLabel.text = AnidesuString.getDateFuzzy(dateFuzzy: anime.endDateFuzzy)
+        self.startLabel.text = AnidesuConverter.getDateFuzzy(dateFuzzy: anime.startDateFuzzy)
+        self.endLabel.text = AnidesuConverter.getDateFuzzy(dateFuzzy: anime.endDateFuzzy)
     }
 }

@@ -106,7 +106,7 @@ class FirebaseManager {
         let postInfo: [String: Any] = [
             "uid": UserDataModel.instance.uid,
             "message": message,
-            "post_date": Date().getCurrentTime(),
+            "post_date": AnidesuConverter.getCurrentTime(),
             "like_count": 0
         ]
         ref.child(FirebaseUrl.post.getUrl()).childByAutoId().setValue(postInfo) { (error, dataRef) in
@@ -162,7 +162,7 @@ class FirebaseManager {
         let commentInfo: [String: Any] = [
             "uid": UserDataModel.instance.uid,
             "comment_message": message,
-            "comment_date": Date().getCurrentTime()
+            "comment_date": AnidesuConverter.getCurrentTime()
         ]
         
         ref.child(FirebaseUrl.comment(postKey: postKey).getUrl()).childByAutoId().setValue(commentInfo) { (error, dataRef) in
