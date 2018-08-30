@@ -15,5 +15,6 @@ class MyAnimeListResponse: Decodable {
     var progress: Int?
     var note: String?
     var status: String?
+    var date_time: String?
     var anime: AnimeResponse?
 }

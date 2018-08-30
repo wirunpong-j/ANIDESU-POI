@@ -11,26 +11,6 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-public enum FirebaseUrl {
-    case userData(uid: String)
-    case post
-    case comment(postKey: String)
-    case myAnimeList(uid: String)
-    
-    func getUrl() -> String {
-        switch self {
-        case .userData(let uid):
-            return "anidesu/users/\(uid)/profile"
-        case .post:
-            return "anidesu/posts"
-        case .comment(let postKey):
-            return "anidesu/posts/\(postKey)/comment"
-        case .myAnimeList(let uid):
-            return "anidesu/users/\(uid)/list_anime"
-        }
-    }
-}
-
 public enum MyAnimeListStatus: String {
     case PlanToWatch = "plan to watch"
     case Watching = "watching"
@@ -39,6 +19,15 @@ public enum MyAnimeListStatus: String {
 }
 
 class FirebaseManager {
+    private func observerManager(router: FirebaseRouter, completion: @escaping ([String: Any]) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
+            let allData = snapshot.value as! [String: Any]
+            completion(allData)
+        }) { (error) in
+            onFailure(error)
+        }
+    }
     
     func signIn(email: String, password: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
@@ -66,13 +55,9 @@ class FirebaseManager {
     
     func setUpProfile(uid: String, displayName: String, email: String, imageURL: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let ref = Database.database().reference()
-        let information: [String: Any] = [
-            "uid": uid,
-            "display_name": displayName,
-            "email": email,
-            "image_url_profile": imageURL,
-            "about": "Welcome To AniDesu."]
-        ref.child(FirebaseUrl.userData(uid: uid).getUrl()).setValue(information) { (error, dataRef) in
+        let router = FirebaseRouter.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL)
+        
+        ref.child(router.path).setValue(router.parameters) { (error, dataRef) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -103,13 +88,8 @@ class FirebaseManager {
     
     func createPost(message: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let ref = Database.database().reference()
-        let postInfo: [String: Any] = [
-            "uid": UserDataModel.instance.uid,
-            "message": message,
-            "post_date": AnidesuConverter.getCurrentTime(),
-            "like_count": 0
-        ]
-        ref.child(FirebaseUrl.post.getUrl()).childByAutoId().setValue(postInfo) { (error, dataRef) in
+        let router = FirebaseRouter.createPost(message: message)
+        ref.child(router.path).childByAutoId().setValue(router.parameters) { (error, dataRef) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -119,20 +99,20 @@ class FirebaseManager {
     }
     
     func fetchAllPost(onSuccess: @escaping ([PostResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        ref.child(FirebaseUrl.post.getUrl()).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let allData = snapshot.value as! [String: Any]
+        let router = FirebaseRouter.fetchAllPost
+        
+        self.observerManager(router: router, completion: { (allData) in
             var allPost = [PostResponse]()
             
             for key in allData.keys {
                 let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
                 let post = try! JSONDecoder().decode(PostResponse.self, from: jsonData)
                 post.key = key
+                
                 self.fetchUserData(uid: post.uid!, onSuccess: { (userResponse) in
                     post.user = userResponse
                     allPost.append(post)
-                    
+
                     if allPost.count == allData.count {
                         allPost = allPost.sorted(by: { $0.post_date! > $1.post_date! })
                         onSuccess(allPost)
@@ -147,9 +127,10 @@ class FirebaseManager {
     }
     
     private func fetchUserData(uid: String, onSuccess: @escaping (UserResponse) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        ref.child(FirebaseUrl.userData(uid: uid).getUrl()).observeSingleEvent(of: .value, with: { (snaphot) in
-            let jsonData = try! JSONSerialization.data(withJSONObject: snaphot.value)
+        let router = FirebaseRouter.fetchUserData(uid: uid)
+        
+        self.observerManager(router: router, completion: { (allData) in
+            let jsonData = try! JSONSerialization.data(withJSONObject: allData)
             let user = try! JSONDecoder().decode(UserResponse.self, from: jsonData)
             onSuccess(user)
         }) { (error) in
@@ -159,13 +140,9 @@ class FirebaseManager {
     
     public func addComment(postKey: String, message: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let ref = Database.database().reference()
-        let commentInfo: [String: Any] = [
-            "uid": UserDataModel.instance.uid,
-            "comment_message": message,
-            "comment_date": AnidesuConverter.getCurrentTime()
-        ]
+        let router = FirebaseRouter.comment(postKey: postKey, uid: UserDataModel.instance.uid, message: message)
         
-        ref.child(FirebaseUrl.comment(postKey: postKey).getUrl()).childByAutoId().setValue(commentInfo) { (error, dataRef) in
+        ref.child(router.path).childByAutoId().setValue(router.parameters) { (error, dataRef) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -175,20 +152,21 @@ class FirebaseManager {
     }
     
     public func fetchAllComment(postKey: String, onSuccess: @escaping ([CommentResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        ref.child(FirebaseUrl.comment(postKey: postKey).getUrl()).observeSingleEvent(of: .value, with: { (snapshot) in
+        let router = FirebaseRouter.fetchAllComment(postKey: postKey)
+        
+        self.observerManager(router: router, completion: { (allData) in
             var allComment = [CommentResponse]()
-            
-            if let allData = snapshot.value as? [String: Any] {
+
+            if !allData.isEmpty {
                 for key in allData.keys {
                     let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
                     let comment = try! JSONDecoder().decode(CommentResponse.self, from: jsonData)
                     comment.key = key
-                    
+
                     self.fetchUserData(uid: comment.uid!, onSuccess: { (userResponse) in
                         comment.user = userResponse
                         allComment.append(comment)
-                        
+
                         if allComment.count == allData.count {
                             allComment = allComment.sorted(by: { $0.comment_date! < $1.comment_date! })
                             onSuccess(allComment)
@@ -205,17 +183,18 @@ class FirebaseManager {
         }
     }
     
-    func fetchMyAnimeList(status: MyAnimeListStatus, uid: String, onSuccess: @escaping ([MyAnimeListResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        ref.child(FirebaseUrl.myAnimeList(uid: uid).getUrl()).observeSingleEvent(of: .value, with: { (snapshot) in
+    func fetchAllMyAnimeList(status: MyAnimeListStatus, uid: String, onSuccess: @escaping ([MyAnimeListResponse]) -> (), onFailure: @escaping (Error) -> ()) {
+        let router = FirebaseRouter.fetchAllMyAnimeList
+        
+        self.observerManager(router: router, completion: { (allData) in
             var allMyAnimeList = [MyAnimeListResponse]()
             
-            if let allData = snapshot.value as? [String: Any] {
+            if !allData.isEmpty {
                 for key in allData.keys {
                     let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
                     let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
                     myAnimeList.key = key
-                    
+
                     allMyAnimeList.append(myAnimeList)
                     if allMyAnimeList.count == allData.count {
                         allMyAnimeList = allMyAnimeList.filter({ $0.status == status.rawValue })
@@ -225,9 +204,21 @@ class FirebaseManager {
             } else {
                 onSuccess(allMyAnimeList)
             }
-            
         }) { (error) in
             onFailure(error)
+        }
+    }
+    
+    public func addToMyAnimeList(myAnimeList: MyAnimeList, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        let router = FirebaseRouter.addMyAnimeList(animeID: myAnimeList.animeID!, note: myAnimeList.note!, status: myAnimeList.status!, progress: myAnimeList.progress!, score: myAnimeList.score!)
+        
+        ref.child(router.path).childByAutoId().setValue(router.parameters) { (error, dataRef) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
         }
     }
 }

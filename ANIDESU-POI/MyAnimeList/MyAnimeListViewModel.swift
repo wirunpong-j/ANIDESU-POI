@@ -14,11 +14,12 @@ class MyAnimeListViewModel {
     
     var firebaseManager = FirebaseManager()
     var anilistManager = AniListManager()
-   
+    
+    var isAdded = false
     let errorRelay: PublishRelay<String> = PublishRelay()
     
     public func fetchAllMyAnimeList(status: MyAnimeListStatus, completion: @escaping ([MyAnimeList]) -> ()) {
-        self.firebaseManager.fetchMyAnimeList(status: status, uid: UserDataModel.instance.uid, onSuccess: { (allResponse) in
+        self.firebaseManager.fetchAllMyAnimeList(status: status, uid: UserDataModel.instance.uid, onSuccess: { (allResponse) in
             var myAnimeList = [MyAnimeList]()
             
             if allResponse.isEmpty {
@@ -45,6 +46,14 @@ class MyAnimeListViewModel {
     private func fetchAnimeData(myAnimeListResponse: MyAnimeListResponse, completion: @escaping (Anime) -> ()) {
         self.anilistManager.fetchAnimePage(animeID: myAnimeListResponse.anime_id!, onSuccess: { (anime) in
             completion(anime)
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
+    
+    public func addToMyAnimeList(myAnimeList: MyAnimeList, completion: @escaping () -> ()) {
+        self.firebaseManager.addToMyAnimeList(myAnimeList: myAnimeList, onSuccess: {
+            completion()
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
         }

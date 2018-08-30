@@ -68,6 +68,40 @@ class AnimeDetailViewController: BaseViewController {
     }
     
     @IBAction func menuBtnPressed(_ sender: Any) {
+        self.showAlertController()
+    }
+    
+    private func showAlertController() {
+        let alert = UIAlertController(title: "Choose option", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Add to My Anime List", style: .default, handler: { (action) in
+            self.performSegue(withIdentifier: CreateMyAnimeListViewController.identifier, sender: self.anime)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Review", style: .default, handler: { (action) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (action) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case CreateMyAnimeListViewController.identifier:
+            let navbar = segue.destination as? UINavigationController
+            if let viewController = navbar?.viewControllers.first as? CreateMyAnimeListViewController {
+                viewController.anime = anime
+            }
+        default:
+            break
+        }
     }
 }
 

@@ -19,6 +19,7 @@ target 'ANIDESU-POI' do
   pod 'Tabman'
   pod 'WCLShineButton'
   pod 'IHKeyboardAvoiding'
+  pod 'Eureka'
 
   target 'ANIDESU-POITests' do
     inherit! :search_paths

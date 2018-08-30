@@ -33,6 +33,8 @@
 		4307BA9D21198D5A001FF8A1 /* ImageRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BA9C21198D5A001FF8A1 /* ImageRoundView.swift */; };
 		4307BAA3211991B7001FF8A1 /* UIImage+JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BAA2211991B7001FF8A1 /* UIImage+JPEG.swift */; };
 		4307BAA521199BF0001FF8A1 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BAA421199BF0001FF8A1 /* RegisterViewModel.swift */; };
+		4328D1FD2137B5930047625D /* FirebaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D1FC2137B5930047625D /* FirebaseRouter.swift */; };
+		4335C1D82136B6D8006F1755 /* CreateMyAnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335C1D72136B6D8006F1755 /* CreateMyAnimeListViewController.swift */; };
 		43490F082133B971006BBD9D /* MyAnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43490F072133B971006BBD9D /* MyAnimeListViewController.swift */; };
 		43490F0C2133BBEC006BBD9D /* MyAnimeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43490F0A2133BBEC006BBD9D /* MyAnimeListCell.swift */; };
 		43490F0D2133BBEC006BBD9D /* MyAnimeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43490F0B2133BBEC006BBD9D /* MyAnimeListCell.xib */; };
@@ -136,6 +138,8 @@
 		4307BAA2211991B7001FF8A1 /* UIImage+JPEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+JPEG.swift"; sourceTree = "<group>"; };
 		4307BAA421199BF0001FF8A1 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		431C28889FA377B619A3D8C6 /* Pods-ANIDESU-POIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANIDESU-POIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ANIDESU-POIUITests/Pods-ANIDESU-POIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4328D1FC2137B5930047625D /* FirebaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRouter.swift; sourceTree = "<group>"; };
+		4335C1D72136B6D8006F1755 /* CreateMyAnimeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMyAnimeListViewController.swift; sourceTree = "<group>"; };
 		43490F072133B971006BBD9D /* MyAnimeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListViewController.swift; sourceTree = "<group>"; };
 		43490F0A2133BBEC006BBD9D /* MyAnimeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListCell.swift; sourceTree = "<group>"; };
 		43490F0B2133BBEC006BBD9D /* MyAnimeListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAnimeListCell.xib; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				43490F0E2133BC03006BBD9D /* View */,
 				43490F072133B971006BBD9D /* MyAnimeListViewController.swift */,
 				43490F112133BF6C006BBD9D /* MyAnimeListViewModel.swift */,
+				4335C1D72136B6D8006F1755 /* CreateMyAnimeListViewController.swift */,
 			);
 			path = MyAnimeList;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				435CC31B213696870058AF41 /* Router.swift */,
+				4328D1FC2137B5930047625D /* FirebaseRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -776,6 +782,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ANIDESU-POI/Pods-ANIDESU-POI-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
@@ -794,6 +801,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
@@ -839,6 +847,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4307BA80211850FB001FF8A1 /* LoginViewController.swift in Sources */,
+				4328D1FD2137B5930047625D /* FirebaseRouter.swift in Sources */,
 				4307BA9D21198D5A001FF8A1 /* ImageRoundView.swift in Sources */,
 				43490F122133BF6C006BBD9D /* MyAnimeListViewModel.swift in Sources */,
 				437285512126CBAC007388C6 /* AniListManager.swift in Sources */,
@@ -865,6 +874,7 @@
 				43490F082133B971006BBD9D /* MyAnimeListViewController.swift in Sources */,
 				4307BA8C21185B4B001FF8A1 /* FirebaseManager.swift in Sources */,
 				43747D50211D7A4B005879F7 /* HomeViewController.swift in Sources */,
+				4335C1D82136B6D8006F1755 /* CreateMyAnimeListViewController.swift in Sources */,
 				4307BA9A21197986001FF8A1 /* AnidesuColor.swift in Sources */,
 				437285582126E130007388C6 /* AnimeResponse.swift in Sources */,
 				43490F142133C12C006BBD9D /* MyAnimeList.swift in Sources */,

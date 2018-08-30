@@ -16,9 +16,8 @@ class UserManager {
     
     func getUserData(onCompleted: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let currentUser = Auth.auth().currentUser
-        let url = FirebaseUrl.userData(uid: (currentUser?.uid)!).getUrl()
-        
-        ref.child(url).observeSingleEvent(of: .value, with: { (snapshot) in
+        let router = FirebaseRouter.fetchUserData(uid: (currentUser?.uid)!)
+        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
             // get user data
             let data = snapshot.value as! NSDictionary
             self.user.uid = data["uid"] as! String
