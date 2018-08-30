@@ -17,8 +17,11 @@ class AnimeDetailViewController: BaseViewController {
     @IBOutlet weak var animeBannerImage: UIImageView!
     
     var discoverAnimeViewModel: DiscoverAnimeViewModel!
+    var myAnimeListViewModel: MyAnimeListViewModel!
     var disposeBag = DisposeBag()
+    
     var anime: Anime?
+    var myAnimeList: MyAnimeList?
     
     private enum AnimeDetailSections: Int {
         case detail, info, stats, extras
@@ -26,9 +29,11 @@ class AnimeDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoading()
         self.setUpTableView()
         self.setUpViewModel()
         self.setUpView()
+        self.hideLoading()
     }
     
     private func setUpTableView() {
@@ -42,10 +47,24 @@ class AnimeDetailViewController: BaseViewController {
     
     private func setUpViewModel() {
         self.discoverAnimeViewModel = DiscoverAnimeViewModel()
+        self.myAnimeListViewModel = MyAnimeListViewModel()
         
         self.discoverAnimeViewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.myAnimeListViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.myAnimeListViewModel.fetchMyAnimeList(animeID: (self.anime?.id)!) { (myAnimeList) in
+            self.myAnimeList = myAnimeList
+        }
+        
+        self.discoverAnimeViewModel.fetchAnimePage(animeID: (self.anime?.id)!) { (anime) in
+            self.anime = anime
+            self.animeDetailTableView.reloadData()
+        }
     }
     
     private func setUpView() {
@@ -55,11 +74,6 @@ class AnimeDetailViewController: BaseViewController {
             self.animeBannerImage.setImage(urlStr: bannerImage)
         } else {
             self.animeBannerImage.setImage(urlStr: (self.anime?.imageUrlLarge)!)
-        }
-        
-        self.discoverAnimeViewModel.fetchAnimePage(animeID: (self.anime?.id)!) { (anime) in
-            self.anime = anime
-            self.animeDetailTableView.reloadData()
         }
     }
     
@@ -73,8 +87,10 @@ class AnimeDetailViewController: BaseViewController {
     
     private func showAlertController() {
         let alert = UIAlertController(title: "Choose option", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Add to My Anime List", style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: CreateMyAnimeListViewController.identifier, sender: self.anime)
+        
+        let animeListTitle = self.myAnimeList == nil ? "Add to My Anime List" : "Edit My Anime List"
+        alert.addAction(UIAlertAction(title: animeListTitle, style: .default, handler: { (action) in
+            self.performSegue(withIdentifier: CreateMyAnimeListViewController.identifier, sender: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Review", style: .default, handler: { (action) in
@@ -98,6 +114,8 @@ class AnimeDetailViewController: BaseViewController {
             let navbar = segue.destination as? UINavigationController
             if let viewController = navbar?.viewControllers.first as? CreateMyAnimeListViewController {
                 viewController.anime = anime
+                viewController.myAnimeList = myAnimeList
+                viewController.delegate = self
             }
         default:
             break
@@ -161,5 +179,11 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
         default:
             return 0
         }
+    }
+}
+
+extension AnimeDetailViewController: CreateMyAnimeListDelegate {
+    func updateMyAnimeListCompleted() {
+        self.viewDidLoad()
     }
 }

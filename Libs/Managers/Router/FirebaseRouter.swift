@@ -12,6 +12,7 @@ public enum FirebaseRouter {
     case setUpProfile(uid: String, displayName: String, email: String, imageURL: String)
     case fetchUserData(uid: String)
     case addMyAnimeList(animeID: Int, note: String, status: String, progress: Int, score: Int)
+    case fetchMyAnimeList(animeID: Int)
     case fetchAllMyAnimeList
     case createPost(message: String)
     case fetchAllPost
@@ -24,7 +25,11 @@ public enum FirebaseRouter {
             return "anidesu/users/\(params.uid)/profile"
         case .fetchUserData(let uid):
             return "anidesu/users/\(uid)/profile"
-        case .addMyAnimeList, .fetchAllMyAnimeList:
+        case .addMyAnimeList(let params):
+            return "anidesu/users/\(UserDataModel.instance.uid)/list_anime/\(params.animeID)"
+        case .fetchMyAnimeList(let animeID):
+            return "anidesu/users/\(UserDataModel.instance.uid)/list_anime/\(animeID)"
+        case .fetchAllMyAnimeList:
             return "anidesu/users/\(UserDataModel.instance.uid)/list_anime"
         case .createPost, .fetchAllPost:
             return "anidesu/posts"
@@ -49,7 +54,8 @@ public enum FirebaseRouter {
                     "note": params.note,
                     "status": params.status,
                     "progress": params.progress,
-                    "score": params.score]
+                    "score": params.score,
+                    "date_time": AnidesuConverter.getCurrentTime()]
         
         case .createPost(let message):
             return ["uid": UserDataModel.instance.uid,
@@ -62,7 +68,7 @@ public enum FirebaseRouter {
                      "comment_message": params.message,
                      "comment_date": AnidesuConverter.getCurrentTime()]
             
-        case .fetchAllPost, .fetchUserData, .fetchAllComment, .fetchAllMyAnimeList:
+        case .fetchAllPost, .fetchUserData, .fetchAllComment, .fetchAllMyAnimeList, .fetchMyAnimeList:
             return nil
         }
     }

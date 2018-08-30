@@ -22,8 +22,11 @@ class FirebaseManager {
     private func observerManager(router: FirebaseRouter, completion: @escaping ([String: Any]) -> (), onFailure: @escaping (Error) -> ()) {
         let ref = Database.database().reference()
         ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
-            let allData = snapshot.value as! [String: Any]
-            completion(allData)
+            if let allData = snapshot.value as? [String: Any] {
+                completion(allData)
+            } else {
+                completion([String: Any]())
+            }
         }) { (error) in
             onFailure(error)
         }
@@ -193,11 +196,11 @@ class FirebaseManager {
                 for key in allData.keys {
                     let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
                     let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
-                    myAnimeList.key = key
 
                     allMyAnimeList.append(myAnimeList)
                     if allMyAnimeList.count == allData.count {
                         allMyAnimeList = allMyAnimeList.filter({ $0.status == status.rawValue })
+                        allMyAnimeList = allMyAnimeList.sorted(by: { $0.date_time! > $1.date_time! })
                         onSuccess(allMyAnimeList)
                     }
                 }
@@ -209,16 +212,33 @@ class FirebaseManager {
         }
     }
     
-    public func addToMyAnimeList(myAnimeList: MyAnimeList, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+    public func updateMyAnimeList(myAnimeList: MyAnimeList, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let ref = Database.database().reference()
         let router = FirebaseRouter.addMyAnimeList(animeID: myAnimeList.animeID!, note: myAnimeList.note!, status: myAnimeList.status!, progress: myAnimeList.progress!, score: myAnimeList.score!)
         
-        ref.child(router.path).childByAutoId().setValue(router.parameters) { (error, dataRef) in
+        ref.child(router.path).setValue(router.parameters) { (error, dataRef) in
             if let error = error {
                 onFailure(error)
             } else {
                 onSuccess()
             }
+        }
+    }
+    
+    public func fetchMyAnimeList(animeID: Int, onSuccess: @escaping (MyAnimeListResponse?) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        let router = FirebaseRouter.fetchMyAnimeList(animeID: animeID)
+        
+        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let response = snapshot.value as? [String: Any] {
+                let jsonData = try! JSONSerialization.data(withJSONObject: response)
+                let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
+                onSuccess(myAnimeList)
+            } else {
+                onSuccess(nil)
+            }
+        }) { (error) in
+            onFailure(error)
         }
     }
 }

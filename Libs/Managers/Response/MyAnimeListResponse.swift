@@ -9,7 +9,6 @@
 import Foundation
 
 class MyAnimeListResponse: Decodable {
-    var key: String?
     var anime_id: Int?
     var score: Int?
     var progress: Int?

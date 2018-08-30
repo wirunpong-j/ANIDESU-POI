@@ -9,7 +9,6 @@
 import Foundation
 
 class MyAnimeList {
-    var key: String?
     var animeID: Int?
     var score: Int?
     var progress: Int?
@@ -18,8 +17,9 @@ class MyAnimeList {
     var dateTime: String?
     var anime: Anime?
     
+    init() {}
+    
     init(response: MyAnimeListResponse) {
-        self.key = response.key
         self.animeID = response.anime_id
         self.score = response.score
         self.progress = response.progress

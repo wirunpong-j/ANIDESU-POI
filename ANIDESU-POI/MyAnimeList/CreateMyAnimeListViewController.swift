@@ -10,6 +10,11 @@ import UIKit
 import Eureka
 import RxCocoa
 import RxSwift
+import MBProgressHUD
+
+protocol CreateMyAnimeListDelegate {
+    func updateMyAnimeListCompleted()
+}
 
 class CreateMyAnimeListViewController: FormViewController {
     static let identifier = "CreateMyAnimeListViewController"
@@ -17,7 +22,9 @@ class CreateMyAnimeListViewController: FormViewController {
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
     @IBOutlet weak var addBtn: UIBarButtonItem!
     
+    var delegate: CreateMyAnimeListDelegate?
     var anime: Anime?
+    var myAnimeList: MyAnimeList?
     var viewModel: MyAnimeListViewModel!
     var disposeBag = DisposeBag()
     
@@ -28,6 +35,7 @@ class CreateMyAnimeListViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoading()
         self.setUpViewModel()
         self.setUpView()
     }
@@ -37,12 +45,15 @@ class CreateMyAnimeListViewController: FormViewController {
         
         self.viewModel.errorRelay.subscribe(onNext: { (errorString) in
             print("Error :" + errorString)
+            self.hideLoading()
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
     private func setUpView() {
-        self.title = "Add " + (anime?.titleRomaji)!
+        self.title = self.myAnimeList == nil ? "Add: " + (anime?.titleRomaji)! : "Edit: " + (anime?.titleRomaji)!
+        self.addBtn.title = self.myAnimeList == nil ? "Add" : "Edit"
         self.setUpForm()
+        self.hideLoading()
     }
     
     private func setUpForm() {
@@ -51,25 +62,25 @@ class CreateMyAnimeListViewController: FormViewController {
                 $0.tag = "status"
                 $0.title = "Status"
                 $0.options = ALL_STATUS
-                $0.value = ALL_STATUS[0]
+                $0.value = self.myAnimeList == nil ? ALL_STATUS[0] : (self.myAnimeList?.status?.capitalized)!
             }
             <<< PickerInputRow<Int>() {
                 $0.tag = "progress"
                 $0.title = "Progress (EP)"
                 $0.options = Array(0...(anime?.totalEP)!)
-                $0.value = 0
+                $0.value = self.myAnimeList == nil ? 0 : self.myAnimeList?.progress!
             }
             <<< PickerInputRow<Int>() {
                 $0.tag = "score"
                 $0.title = "Score"
                 $0.options = Array(0...10)
-                $0.value = 0
+                $0.value = self.myAnimeList == nil ? 0 : self.myAnimeList?.score!
             }
             +++ Section("Notes (Optional)")
             <<< TextAreaRow() {
                 $0.tag = "notes"
                 $0.placeholder = "Write your notes..."
-                $0.value = ""
+                $0.value = self.myAnimeList == nil ? "" : self.myAnimeList?.note!
             }
             +++ Section()
             <<< ButtonRow ("Delete") {
@@ -97,6 +108,8 @@ class CreateMyAnimeListViewController: FormViewController {
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
+        self.showLoading()
+        
         let result = form.values()
         let status = result["status"] as? String ?? ""
         let progress = result["progress"] as? Int ?? 0
@@ -105,8 +118,9 @@ class CreateMyAnimeListViewController: FormViewController {
         
         let newList = MyAnimeList(animeID: (anime?.id)!, note: note, status: status.lowercased(), progress: progress, score: score)
         
-        self.viewModel.addToMyAnimeList(myAnimeList: newList) {
-            self.dismiss(animated: true, completion: nil)
+        self.viewModel.updateMyAnimeList(myAnimeList: newList) {
+            self.hideLoading()
+            self.dismiss(animated: true, completion: self.delegate?.updateMyAnimeListCompleted)
         }
     }
     
@@ -114,4 +128,16 @@ class CreateMyAnimeListViewController: FormViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension CreateMyAnimeListViewController {
+    func showLoading() {
+        let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = "Loading"
+    }
+    
+    func hideLoading() {
+        MBProgressHUD.hide(for: view, animated: true)
+    }
 }
