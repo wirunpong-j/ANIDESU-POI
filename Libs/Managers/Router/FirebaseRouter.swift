@@ -11,13 +11,16 @@ import Foundation
 public enum FirebaseRouter {
     case setUpProfile(uid: String, displayName: String, email: String, imageURL: String)
     case fetchUserData(uid: String)
-    case addMyAnimeList(animeID: Int, note: String, status: String, progress: Int, score: Int)
-    case fetchMyAnimeList(animeID: Int)
-    case fetchAllMyAnimeList
     case createPost(message: String)
     case fetchAllPost
     case fetchAllComment(postKey: String)
     case comment(postKey: String, uid: String, message: String)
+    case addMyAnimeList(animeID: Int, note: String, status: String, progress: Int, score: Int)
+    case fetchMyAnimeList(animeID: Int)
+    case fetchAllMyAnimeList
+    case addReview(animeID: Int, desc: String, rating: Double, reviewDate: String, uid: String)
+    case fetchAllReview
+    case fetchReviewPage(animeID: Int, key: String)
     
     public var path: String {
         switch self {
@@ -37,6 +40,10 @@ public enum FirebaseRouter {
             return "anidesu/posts/\(postKey)/comment"
         case .comment(let params):
             return "anidesu/posts/\(params.postKey)/comment"
+        case .addReview, .fetchAllReview:
+            return "anidesu/reviews/"
+        case .fetchReviewPage(let params):
+            return "anidesu/reviews/\(params.key)"
         }
     }
     
@@ -68,7 +75,13 @@ public enum FirebaseRouter {
                      "comment_message": params.message,
                      "comment_date": AnidesuConverter.getCurrentTime()]
             
-        case .fetchAllPost, .fetchUserData, .fetchAllComment, .fetchAllMyAnimeList, .fetchMyAnimeList:
+        case .addReview(let params):
+            return ["anime_id": params.animeID,
+                    "desc": params.desc,
+                    "rating": params.rating,
+                    "review_date": params.reviewDate,
+                    "uid": params.uid]
+        default:
             return nil
         }
     }

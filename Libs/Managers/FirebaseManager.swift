@@ -129,7 +129,7 @@ class FirebaseManager {
         }
     }
     
-    private func fetchUserData(uid: String, onSuccess: @escaping (UserResponse) -> (), onFailure: @escaping (Error) -> ()) {
+    public func fetchUserData(uid: String, onSuccess: @escaping (UserResponse) -> (), onFailure: @escaping (Error) -> ()) {
         let router = FirebaseRouter.fetchUserData(uid: uid)
         
         self.observerManager(router: router, completion: { (allData) in
@@ -200,7 +200,6 @@ class FirebaseManager {
                     allMyAnimeList.append(myAnimeList)
                     if allMyAnimeList.count == allData.count {
                         allMyAnimeList = allMyAnimeList.filter({ $0.status == status.rawValue })
-                        allMyAnimeList = allMyAnimeList.sorted(by: { $0.date_time! > $1.date_time! })
                         onSuccess(allMyAnimeList)
                     }
                 }
@@ -240,5 +239,29 @@ class FirebaseManager {
         }) { (error) in
             onFailure(error)
         }
+    }
+    
+    public func fetchAllReview(onSuccess: @escaping ([ReviewResponse]) -> (), onFailure: @escaping (Error) -> ()) {
+        let ref = Database.database().reference()
+        let router = FirebaseRouter.fetchAllReview
+        
+        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
+            var allReviewResponse = [ReviewResponse]()
+            
+            if let allResponse = snapshot.value as? [String: Any] {
+                for key in allResponse.keys {
+                    let jsonData = try! JSONSerialization.data(withJSONObject: allResponse[key])
+                    let reviewResponse = try! JSONDecoder().decode(ReviewResponse.self, from: jsonData)
+                    allReviewResponse.append(reviewResponse)
+                }
+                
+                onSuccess(allReviewResponse)
+            } else {
+                onSuccess(allReviewResponse)
+            }
+        }) { (error) in
+            onFailure(error)
+        }
+        
     }
 }

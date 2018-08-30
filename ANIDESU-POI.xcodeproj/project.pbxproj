@@ -34,6 +34,12 @@
 		4307BAA3211991B7001FF8A1 /* UIImage+JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BAA2211991B7001FF8A1 /* UIImage+JPEG.swift */; };
 		4307BAA521199BF0001FF8A1 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307BAA421199BF0001FF8A1 /* RegisterViewModel.swift */; };
 		4328D1FD2137B5930047625D /* FirebaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D1FC2137B5930047625D /* FirebaseRouter.swift */; };
+		4328D2022137FEDC0047625D /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D2012137FEDC0047625D /* ReviewViewController.swift */; };
+		4328D2062138001D0047625D /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D2042138001D0047625D /* ReviewCell.swift */; };
+		4328D2072138001D0047625D /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4328D2052138001D0047625D /* ReviewCell.xib */; };
+		4328D20A213801DA0047625D /* ReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D209213801DA0047625D /* ReviewResponse.swift */; };
+		4328D20C213802710047625D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D20B213802710047625D /* Review.swift */; };
+		4328D20E213808890047625D /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4328D20D213808890047625D /* ReviewViewModel.swift */; };
 		4335C1D82136B6D8006F1755 /* CreateMyAnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4335C1D72136B6D8006F1755 /* CreateMyAnimeListViewController.swift */; };
 		43490F082133B971006BBD9D /* MyAnimeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43490F072133B971006BBD9D /* MyAnimeListViewController.swift */; };
 		43490F0C2133BBEC006BBD9D /* MyAnimeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43490F0A2133BBEC006BBD9D /* MyAnimeListCell.swift */; };
@@ -60,7 +66,6 @@
 		437ACECF212420C900DF56F2 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ACECE212420C900DF56F2 /* UserDataModel.swift */; };
 		437ACED121242DAF00DF56F2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ACED021242DAF00DF56F2 /* UserManager.swift */; };
 		43939F10211432B7001CCC48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43939F0F211432B7001CCC48 /* AppDelegate.swift */; };
-		43939F12211432B7001CCC48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43939F11211432B7001CCC48 /* ViewController.swift */; };
 		43939F15211432B7001CCC48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43939F13211432B7001CCC48 /* Main.storyboard */; };
 		43939F17211432BB001CCC48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43939F16211432BB001CCC48 /* Assets.xcassets */; };
 		43939F1A211432BB001CCC48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43939F18211432BB001CCC48 /* LaunchScreen.storyboard */; };
@@ -139,6 +144,12 @@
 		4307BAA421199BF0001FF8A1 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		431C28889FA377B619A3D8C6 /* Pods-ANIDESU-POIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANIDESU-POIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ANIDESU-POIUITests/Pods-ANIDESU-POIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4328D1FC2137B5930047625D /* FirebaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRouter.swift; sourceTree = "<group>"; };
+		4328D2012137FEDC0047625D /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		4328D2042138001D0047625D /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		4328D2052138001D0047625D /* ReviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		4328D209213801DA0047625D /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
+		4328D20B213802710047625D /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		4328D20D213808890047625D /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		4335C1D72136B6D8006F1755 /* CreateMyAnimeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMyAnimeListViewController.swift; sourceTree = "<group>"; };
 		43490F072133B971006BBD9D /* MyAnimeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListViewController.swift; sourceTree = "<group>"; };
 		43490F0A2133BBEC006BBD9D /* MyAnimeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnimeListCell.swift; sourceTree = "<group>"; };
@@ -166,7 +177,6 @@
 		437ACED021242DAF00DF56F2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		43939F0C211432B7001CCC48 /* ANIDESU-POI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ANIDESU-POI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43939F0F211432B7001CCC48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43939F11211432B7001CCC48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43939F14211432B7001CCC48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43939F16211432BB001CCC48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43939F19211432BB001CCC48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -315,6 +325,32 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4328D1FE2137FEA90047625D /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				4328D208213800C30047625D /* View */,
+				4328D2012137FEDC0047625D /* ReviewViewController.swift */,
+				4328D20D213808890047625D /* ReviewViewModel.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		4328D2032137FF660047625D /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				4328D2052138001D0047625D /* ReviewCell.xib */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		4328D208213800C30047625D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4328D2042138001D0047625D /* ReviewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		43490F062133B947006BBD9D /* MyAnimeList */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +417,7 @@
 				43FF0C4F212E9F45005EE970 /* ExternalLinkResponse.swift */,
 				43FF0C51212EA3B0005EE970 /* StudioResponse.swift */,
 				43490F152133C181006BBD9D /* MyAnimeListResponse.swift */,
+				4328D209213801DA0047625D /* ReviewResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -444,13 +481,13 @@
 		43939F0E211432B7001CCC48 /* ANIDESU-POI */ = {
 			isa = PBXGroup;
 			children = (
+				4328D1FE2137FEA90047625D /* Review */,
 				43747D4E211D7A2F005879F7 /* Home */,
 				437ACEC62124108C00DF56F2 /* DiscoverAnime */,
 				43490F062133B947006BBD9D /* MyAnimeList */,
 				4307BA9421195EDD001FF8A1 /* Register */,
 				4307BA7E211850D9001FF8A1 /* Login */,
 				43FF0C3C212E93B8005EE970 /* Models */,
-				43939F11211432B7001CCC48 /* ViewController.swift */,
 			);
 			path = "ANIDESU-POI";
 			sourceTree = "<group>";
@@ -520,6 +557,7 @@
 		43E8388B2129A9DE00E8C32F /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				4328D2032137FF660047625D /* Review */,
 				43490F102133BC9D006BBD9D /* Base */,
 				43490F0F2133BC8D006BBD9D /* Home */,
 				43490F092133BB9C006BBD9D /* MyAnimeList */,
@@ -565,6 +603,7 @@
 				43FF0C49212E9822005EE970 /* ExternalLink.swift */,
 				43FF0C53212EA43A005EE970 /* Studio.swift */,
 				43490F132133C12C006BBD9D /* MyAnimeList.swift */,
+				4328D20B213802710047625D /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -711,6 +750,7 @@
 				43FF0C32212E7026005EE970 /* ExternalLinkCell.xib in Resources */,
 				43557190212D958000479886 /* SectionHeaderView.xib in Resources */,
 				43FF0C36212E7E38005EE970 /* AnimeExtrasCell.xib in Resources */,
+				4328D2072138001D0047625D /* ReviewCell.xib in Resources */,
 				4306CCD2212A6E64008DAFB1 /* PrePostCell.xib in Resources */,
 				4355718A212D82A800479886 /* AnimeHeaderCell.xib in Resources */,
 				43490F0D2133BBEC006BBD9D /* MyAnimeListCell.xib in Resources */,
@@ -865,13 +905,14 @@
 				43FF0C35212E7E38005EE970 /* AnimeExtrasCell.swift in Sources */,
 				43FF0C52212EA3B0005EE970 /* StudioResponse.swift in Sources */,
 				435CC31C213696870058AF41 /* Router.swift in Sources */,
-				43939F12211432B7001CCC48 /* ViewController.swift in Sources */,
+				4328D20E213808890047625D /* ReviewViewModel.swift in Sources */,
 				43FF0C42212E96A2005EE970 /* Airing.swift in Sources */,
 				4307BAA3211991B7001FF8A1 /* UIImage+JPEG.swift in Sources */,
 				437ACECF212420C900DF56F2 /* UserDataModel.swift in Sources */,
 				43FF0C46212E97A4005EE970 /* CharacterStaff.swift in Sources */,
 				43FF0C4C212E99DD005EE970 /* AiringResponse.swift in Sources */,
 				43490F082133B971006BBD9D /* MyAnimeListViewController.swift in Sources */,
+				4328D20C213802710047625D /* Review.swift in Sources */,
 				4307BA8C21185B4B001FF8A1 /* FirebaseManager.swift in Sources */,
 				43747D50211D7A4B005879F7 /* HomeViewController.swift in Sources */,
 				4335C1D82136B6D8006F1755 /* CreateMyAnimeListViewController.swift in Sources */,
@@ -885,6 +926,7 @@
 				4307BA9621195EF0001FF8A1 /* RegisterViewController.swift in Sources */,
 				4307BA8921185A94001FF8A1 /* LoginViewModel.swift in Sources */,
 				43FF0C3E212E93CC005EE970 /* Anime.swift in Sources */,
+				4328D2022137FEDC0047625D /* ReviewViewController.swift in Sources */,
 				43E8388E2129AA1400E8C32F /* AnimeCell.swift in Sources */,
 				43557189212D82A800479886 /* AnimeHeaderCell.swift in Sources */,
 				43557192212D96A300479886 /* SectionHeaderView.swift in Sources */,
@@ -899,12 +941,14 @@
 				4306CCE3212AA1CE008DAFB1 /* UserResponse.swift in Sources */,
 				43FF0C56212EA508005EE970 /* AnidesuConverter.swift in Sources */,
 				43490F162133C181006BBD9D /* MyAnimeListResponse.swift in Sources */,
+				4328D2062138001D0047625D /* ReviewCell.swift in Sources */,
 				437ACECA212410B900DF56F2 /* DiscoverAnimeViewModel.swift in Sources */,
 				43FF0C31212E7026005EE970 /* ExternalLinkCell.swift in Sources */,
 				4307BA982119602A001FF8A1 /* BaseNavigationViewController.swift in Sources */,
 				43939F10211432B7001CCC48 /* AppDelegate.swift in Sources */,
 				43490F0C2133BBEC006BBD9D /* MyAnimeListCell.swift in Sources */,
 				43FF0C4A212E9822005EE970 /* ExternalLink.swift in Sources */,
+				4328D20A213801DA0047625D /* ReviewResponse.swift in Sources */,
 				43FF0C50212E9F45005EE970 /* ExternalLinkResponse.swift in Sources */,
 				4307BA7A21184BAD001FF8A1 /* BaseViewController.swift in Sources */,
 			);

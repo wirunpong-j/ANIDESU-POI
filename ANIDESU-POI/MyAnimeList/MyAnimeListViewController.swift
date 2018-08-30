@@ -20,8 +20,7 @@ class MyAnimeListViewController: BaseViewController {
     var myAnimeListStatus: MyAnimeListStatus!
     var myAnimeList = [MyAnimeList]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         self.setUpViewModel()
         self.setUpCollectionView()
     }

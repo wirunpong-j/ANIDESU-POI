@@ -14,7 +14,6 @@ class MyAnimeListViewModel {
     
     var firebaseManager = FirebaseManager()
     var anilistManager = AniListManager()
-    var isAdded = false
     
     let errorRelay: PublishRelay<String> = PublishRelay()
     
@@ -33,6 +32,7 @@ class MyAnimeListViewModel {
                         myAnimeList.append(myList)
                         
                         if myAnimeList.count == allResponse.count {
+                            myAnimeList = myAnimeList.sorted(by: { $0.dateTime! > $1.dateTime! })
                             completion(myAnimeList)
                         }
                     })
