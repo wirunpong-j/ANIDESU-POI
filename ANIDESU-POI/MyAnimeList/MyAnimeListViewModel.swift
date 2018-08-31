@@ -59,6 +59,14 @@ class MyAnimeListViewModel {
         }
     }
     
+    public func removeMyAnimeList(animeID: Int, completion: @escaping () -> ()) {
+        self.firebaseManager.removeMyAnimeList(animeID: animeID, onSuccess: {
+            completion()
+        }) { (error) in
+            self.errorRelay.accept(error.localizedDescription)
+        }
+    }
+    
     public func fetchMyAnimeList(animeID: Int, completion: @escaping (MyAnimeList?) -> ()) {
         self.firebaseManager.fetchMyAnimeList(animeID: animeID, onSuccess: { (response) in
             if let response = response {

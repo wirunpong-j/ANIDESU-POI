@@ -27,8 +27,7 @@ class AnimeDetailViewController: BaseViewController {
         case detail, info, stats, extras
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         self.showLoading()
         self.setUpTableView()
         self.setUpViewModel()
@@ -101,25 +100,29 @@ class AnimeDetailViewController: BaseViewController {
             
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-            
-        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.setBackButton()
+        
         switch segue.identifier {
         case CreateMyAnimeListViewController.identifier:
-            let navbar = segue.destination as? UINavigationController
-            if let viewController = navbar?.viewControllers.first as? CreateMyAnimeListViewController {
+            if let viewController = segue.destination as? CreateMyAnimeListViewController {
                 viewController.anime = anime
                 viewController.myAnimeList = myAnimeList
-                viewController.delegate = self
             }
         default:
             break
         }
+    }
+    
+    private func setBackButton() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
     }
 }
 
@@ -179,11 +182,5 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
         default:
             return 0
         }
-    }
-}
-
-extension AnimeDetailViewController: CreateMyAnimeListDelegate {
-    func updateMyAnimeListCompleted() {
-        self.viewDidLoad()
     }
 }

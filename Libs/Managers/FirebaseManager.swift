@@ -10,6 +10,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
+import FirebaseFirestore
 
 public enum MyAnimeListStatus: String {
     case PlanToWatch = "plan to watch"
@@ -19,19 +20,6 @@ public enum MyAnimeListStatus: String {
 }
 
 class FirebaseManager {
-    private func observerManager(router: FirebaseRouter, completion: @escaping ([String: Any]) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let allData = snapshot.value as? [String: Any] {
-                completion(allData)
-            } else {
-                completion([String: Any]())
-            }
-        }) { (error) in
-            onFailure(error)
-        }
-    }
-    
     func signIn(email: String, password: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -57,10 +45,10 @@ class FirebaseManager {
     }
     
     func setUpProfile(uid: String, displayName: String, email: String, imageURL: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        let router = FirebaseRouter.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL)
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL)
         
-        ref.child(router.path).setValue(router.parameters) { (error, dataRef) in
+        db.document(router.path).setData(router.parameters!) { (error) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -90,9 +78,10 @@ class FirebaseManager {
     }
     
     func createPost(message: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        let router = FirebaseRouter.createPost(message: message)
-        ref.child(router.path).childByAutoId().setValue(router.parameters) { (error, dataRef) in
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.createPost(message: message)
+        
+        db.collection(router.path).addDocument(data: router.parameters!) { (error) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -102,50 +91,61 @@ class FirebaseManager {
     }
     
     func fetchAllPost(onSuccess: @escaping ([PostResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let router = FirebaseRouter.fetchAllPost
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchAllPost
         
-        self.observerManager(router: router, completion: { (allData) in
-            var allPost = [PostResponse]()
-            
-            for key in allData.keys {
-                let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
-                let post = try! JSONDecoder().decode(PostResponse.self, from: jsonData)
-                post.key = key
+        db.collection(router.path).getDocuments { (allData, error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                var allPost = [PostResponse]()
                 
-                self.fetchUserData(uid: post.uid!, onSuccess: { (userResponse) in
-                    post.user = userResponse
-                    allPost.append(post)
-
-                    if allPost.count == allData.count {
-                        allPost = allPost.sorted(by: { $0.post_date! > $1.post_date! })
-                        onSuccess(allPost)
+                if let allData = allData, !allData.isEmpty {
+                    for data in allData.documents {
+                        let jsonData = try! JSONSerialization.data(withJSONObject: data.data())
+                        let post = try! JSONDecoder().decode(PostResponse.self, from: jsonData)
+                        post.key = data.documentID
+                        
+                        self.fetchUserData(uid: post.uid!, onSuccess: { (userResponse) in
+                            post.user = userResponse
+                            allPost.append(post)
+                            
+                            if allPost.count == allData.count {
+                                allPost = allPost.sorted(by: { $0.post_date! > $1.post_date! })
+                                onSuccess(allPost)
+                            }
+                        }, onFailure: { (error) in
+                            onFailure(error)
+                        })
                     }
-                }, onFailure: { (error) in
-                    onFailure(error)
-                })
+                } else {
+                    onSuccess(allPost)
+                }
             }
-        }) { (error) in
-            onFailure(error)
         }
     }
     
     public func fetchUserData(uid: String, onSuccess: @escaping (UserResponse) -> (), onFailure: @escaping (Error) -> ()) {
-        let router = FirebaseRouter.fetchUserData(uid: uid)
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchUserData(uid: uid)
         
-        self.observerManager(router: router, completion: { (allData) in
-            let jsonData = try! JSONSerialization.data(withJSONObject: allData)
-            let user = try! JSONDecoder().decode(UserResponse.self, from: jsonData)
-            onSuccess(user)
-        }) { (error) in
-            onFailure(error)
+        db.document(router.path).getDocument { (snapshot, error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                let jsonData = try! JSONSerialization.data(withJSONObject: snapshot!.data())
+                let userResponse = try! JSONDecoder().decode(UserResponse.self, from: jsonData)
+                
+                onSuccess(userResponse)
+            }
         }
     }
     
     public func addComment(postKey: String, message: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        let router = FirebaseRouter.comment(postKey: postKey, uid: UserDataModel.instance.uid, message: message)
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.addComment(postKey: postKey, message: message)
         
-        ref.child(router.path).childByAutoId().setValue(router.parameters) { (error, dataRef) in
+        db.collection(router.path).addDocument(data: router.parameters!) { (error) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -155,67 +155,74 @@ class FirebaseManager {
     }
     
     public func fetchAllComment(postKey: String, onSuccess: @escaping ([CommentResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let router = FirebaseRouter.fetchAllComment(postKey: postKey)
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchAllComment(postKey: postKey)
         
-        self.observerManager(router: router, completion: { (allData) in
-            var allComment = [CommentResponse]()
-
-            if !allData.isEmpty {
-                for key in allData.keys {
-                    let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
-                    let comment = try! JSONDecoder().decode(CommentResponse.self, from: jsonData)
-                    comment.key = key
-
-                    self.fetchUserData(uid: comment.uid!, onSuccess: { (userResponse) in
-                        comment.user = userResponse
-                        allComment.append(comment)
-
-                        if allComment.count == allData.count {
-                            allComment = allComment.sorted(by: { $0.comment_date! < $1.comment_date! })
-                            onSuccess(allComment)
-                        }
-                    }, onFailure: { (error) in
-                        onFailure(error)
-                    })
-                }
+        db.collection(router.path).getDocuments { (allData, error) in
+            if let error = error {
+                onFailure(error)
             } else {
-                onSuccess(allComment)
+                var allComment = [CommentResponse]()
+                
+                if let allData = allData, !allData.isEmpty {
+                    for data in allData.documents {
+                        let jsonData = try! JSONSerialization.data(withJSONObject: data.data())
+                        let comment = try! JSONDecoder().decode(CommentResponse.self, from: jsonData)
+                        comment.key = data.documentID
+                        
+                        self.fetchUserData(uid: comment.uid!, onSuccess: { (userResponse) in
+                            comment.user = userResponse
+                            allComment.append(comment)
+                            
+                            if allComment.count == allData.count {
+                                allComment = allComment.sorted(by: { $0.comment_date! < $1.comment_date! })
+                                onSuccess(allComment)
+                            }
+                        }, onFailure: { (error) in
+                            onFailure(error)
+                        })
+                    }
+                    
+                } else {
+                    onSuccess(allComment)
+                }
             }
-        }) { (error) in
-            onFailure(error)
         }
     }
     
     func fetchAllMyAnimeList(status: MyAnimeListStatus, uid: String, onSuccess: @escaping ([MyAnimeListResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let router = FirebaseRouter.fetchAllMyAnimeList
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchAllMyAnimeList
         
-        self.observerManager(router: router, completion: { (allData) in
-            var allMyAnimeList = [MyAnimeListResponse]()
-            
-            if !allData.isEmpty {
-                for key in allData.keys {
-                    let jsonData = try! JSONSerialization.data(withJSONObject: allData[key])
-                    let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
-
-                    allMyAnimeList.append(myAnimeList)
-                    if allMyAnimeList.count == allData.count {
-                        allMyAnimeList = allMyAnimeList.filter({ $0.status == status.rawValue })
-                        onSuccess(allMyAnimeList)
-                    }
-                }
+        db.collection(router.path).getDocuments { (allData, error) in
+            if let error = error {
+                onFailure(error)
             } else {
-                onSuccess(allMyAnimeList)
+                var allMyAnimeList = [MyAnimeListResponse]()
+                
+                if let allData = allData, !allData.isEmpty {
+                    for data in allData.documents {
+                        let jsonData = try! JSONSerialization.data(withJSONObject: data.data())
+                        let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
+                        
+                        allMyAnimeList.append(myAnimeList)
+                        if allMyAnimeList.count == allData.count {
+                            allMyAnimeList = allMyAnimeList.filter({ $0.status == status.rawValue })
+                            onSuccess(allMyAnimeList)
+                        }
+                    }
+                } else {
+                    onSuccess(allMyAnimeList)
+                }
             }
-        }) { (error) in
-            onFailure(error)
         }
     }
     
     public func updateMyAnimeList(myAnimeList: MyAnimeList, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        let router = FirebaseRouter.addMyAnimeList(animeID: myAnimeList.animeID!, note: myAnimeList.note!, status: myAnimeList.status!, progress: myAnimeList.progress!, score: myAnimeList.score!)
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.updateMyAnimeList(animeID: myAnimeList.animeID!, note: myAnimeList.note!, status: myAnimeList.status!, progress: myAnimeList.progress!, score: myAnimeList.score!)
         
-        ref.child(router.path).setValue(router.parameters) { (error, dataRef) in
+        db.document(router.path).setData(router.parameters!) { (error) in
             if let error = error {
                 onFailure(error)
             } else {
@@ -225,43 +232,57 @@ class FirebaseManager {
     }
     
     public func fetchMyAnimeList(animeID: Int, onSuccess: @escaping (MyAnimeListResponse?) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        let router = FirebaseRouter.fetchMyAnimeList(animeID: animeID)
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchMyAnimeList(animeID: animeID)
         
-        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let response = snapshot.value as? [String: Any] {
-                let jsonData = try! JSONSerialization.data(withJSONObject: response)
-                let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
-                onSuccess(myAnimeList)
+        db.document(router.path).getDocument { (data, error) in
+            if let error = error {
+                onFailure(error)
             } else {
-                onSuccess(nil)
+                if let data = data?.data() {
+                    let jsonData = try! JSONSerialization.data(withJSONObject: data)
+                    let myAnimeList = try! JSONDecoder().decode(MyAnimeListResponse.self, from: jsonData)
+                    
+                    onSuccess(myAnimeList)
+                } else {
+                    onSuccess(nil)
+                }
             }
-        }) { (error) in
-            onFailure(error)
+        }
+    }
+    
+    public func removeMyAnimeList(animeID: Int, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.removeMyAnimeList(animeID: animeID)
+        
+        db.document(router.path).delete { (error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
         }
     }
     
     public func fetchAllReview(onSuccess: @escaping ([ReviewResponse]) -> (), onFailure: @escaping (Error) -> ()) {
-        let ref = Database.database().reference()
-        let router = FirebaseRouter.fetchAllReview
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchAllReview
         
-        ref.child(router.path).observeSingleEvent(of: .value, with: { (snapshot) in
-            var allReviewResponse = [ReviewResponse]()
-            
-            if let allResponse = snapshot.value as? [String: Any] {
-                for key in allResponse.keys {
-                    let jsonData = try! JSONSerialization.data(withJSONObject: allResponse[key])
-                    let reviewResponse = try! JSONDecoder().decode(ReviewResponse.self, from: jsonData)
-                    allReviewResponse.append(reviewResponse)
-                }
-                
-                onSuccess(allReviewResponse)
+        db.collection(router.path).getDocuments { (allData, error) in
+            if let error = error {
+                onFailure(error)
             } else {
+                var allReviewResponse = [ReviewResponse]()
+                
+                if let allData = allData, !allData.isEmpty {
+                    for data in allData.documents {
+                        let jsonData = try! JSONSerialization.data(withJSONObject: data.data())
+                        let reviewResponse = try! JSONDecoder().decode(ReviewResponse.self, from: jsonData)
+                        allReviewResponse.append(reviewResponse)
+                    }
+                }
                 onSuccess(allReviewResponse)
             }
-        }) { (error) in
-            onFailure(error)
         }
-        
     }
 }

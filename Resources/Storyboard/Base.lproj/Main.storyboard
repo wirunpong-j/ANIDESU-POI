@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faJ-79-hhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2265" y="869"/>
+            <point key="canvasLocation" x="1833" y="869"/>
         </scene>
         <!--Danganronpa V3-->
         <scene sceneID="afx-nD-m5v">
@@ -200,43 +200,55 @@
                     <connections>
                         <outlet property="animeBannerImage" destination="i4h-5D-ET4" id="I5v-i2-kDa"/>
                         <outlet property="animeDetailTableView" destination="UWd-74-YPB" id="yG3-PL-kme"/>
-                        <segue destination="8Hm-nn-NjN" kind="showDetail" identifier="CreateMyAnimeListViewController" id="BC5-G4-3YV"/>
+                        <segue destination="YCA-Mt-7jL" kind="show" identifier="CreateMyAnimeListViewController" id="IQq-FT-0Pc"/>
+                        <segue destination="EEE-L9-dss" kind="show" identifier="CreateReviewViewController" id="7tY-Iu-8dq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkZ-gw-NlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3041" y="1593"/>
+            <point key="canvasLocation" x="2553" y="1593"/>
         </scene>
         <!--Create My Anime List View Controller-->
         <scene sceneID="TyJ-j5-q3a">
             <objects>
                 <viewController storyboardIdentifier="CreateMyAnimeListViewController" id="YCA-Mt-7jL" customClass="CreateMyAnimeListViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yTp-sQ-3Vp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="dAW-kC-PyX"/>
                     </view>
                     <navigationItem key="navigationItem" id="hBG-fx-wk0">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3KP-LY-rbF">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="pOj-UG-5TD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="cancelBtnPressed:" destination="YCA-Mt-7jL" id="cwB-JW-r4K"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="6Ku-8e-6CX">
-                            <connections>
-                                <action selector="addBtnPressed:" destination="YCA-Mt-7jL" id="nCq-6f-gZL"/>
+                                <action selector="addBtnPressed:" destination="YCA-Mt-7jL" id="oES-RS-QvI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBtn" destination="6Ku-8e-6CX" id="7xH-1Z-WHa"/>
-                        <outlet property="cancelBtn" destination="3KP-LY-rbF" id="uv5-Pl-AhP"/>
+                        <outlet property="addBtn" destination="pOj-UG-5TD" id="5eI-Zi-Mjk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8X-mA-KtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3886" y="1593"/>
+            <point key="canvasLocation" x="3412" y="1593"/>
+        </scene>
+        <!--Create Review View Controller-->
+        <scene sceneID="PAI-17-Fmn">
+            <objects>
+                <viewController id="EEE-L9-dss" customClass="CreateReviewViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H2m-rO-EPk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="IpE-lS-umb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zp0-C0-os9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RL3-kY-vba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3412" y="2304"/>
         </scene>
         <!--My Anime List View Controller-->
         <scene sceneID="U8W-I6-oEr">
@@ -283,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="72I-Ju-Xqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3886" y="869"/>
+            <point key="canvasLocation" x="3412" y="869"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sLz-7r-kry">
@@ -651,7 +663,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTU-vZ-Glq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3041" y="869"/>
+            <point key="canvasLocation" x="2553" y="869"/>
         </scene>
         <!--My List-->
         <scene sceneID="Qaw-wW-nWX">
@@ -672,24 +684,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lu-hG-Vpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3412" y="99"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="PgL-uS-tSD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Hm-nn-NjN" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aIk-9q-NA1">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YCA-Mt-7jL" kind="relationship" relationship="rootViewController" id="T96-YO-1uG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jPz-dx-kob" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3412" y="2248"/>
         </scene>
         <!--Review-->
         <scene sceneID="b7u-hI-zzw">

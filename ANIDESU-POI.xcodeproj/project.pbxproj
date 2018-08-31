@@ -71,6 +71,8 @@
 		43939F1A211432BB001CCC48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43939F18211432BB001CCC48 /* LaunchScreen.storyboard */; };
 		43939F25211432BB001CCC48 /* ANIDESU_POITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43939F24211432BB001CCC48 /* ANIDESU_POITests.swift */; };
 		43939F30211432BB001CCC48 /* ANIDESU_POIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43939F2F211432BB001CCC48 /* ANIDESU_POIUITests.swift */; };
+		4399494F2138F5AE0099F48E /* FirestoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4399494E2138F5AE0099F48E /* FirestoreRouter.swift */; };
+		43994951213947DA0099F48E /* CreateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43994950213947DA0099F48E /* CreateReviewViewController.swift */; };
 		43E8388A2129A03D00E8C32F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E838892129A03D00E8C32F /* MenuViewController.swift */; };
 		43E8388E2129AA1400E8C32F /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E8388C2129AA1400E8C32F /* AnimeCell.swift */; };
 		43E8388F2129AA1400E8C32F /* AnimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E8388D2129AA1400E8C32F /* AnimeCell.xib */; };
@@ -187,6 +189,8 @@
 		43939F2B211432BB001CCC48 /* ANIDESU-POIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ANIDESU-POIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43939F2F211432BB001CCC48 /* ANIDESU_POIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANIDESU_POIUITests.swift; sourceTree = "<group>"; };
 		43939F31211432BB001CCC48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4399494E2138F5AE0099F48E /* FirestoreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRouter.swift; sourceTree = "<group>"; };
+		43994950213947DA0099F48E /* CreateReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReviewViewController.swift; sourceTree = "<group>"; };
 		43E838892129A03D00E8C32F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		43E8388C2129AA1400E8C32F /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
 		43E8388D2129AA1400E8C32F /* AnimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimeCell.xib; sourceTree = "<group>"; };
@@ -331,6 +335,7 @@
 				4328D208213800C30047625D /* View */,
 				4328D2012137FEDC0047625D /* ReviewViewController.swift */,
 				4328D20D213808890047625D /* ReviewViewModel.swift */,
+				43994950213947DA0099F48E /* CreateReviewViewController.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 			children = (
 				435CC31B213696870058AF41 /* Router.swift */,
 				4328D1FC2137B5930047625D /* FirebaseRouter.swift */,
+				4399494E2138F5AE0099F48E /* FirestoreRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -822,6 +828,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ANIDESU-POI/Pods-ANIDESU-POI-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -830,10 +837,15 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
 				"${BUILT_PRODUCTS_DIR}/WCLShineButton/WCLShineButton.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -841,6 +853,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -849,10 +862,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WCLShineButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -898,6 +916,7 @@
 				4306CCD7212A7B7E008DAFB1 /* PostCell.swift in Sources */,
 				4306CCD4212A70A3008DAFB1 /* PrePostCell.swift in Sources */,
 				43FF0C54212EA43A005EE970 /* Studio.swift in Sources */,
+				43994951213947DA0099F48E /* CreateReviewViewController.swift in Sources */,
 				437ACEC8212410A800DF56F2 /* DiscoverAnimeViewController.swift in Sources */,
 				437285532126CE30007388C6 /* APIManager.swift in Sources */,
 				43E8388A2129A03D00E8C32F /* MenuViewController.swift in Sources */,
@@ -924,6 +943,7 @@
 				4306CCEB212AD5E1008DAFB1 /* AnidesuRoundView.swift in Sources */,
 				43FF0C4E212E9ADB005EE970 /* CharacterStaffResponse.swift in Sources */,
 				4307BA9621195EF0001FF8A1 /* RegisterViewController.swift in Sources */,
+				4399494F2138F5AE0099F48E /* FirestoreRouter.swift in Sources */,
 				4307BA8921185A94001FF8A1 /* LoginViewModel.swift in Sources */,
 				43FF0C3E212E93CC005EE970 /* Anime.swift in Sources */,
 				4328D2022137FEDC0047625D /* ReviewViewController.swift in Sources */,
