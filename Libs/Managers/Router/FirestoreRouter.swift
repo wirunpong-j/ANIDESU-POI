@@ -22,7 +22,8 @@ public enum FirestoreRouter {
     case removeMyAnimeList(animeID: Int)
     case fetchAllReview
     case fetchReviewPage
-    case updateReviewAnime(animeID: Int, title: String, desc: String, rating: Double, reviewDate: String, uid: String)
+    case addReviewAnime(animeID: Int, title: String, desc: String, rating: Double, reviewDate: String, uid: String)
+    case updateReviewAnime(key: String, animeID: Int, title: String, desc: String, rating: Double, reviewDate: String, uid: String)
 }
 
 extension FirestoreRouter {
@@ -56,8 +57,11 @@ extension FirestoreRouter {
         case .removeMyAnimeList(let animeID):
             return "users/\(UserDataModel.instance.uid)/list_anime/\(animeID)"
             
-        case .fetchAllReview, .fetchReviewPage, .updateReviewAnime:
+        case .fetchAllReview, .fetchReviewPage, .addReviewAnime:
             return "reviews"
+            
+        case .updateReviewAnime(let params):
+            return "reviews/\(params.key)"
         }
     }
     
@@ -88,6 +92,14 @@ extension FirestoreRouter {
                     "progress": params.progress,
                     "score": params.score,
                     "date_time": AnidesuConverter.getCurrentTime()]
+        
+        case .addReviewAnime(let params):
+            return ["anime_id": params.animeID,
+                    "title": params.title,
+                    "desc": params.desc,
+                    "rating": params.rating,
+                    "review_date": params.reviewDate,
+                    "uid": params.uid]
             
         case .updateReviewAnime(let params):
             return ["anime_id": params.animeID,

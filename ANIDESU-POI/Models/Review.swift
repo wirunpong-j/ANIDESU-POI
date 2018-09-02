@@ -19,8 +19,8 @@ class Review {
     var user: UserResponse?
     var anime: Anime?
     
-    init(animeID: Int, title: String, desc: String, rating: Double, reviewDate: String, uid: String) {
-        self.key = ""
+    init(key: String, animeID: Int, title: String, desc: String, rating: Double, reviewDate: String, uid: String) {
+        self.key = key
         self.animeID = animeID
         self.title = title
         self.desc = desc

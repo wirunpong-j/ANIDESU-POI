@@ -22,14 +22,14 @@ class CharacterCell: UICollectionViewCell {
     }
     
     func setUpCell(character: CharacterStaff) {
-        self.coverImage.setImage(urlStr: character.imageUrlLarge!)
+        self.coverImage.setImage(urlStr: character.imageUrlLarge)
         self.fullNameLabel.text = self.getFullName(character: character)
-        self.roleLabel.text = AnidesuConverter.checkNilString(str: character.role)
+        self.roleLabel.text = character.role
     }
     
     private func getFullName(character: CharacterStaff) -> String {
-        if let firstName = character.firstName, let lastName = character.lastName {
-            return lastName + " " + firstName
+        if !character.firstName.isEmpty && !character.lastName.isEmpty {
+            return character.firstName + " " + character.lastName
         }
         
         return AnidesuConverter.NULL_TEXT

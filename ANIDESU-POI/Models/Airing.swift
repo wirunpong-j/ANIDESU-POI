@@ -9,9 +9,9 @@
 import Foundation
 
 class Airing {
-    var time: String?
-    var countdown: Int?
-    var nextEP: Int?
+    var time: String
+    var countdown: Int
+    var nextEP: Int
     
     init() {
         self.time = AnidesuConverter.NULL_TEXT
@@ -20,12 +20,12 @@ class Airing {
     }
     
     init(response: AiringResponse) {
-        self.time = response.time
-        self.countdown = response.countdown
-        self.nextEP = response.next_episode
+        self.time = response.time ?? AnidesuConverter.NULL_TEXT
+        self.countdown = response.countdown ?? 0
+        self.nextEP = response.next_episode ?? 0
     }
     
     public func getNextEpisodeTime() -> String {
-        return self.nextEP! != 0 ? "EP \(self.nextEP!) Airing in \(self.countdown! / 3600)h" : AnidesuConverter.NULL_TEXT
+        return self.nextEP != 0 ? "EP \(self.nextEP) Airing in \(self.countdown / 3600)h" : AnidesuConverter.NULL_TEXT
     }
 }

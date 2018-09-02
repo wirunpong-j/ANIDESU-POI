@@ -66,18 +66,28 @@ class ReviewViewModel {
         }
     }
     
-    public func updateReviewAnime(animeID: Int, title: String, desc: String,
+    public func updateReviewAnime(key: String, animeID: Int, title: String, desc: String,
                                   rating: Double, reviewDate: String, uid: String,
                                   completion: @escaping () -> ()) {
         self.isLoading.onNext(true)
-        let review = Review(animeID: animeID, title: title, desc: desc, rating: rating, reviewDate: reviewDate, uid: uid)
+        let review = Review(key: key, animeID: animeID, title: title, desc: desc, rating: rating, reviewDate: reviewDate, uid: uid)
         
-        self.firebaseManager.updateReviewAnime(review: review, onSuccess: {
-            completion()
-            self.isLoading.onNext(false)
-        }) { (error) in
-            self.errorRelay.accept(error.localizedDescription)
-            self.isLoading.onNext(false)
+        if key.isEmpty {
+            self.firebaseManager.addReviewAnime(review: review, onSuccess: {
+                completion()
+                self.isLoading.onNext(false)
+            }) { (error) in
+                self.errorRelay.accept(error.localizedDescription)
+                self.isLoading.onNext(false)
+            }
+        } else {
+            self.firebaseManager.updateReviewAnime(review: review, onSuccess: {
+                completion()
+                self.isLoading.onNext(false)
+            }) { (error) in
+                self.errorRelay.accept(error.localizedDescription)
+                self.isLoading.onNext(false)
+            }
         }
     }
 }

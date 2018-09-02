@@ -9,13 +9,13 @@
 import Foundation
 
 class ExternalLink {
-    var id: Int?
-    var url: String?
-    var site: String?
+    var id: Int
+    var url: String
+    var site: String
     
     init(response: ExternalLinkResponse) {
-        self.id = response.id
-        self.url = response.url
-        self.site = response.site
+        self.id = response.id ?? 0
+        self.url = response.url ?? ""
+        self.site = response.site ?? ""
     }
 }

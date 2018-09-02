@@ -129,6 +129,7 @@ PODS:
   - Tabman (1.9.2):
     - AutoInsetter (~> 1.2.0)
     - Pageboy (~> 2.5.0)
+  - "UITextView+Placeholder (1.2.1)"
   - WCLShineButton (1.0.7)
 
 DEPENDENCIES:
@@ -147,6 +148,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - Tabman
+  - "UITextView+Placeholder"
   - WCLShineButton
 
 SPEC REPOS:
@@ -183,6 +185,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - Tabman
+    - "UITextView+Placeholder"
     - WCLShineButton
 
 SPEC CHECKSUMS:
@@ -218,8 +221,9 @@ SPEC CHECKSUMS:
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   Tabman: a09f7d7aa62b231ec475ca9eb9171f7cc973a3d7
+  "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
   WCLShineButton: d8b979b6f6f9f6709f9e241e6e1a4712a1a9b36b
 
-PODFILE CHECKSUM: 2553d3db9ea30015b309b7c6e5e203796617d67d
+PODFILE CHECKSUM: eb73c365ea0e4ae96cf8e77aa23e58c51d8521e6
 
 COCOAPODS: 1.5.3

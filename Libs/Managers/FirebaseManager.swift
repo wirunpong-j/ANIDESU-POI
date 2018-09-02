@@ -299,6 +299,7 @@ class FirebaseManager {
                 if let data = data?.documents, !data.isEmpty {
                     let jsonData = try! JSONSerialization.data(withJSONObject: data[0].data())
                     let reviewResponse = try! JSONDecoder().decode(ReviewResponse.self, from: jsonData)
+                    reviewResponse.key = data[0].documentID
                     onSuccess(reviewResponse)
                 } else {
                     onSuccess(nil)
@@ -307,11 +308,24 @@ class FirebaseManager {
         }
     }
     
-    public func updateReviewAnime(review: Review, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+    public func addReviewAnime(review: Review, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let db = Firestore.firestore()
-        let router = FirestoreRouter.updateReviewAnime(animeID: review.animeID, title: review.title, desc: review.desc, rating: review.rating, reviewDate: review.reviewDate, uid: review.uid)
+        let router = FirestoreRouter.addReviewAnime(animeID: review.animeID, title: review.title, desc: review.desc, rating: review.rating, reviewDate: review.reviewDate, uid: review.uid)
         
         db.collection(router.path).addDocument(data: router.parameters!) { (error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
+        }
+    }
+    
+    public func updateReviewAnime(review: Review, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.updateReviewAnime(key: review.key, animeID: review.animeID, title: review.title, desc: review.desc, rating: review.rating, reviewDate: review.reviewDate, uid: review.uid)
+        
+        db.document(router.path).setData(router.parameters!) { (error) in
             if let error = error {
                 onFailure(error)
             } else {

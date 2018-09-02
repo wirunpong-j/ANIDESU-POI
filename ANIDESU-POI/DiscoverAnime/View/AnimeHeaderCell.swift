@@ -24,10 +24,10 @@ class AnimeHeaderCell: UITableViewCell {
     }
     
     func setUpCell(anime: Anime) {
-        self.coverImage.setImage(urlStr: anime.imageUrlLarge!)
-        self.animeNameLabel.text = anime.titleRomaji!
-        self.airingLabel.text = anime.airingStatus!.uppercased()
-        self.nextEPLabel.text = anime.airing?.getNextEpisodeTime()
+        self.coverImage.setImage(urlStr: anime.imageUrlLarge)
+        self.animeNameLabel.text = anime.titleRomaji
+        self.airingLabel.text = anime.airingStatus.uppercased()
+        self.nextEPLabel.text = anime.airing.getNextEpisodeTime()
         self.startLabel.text = AnidesuConverter.getDateFuzzy(dateFuzzy: anime.startDateFuzzy)
         self.endLabel.text = AnidesuConverter.getDateFuzzy(dateFuzzy: anime.endDateFuzzy)
     }

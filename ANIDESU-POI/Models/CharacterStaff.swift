@@ -9,19 +9,19 @@
 import Foundation
 
 class CharacterStaff {
-    var id: Int?
-    var firstName: String?
-    var lastName: String?
-    var imageUrlLarge: String?
-    var imageUrlMed: String?
-    var role: String?
+    var id: Int
+    var firstName: String
+    var lastName: String
+    var imageUrlLarge: String
+    var imageUrlMed: String
+    var role: String
     
     init(response: CharacterStaffResponse) {
-        self.id = response.id
-        self.firstName = response.name_first
-        self.lastName = response.name_last
-        self.imageUrlLarge = response.image_url_lge
-        self.imageUrlMed = response.image_url_med
-        self.role = response.role
+        self.id = response.id ?? 0
+        self.firstName = response.name_first ?? ""
+        self.lastName = response.name_last ?? ""
+        self.imageUrlLarge = response.image_url_lge ?? ""
+        self.imageUrlMed = response.image_url_med ?? ""
+        self.role = response.role ?? AnidesuConverter.NULL_TEXT
     }
 }

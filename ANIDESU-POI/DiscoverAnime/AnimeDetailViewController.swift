@@ -102,13 +102,8 @@ class AnimeDetailViewController: BaseViewController {
     }
     
     private func setUpView() {
-        self.title = self.anime?.titleRomaji!
-        
-        if let bannerImage = self.anime?.imageUrlBanner {
-            self.animeBannerImage.setImage(urlStr: bannerImage)
-        } else {
-            self.animeBannerImage.setImage(urlStr: (self.anime?.imageUrlLarge)!)
-        }
+        self.title = self.anime?.titleRomaji
+        self.animeBannerImage.setImage(urlStr: (self.anime?.imageUrlBanner)!)
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {
@@ -127,7 +122,8 @@ class AnimeDetailViewController: BaseViewController {
             self.performSegue(withIdentifier: CreateMyAnimeListViewController.identifier, sender: nil)
         }))
         
-        alert.addAction(UIAlertAction(title: "Review", style: .default, handler: { (action) in
+        let reviewTitle = self.review == nil ? "Review" : "Edit Review"
+        alert.addAction(UIAlertAction(title: reviewTitle, style: .default, handler: { (action) in
             self.performSegue(withIdentifier: CreateReviewViewController.identifier, sender: nil)
         }))
         

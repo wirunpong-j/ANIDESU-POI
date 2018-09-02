@@ -39,11 +39,11 @@ public class AnidesuConverter {
     }
     
     public static func checkNilString(str: String?) -> String {
-        return str != nil ? str! : NULL_TEXT
+        return str ?? NULL_TEXT
     }
     
     public static func checkNilInt(int: Int?) -> String {
-        return int != nil ? "\(int!)" : NULL_TEXT
+        return int != 0 && int != nil ? "\(int!)" : NULL_TEXT
     }
     
     public static func getCurrentTime() -> String {

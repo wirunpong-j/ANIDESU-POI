@@ -14,8 +14,8 @@ class Studio {
     var studioWiki: String?
     
     init(response: StudioResponse) {
-        self.id = response.id
-        self.studioName = response.studio_name == nil ? AnidesuConverter.NULL_TEXT : response.studio_name
-        self.studioWiki = response.studio_wiki == nil ? AnidesuConverter.NULL_TEXT : response.studio_wiki
+        self.id = response.id ?? 0
+        self.studioName = response.studio_name ?? AnidesuConverter.NULL_TEXT
+        self.studioWiki = response.studio_wiki ?? AnidesuConverter.NULL_TEXT
     }
 }

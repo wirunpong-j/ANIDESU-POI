@@ -10,6 +10,8 @@ import UIKit
 import Cosmos
 import RxCocoa
 import RxSwift
+import IHKeyboardAvoiding
+import UITextView_Placeholder
 
 class CreateReviewViewController: BaseViewController {
     static let identifier = "CreateReviewViewController"
@@ -53,6 +55,9 @@ class CreateReviewViewController: BaseViewController {
     }
     
     private func setUpView() {
+        KeyboardAvoiding.avoidingView = self.view
+        self.reviewTextView.placeholder = "Review (Optional)"
+        self.reviewTextView.placeholderColor = AnidesuColor.Gray.color()
         self.navigationController?.navigationBar.tintColor = AnidesuColor.White.color()
         self.title = "Review"
         self.animeNameLabel.text = "Review: " + (self.anime?.titleRomaji)!
@@ -60,34 +65,25 @@ class CreateReviewViewController: BaseViewController {
         self.titleTextField.text = self.review == nil ? "" : self.review?.title
         self.reviewTextView.text = self.review == nil ? "" : self.review?.desc
         self.ratingBar.rating = self.review == nil ? 0 : (self.review?.rating)!
-        self.titleTextField.addTarget(self, action: #selector(textViewDidChange(_:)), for: .editingChanged)
     }
 
     @IBAction func saveBtnPressed(_ sender: Any) {
         if let titleText = titleTextField.text, !(titleTextField.text?.isEmpty)! {
+            let reviewText = self.reviewTextView.text ?? ""
+            let rating = self.ratingBar.rating
+            let key = self.review?.key ?? ""
+            
+            self.viewModel.updateReviewAnime(key: key, animeID: (anime?.id)!, title: titleText, desc: reviewText, rating: rating,
+                                             reviewDate: AnidesuConverter.getCurrentTime(), uid: UserDataModel.instance.uid) {
+                self.navigationController?.popViewController(animated: true)
+            }
         
         } else {
-            self.showAlert(title: "Error", message: "Please Fill Title.")
+            self.showAlert(title: "Error", message: "Please fill title.")
         }
     }
     
-    @objc func textViewDidChange(_ textView: UITextView) {
-        self.saveBtn.isEnabled = !textView.text.isEmpty
-    }
-}
-
-extension CreateReviewViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "What's on your mind?" {
-            textView.text = ""
-            textView.textColor = AnidesuColor.DarkBlue.color()
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "What's on your mind?"
-            textView.textColor = AnidesuColor.DarkGray.color()
-        }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

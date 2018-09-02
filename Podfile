@@ -22,6 +22,7 @@ target 'ANIDESU-POI' do
   pod 'IHKeyboardAvoiding'
   pod 'Eureka'
   pod 'Cosmos', '~> 16.0'
+  pod 'UITextView+Placeholder'
   
   post_install do |installer|
       installer.pods_project.build_configurations.each do |config|

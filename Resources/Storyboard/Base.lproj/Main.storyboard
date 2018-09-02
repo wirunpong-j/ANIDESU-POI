@@ -299,7 +299,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x32-bv-jQL">
-                                <rect key="frame" x="16" y="314" width="343" height="25"/>
+                                <rect key="frame" x="16" y="306.5" width="343" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Uih-Hu-gum"/>
                                 </constraints>
@@ -308,29 +308,30 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap a Star to Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plJ-Tj-3Uu">
-                                <rect key="frame" x="126" y="279" width="122" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="137" y="275" width="101" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-Qo-hDE">
-                                <rect key="frame" x="16" y="348" width="343" height="150"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-Qo-hDE">
+                                <rect key="frame" x="16" y="340.5" width="343" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="FFr-cs-0Pb"/>
                                 </constraints>
+                                <color key="textColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P10-iO-fb0" userLabel="underline">
-                                <rect key="frame" x="16" y="309" width="343" height="1"/>
+                                <rect key="frame" x="16" y="301.5" width="343" height="1"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="zXD-db-DdJ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ti-M5-7JU" userLabel="underline">
-                                <rect key="frame" x="16" y="343" width="343" height="1"/>
+                                <rect key="frame" x="16" y="335.5" width="343" height="1"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="UsE-mK-p5I"/>
@@ -356,7 +357,7 @@
                             <constraint firstAttribute="trailing" secondItem="P10-iO-fb0" secondAttribute="trailing" constant="16" id="1ck-7O-vPB"/>
                             <constraint firstItem="MGS-JO-Rc1" firstAttribute="leading" secondItem="IpE-lS-umb" secondAttribute="leading" constant="16" id="5an-OT-UWF"/>
                             <constraint firstItem="EO0-R5-38T" firstAttribute="centerX" secondItem="H2m-rO-EPk" secondAttribute="centerX" id="9sQ-Yh-6Vw"/>
-                            <constraint firstItem="plJ-Tj-3Uu" firstAttribute="top" secondItem="EO0-R5-38T" secondAttribute="bottom" id="Asm-lQ-Jao"/>
+                            <constraint firstItem="plJ-Tj-3Uu" firstAttribute="top" secondItem="EO0-R5-38T" secondAttribute="bottom" constant="-4" id="Asm-lQ-Jao"/>
                             <constraint firstItem="Ky8-5E-1gQ" firstAttribute="centerX" secondItem="H2m-rO-EPk" secondAttribute="centerX" id="BtT-2Y-V9k"/>
                             <constraint firstItem="Ky8-5E-1gQ" firstAttribute="top" secondItem="MGS-JO-Rc1" secondAttribute="bottom" constant="16" id="DXo-80-9Yb"/>
                             <constraint firstItem="IpE-lS-umb" firstAttribute="trailing" secondItem="MGS-JO-Rc1" secondAttribute="trailing" constant="16" id="E6L-ro-bSR"/>
@@ -377,7 +378,7 @@
                         <viewLayoutGuide key="safeArea" id="IpE-lS-umb"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zp0-C0-os9">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="CLN-r6-hYW">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="CLN-r6-hYW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveBtnPressed:" destination="EEE-L9-dss" id="xIO-Pm-Grh"/>

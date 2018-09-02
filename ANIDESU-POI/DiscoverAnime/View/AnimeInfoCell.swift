@@ -24,24 +24,19 @@ class AnimeInfoCell: UITableViewCell {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var roundView: AnidesuRoundView!
     
-    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func setUpCell(anime: Anime) {
-        self.animeEngNameLabel.text = AnidesuConverter.checkNilString(str: anime.titleEnglish)
-        self.animeTypeLabel.text = AnidesuConverter.checkNilString(str: anime.type)
+        self.animeEngNameLabel.text = anime.titleEnglish
+        self.animeTypeLabel.text = anime.type
         self.totalEPLabel.text = AnidesuConverter.checkNilInt(int: anime.totalEP)
         self.animeTagLabel.text = AnidesuConverter.NULL_TEXT
         self.animeGenresLabel.text = AnidesuConverter.getArrayString(array: anime.genres)
-        self.hashTagLabel.text = AnidesuConverter.checkNilString(str: anime.hashtag)
-        self.animeOriginLabel.text = AnidesuConverter.checkNilString(str: anime.source)
+        self.hashTagLabel.text = anime.hashtag
+        self.animeOriginLabel.text = anime.source
         self.mainStudioLabel.text = AnidesuConverter.NULL_TEXT
-        self.descLabel.text = AnidesuConverter.checkNilString(str: anime.description)
-        
-        self.stackView.frame.size = CGSize(width: self.stackView.frame.width, height: 2000)
-        
+        self.descLabel.text = anime.description
     }
 }

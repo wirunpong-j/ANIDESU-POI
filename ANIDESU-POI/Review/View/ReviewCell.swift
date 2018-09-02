@@ -22,12 +22,7 @@ class ReviewCell: UITableViewCell {
     }
     
     func setUpCell(review: Review) {
-        if let bannerUrl = review.anime?.imageUrlBanner {
-            reviewBannerImageView.setImage(urlStr: bannerUrl)
-        } else {
-            reviewBannerImageView.setImage(urlStr: (review.anime?.imageUrlLarge)!)
-        }
-        
+        reviewBannerImageView.setImage(urlStr: (review.anime?.imageUrlBanner)!)
         animeTitleLabel.text = (review.anime?.titleRomaji)!
         reviewerImage.setImageWithRounded(urlStr: (review.user?.image_url_profile)!, borderColor: AnidesuColor.White)
         reviewerNameLabel.text = "Review by: " + (review.user?.display_name)!
