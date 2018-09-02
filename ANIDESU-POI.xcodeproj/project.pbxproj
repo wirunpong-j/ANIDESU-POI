@@ -487,10 +487,10 @@
 		43939F0E211432B7001CCC48 /* ANIDESU-POI */ = {
 			isa = PBXGroup;
 			children = (
-				4328D1FE2137FEA90047625D /* Review */,
 				43747D4E211D7A2F005879F7 /* Home */,
 				437ACEC62124108C00DF56F2 /* DiscoverAnime */,
 				43490F062133B947006BBD9D /* MyAnimeList */,
+				4328D1FE2137FEA90047625D /* Review */,
 				4307BA9421195EDD001FF8A1 /* Register */,
 				4307BA7E211850D9001FF8A1 /* Login */,
 				43FF0C3C212E93B8005EE970 /* Models */,
@@ -829,6 +829,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -854,6 +855,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",

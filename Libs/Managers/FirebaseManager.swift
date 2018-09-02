@@ -285,4 +285,38 @@ class FirebaseManager {
             }
         }
     }
+    
+    public func fetchReviewPage(animeID: Int, onSuccess: @escaping (ReviewResponse?) -> (), onFailure: @escaping (Error) -> ()) {
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.fetchReviewPage
+        
+        db.collection(router.path)
+            .whereField("anime_id", isEqualTo: animeID)
+            .whereField("uid", isEqualTo: UserDataModel.instance.uid).getDocuments { (data, error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                if let data = data?.documents, !data.isEmpty {
+                    let jsonData = try! JSONSerialization.data(withJSONObject: data[0].data())
+                    let reviewResponse = try! JSONDecoder().decode(ReviewResponse.self, from: jsonData)
+                    onSuccess(reviewResponse)
+                } else {
+                    onSuccess(nil)
+                }
+            }
+        }
+    }
+    
+    public func updateReviewAnime(review: Review, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        let db = Firestore.firestore()
+        let router = FirestoreRouter.updateReviewAnime(animeID: review.animeID, title: review.title, desc: review.desc, rating: review.rating, reviewDate: review.reviewDate, uid: review.uid)
+        
+        db.collection(router.path).addDocument(data: router.parameters!) { (error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
+        }
+    }
 }

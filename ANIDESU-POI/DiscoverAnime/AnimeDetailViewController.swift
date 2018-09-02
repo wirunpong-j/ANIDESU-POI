@@ -18,10 +18,12 @@ class AnimeDetailViewController: BaseViewController {
     
     var discoverAnimeViewModel: DiscoverAnimeViewModel!
     var myAnimeListViewModel: MyAnimeListViewModel!
+    var reviewViewModel: ReviewViewModel!
     var disposeBag = DisposeBag()
     
     var anime: Anime?
     var myAnimeList: MyAnimeList?
+    var review: Review?
     
     private enum AnimeDetailSections: Int {
         case detail, info, stats, extras
@@ -47,6 +49,7 @@ class AnimeDetailViewController: BaseViewController {
     private func setUpViewModel() {
         self.discoverAnimeViewModel = DiscoverAnimeViewModel()
         self.myAnimeListViewModel = MyAnimeListViewModel()
+        self.reviewViewModel = ReviewViewModel()
         
         self.discoverAnimeViewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
@@ -56,8 +59,40 @@ class AnimeDetailViewController: BaseViewController {
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
         
+        self.reviewViewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.myAnimeListViewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.reviewViewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.discoverAnimeViewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
         self.myAnimeListViewModel.fetchMyAnimeList(animeID: (self.anime?.id)!) { (myAnimeList) in
             self.myAnimeList = myAnimeList
+        }
+        
+        self.reviewViewModel.fetchReviewPage(animeID: (self.anime?.id)!) { (review) in
+            self.review = review
         }
         
         self.discoverAnimeViewModel.fetchAnimePage(animeID: (self.anime?.id)!) { (anime) in
@@ -93,7 +128,7 @@ class AnimeDetailViewController: BaseViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "Review", style: .default, handler: { (action) in
-            
+            self.performSegue(withIdentifier: CreateReviewViewController.identifier, sender: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (action) in
@@ -111,8 +146,13 @@ class AnimeDetailViewController: BaseViewController {
         switch segue.identifier {
         case CreateMyAnimeListViewController.identifier:
             if let viewController = segue.destination as? CreateMyAnimeListViewController {
-                viewController.anime = anime
-                viewController.myAnimeList = myAnimeList
+                viewController.anime = self.anime
+                viewController.myAnimeList = self.myAnimeList
+            }
+        case CreateReviewViewController.identifier:
+            if let viewController = segue.destination as? CreateReviewViewController {
+                viewController.anime = self.anime
+                viewController.review = self.review
             }
         default:
             break

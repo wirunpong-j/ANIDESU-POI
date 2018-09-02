@@ -11,6 +11,7 @@ import Foundation
 class ReviewResponse: Decodable {
     var key: String?
     var anime_id: Int?
+    var title: String?
     var desc: String?
     var rating: Double?
     var review_date: String?

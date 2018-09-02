@@ -14,6 +14,7 @@ class DiscoverAnimeViewModel {
     
     var anilistManager = AniListManager()
     var listAnime = [AnimeResponse]()
+    var isLoading = PublishSubject<Bool>()
     
     let errorRelay: PublishRelay<String> = PublishRelay()
     
@@ -26,10 +27,13 @@ class DiscoverAnimeViewModel {
     }
     
     func fetchAnimePage(animeID: Int, completion: @escaping (Anime) -> ()) {
+        self.isLoading.onNext(true)
         self.anilistManager.fetchAnimePage(animeID: animeID, onSuccess: { (anime) in
             completion(anime)
+            self.isLoading.onNext(false)
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         }
     }
 }

@@ -15,7 +15,8 @@ class MyAnimeListViewModel {
     var firebaseManager = FirebaseManager()
     var anilistManager = AniListManager()
     
-    let errorRelay: PublishRelay<String> = PublishRelay()
+    let isLoading = PublishSubject<Bool>()
+    let errorRelay = PublishRelay<String>()
     
     public func fetchAllMyAnimeList(status: MyAnimeListStatus, completion: @escaping ([MyAnimeList]) -> ()) {
         self.firebaseManager.fetchAllMyAnimeList(status: status, uid: UserDataModel.instance.uid, onSuccess: { (allResponse) in
@@ -68,6 +69,7 @@ class MyAnimeListViewModel {
     }
     
     public func fetchMyAnimeList(animeID: Int, completion: @escaping (MyAnimeList?) -> ()) {
+        self.isLoading.onNext(true)
         self.firebaseManager.fetchMyAnimeList(animeID: animeID, onSuccess: { (response) in
             if let response = response {
                 let myAnimeList = MyAnimeList(response: response)
@@ -75,8 +77,10 @@ class MyAnimeListViewModel {
             } else {
                 completion(nil)
             }
+            self.isLoading.onNext(false)
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         }
     }
 }
