@@ -42,9 +42,29 @@ class ReviewViewController: BaseViewController {
             self.reviewTableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.setBackButton()
+        
+        if segue.identifier == ReviewDetailViewController.identifier {
+            if let viewController = segue.destination as? ReviewDetailViewController {
+                viewController.review = sender as? Review
+            }
+        }
+    }
+    
+    private func setBackButton() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+    }
 }
 
 extension ReviewViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allReview.count
     }
@@ -57,7 +77,7 @@ extension ReviewViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: ReviewDetailViewController.identifier, sender: self.allReview[indexPath.row])
     }
 }

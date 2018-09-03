@@ -84,6 +84,7 @@
                     <navigationItem key="navigationItem" title="Review" id="pNW-MN-ZEh"/>
                     <connections>
                         <outlet property="reviewTableView" destination="Kqx-qv-dq8" id="KgG-gD-9J8"/>
+                        <segue destination="IlE-aF-Rff" kind="show" identifier="ReviewDetailViewController" id="hM7-AC-ZF0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPR-Tx-uV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -173,7 +174,7 @@
                                     <constraint firstAttribute="height" constant="150" id="vxi-4L-4qO"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UWd-74-YPB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UWd-74-YPB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -242,7 +243,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8X-mA-KtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="1593"/>
+            <point key="canvasLocation" x="4182" y="869"/>
+        </scene>
+        <!--Review Detail View Controller-->
+        <scene sceneID="b1q-LP-yOk">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="IlE-aF-Rff" customClass="ReviewDetailViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gD1-kE-OEM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_banner" translatesAutoresizingMaskIntoConstraints="NO" id="tUe-ST-M62">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="lfV-ml-Rz9"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3pU-vX-lkZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tUe-ST-M62" firstAttribute="leading" secondItem="uJI-F6-eAH" secondAttribute="leading" id="4Ub-7h-WwY"/>
+                            <constraint firstItem="uJI-F6-eAH" firstAttribute="bottom" secondItem="3pU-vX-lkZ" secondAttribute="bottom" id="5pW-5D-ajE"/>
+                            <constraint firstItem="3pU-vX-lkZ" firstAttribute="leading" secondItem="uJI-F6-eAH" secondAttribute="leading" id="NJu-gF-EId"/>
+                            <constraint firstItem="uJI-F6-eAH" firstAttribute="trailing" secondItem="tUe-ST-M62" secondAttribute="trailing" id="cSr-Hb-aTI"/>
+                            <constraint firstItem="uJI-F6-eAH" firstAttribute="trailing" secondItem="3pU-vX-lkZ" secondAttribute="trailing" id="fmZ-IJ-32N"/>
+                            <constraint firstItem="3pU-vX-lkZ" firstAttribute="top" secondItem="uJI-F6-eAH" secondAttribute="top" id="km4-S2-aIz"/>
+                            <constraint firstItem="tUe-ST-M62" firstAttribute="top" secondItem="uJI-F6-eAH" secondAttribute="top" id="yjm-LP-4XI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uJI-F6-eAH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="L7N-jO-mrF"/>
+                    <connections>
+                        <outlet property="animeBannerImage" destination="tUe-ST-M62" id="dyG-jw-LUU"/>
+                        <outlet property="reviewDetailTableView" destination="3pU-vX-lkZ" id="1jP-6E-v90"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kx3-h6-50C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5774" y="869"/>
         </scene>
         <!--Create Review View Controller-->
         <scene sceneID="PAI-17-Fmn">
@@ -396,7 +438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RL3-kY-vba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="2303.2983508245879"/>
+            <point key="canvasLocation" x="4182" y="1593"/>
         </scene>
         <!--My Anime List View Controller-->
         <scene sceneID="U8W-I6-oEr">

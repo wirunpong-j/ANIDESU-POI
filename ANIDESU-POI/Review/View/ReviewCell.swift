@@ -16,7 +16,8 @@ class ReviewCell: UITableViewCell {
     @IBOutlet weak var animeTitleLabel: UILabel!
     @IBOutlet weak var reviewerImage: UIImageView!
     @IBOutlet weak var reviewerNameLabel: UILabel!
-
+    @IBOutlet weak var reviewTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -25,6 +26,7 @@ class ReviewCell: UITableViewCell {
         reviewBannerImageView.setImage(urlStr: (review.anime?.imageUrlBanner)!)
         animeTitleLabel.text = (review.anime?.titleRomaji)!
         reviewerImage.setImageWithRounded(urlStr: (review.user?.image_url_profile)!, borderColor: AnidesuColor.White)
+        reviewTitleLabel.text = "\" \(review.title) \""
         reviewerNameLabel.text = "Review by: " + (review.user?.display_name)!
     }
 }

@@ -29,7 +29,7 @@
                         <rect key="frame" x="0.0" y="2" width="375" height="175.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Dangan Ronpa V3: Everyone's New Semester of Killing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgM-6t-wxE">
-                                <rect key="frame" x="20" y="64" width="335" height="48"/>
+                                <rect key="frame" x="20" y="34" width="335" height="48"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -65,13 +65,22 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Very Good&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAm-Lt-JWR">
+                                <rect key="frame" x="20" y="94" width="335" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gAm-Lt-JWR" secondAttribute="trailing" constant="20" id="9fU-cq-Zg0"/>
                             <constraint firstItem="WgM-6t-wxE" firstAttribute="leading" secondItem="Wl5-vX-p90" secondAttribute="leading" constant="20" id="DuK-O5-ZIh"/>
-                            <constraint firstItem="WgM-6t-wxE" firstAttribute="centerY" secondItem="Wl5-vX-p90" secondAttribute="centerY" id="KKE-Xx-Qgq"/>
+                            <constraint firstItem="WgM-6t-wxE" firstAttribute="centerY" secondItem="Wl5-vX-p90" secondAttribute="centerY" constant="-30" id="KKE-Xx-Qgq"/>
                             <constraint firstAttribute="trailing" secondItem="WgM-6t-wxE" secondAttribute="trailing" constant="20" id="KVT-uj-PW7"/>
+                            <constraint firstItem="gAm-Lt-JWR" firstAttribute="leading" secondItem="Wl5-vX-p90" secondAttribute="leading" constant="20" id="OTs-uy-Arg"/>
                             <constraint firstAttribute="bottom" secondItem="eHL-tm-xRd" secondAttribute="bottom" constant="20" id="P4j-94-Ltk"/>
+                            <constraint firstItem="gAm-Lt-JWR" firstAttribute="top" secondItem="WgM-6t-wxE" secondAttribute="bottom" constant="12" id="UDt-0E-z3r"/>
                             <constraint firstItem="eHL-tm-xRd" firstAttribute="centerX" secondItem="Wl5-vX-p90" secondAttribute="centerX" id="USM-7i-K3U"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -97,6 +106,7 @@
             <connections>
                 <outlet property="animeTitleLabel" destination="WgM-6t-wxE" id="mEM-kg-rJy"/>
                 <outlet property="reviewBannerImageView" destination="SzB-fe-Ia5" id="xQw-y5-dSY"/>
+                <outlet property="reviewTitleLabel" destination="gAm-Lt-JWR" id="4Cp-Or-cO1"/>
                 <outlet property="reviewerImage" destination="6fh-vM-gz5" id="YVa-zl-zXN"/>
                 <outlet property="reviewerNameLabel" destination="H09-6D-64G" id="v90-h1-Syw"/>
             </connections>
