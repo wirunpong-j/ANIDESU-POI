@@ -201,11 +201,11 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch AnimeDetailSections(rawValue: section)! {
         case .info:
-            return SectionHeaderView.loadViewFromNib(title: "Info", backgroundColor: AnidesuColor.DarkBlue)
+            return SectionHeaderView.loadViewFromNib(title: "Info", backgroundColor: .Blue, contentViewColor: .DarkBlue)
         case .stats:
-            return SectionHeaderView.loadViewFromNib(title: "Stats", backgroundColor: AnidesuColor.DarkBlue)
+            return SectionHeaderView.loadViewFromNib(title: "Stats", backgroundColor: .Blue, contentViewColor: .DarkBlue)
         case .extras:
-            return SectionHeaderView.loadViewFromNib(title: "Extras", backgroundColor: AnidesuColor.DarkBlue)
+            return SectionHeaderView.loadViewFromNib(title: "Extras", backgroundColor: .Blue, contentViewColor: .DarkBlue)
         default:
             return nil
         }

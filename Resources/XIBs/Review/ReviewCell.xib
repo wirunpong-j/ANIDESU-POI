@@ -102,6 +102,7 @@
                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                 </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.098039215686274508" green="0.12941176470588234" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="iAd-8i-PxN"/>
             <connections>
                 <outlet property="animeTitleLabel" destination="WgM-6t-wxE" id="mEM-kg-rJy"/>

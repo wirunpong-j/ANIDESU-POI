@@ -49,7 +49,18 @@ class PostDetailViewController: BaseViewController {
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
         
-        self.fetchAllComment()
+        self.postViewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.postViewModel.fetchAllComment(postKey: self.post.key!) { (allComment) in
+            self.post.comments = allComment
+            self.postDetailTableView.reloadData()
+        }
     }
     
     private func setUpView() {
@@ -64,11 +75,12 @@ class PostDetailViewController: BaseViewController {
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        let message = messageTextView.text!
         self.view.endEditing(true)
         
+        let message = messageTextView.text!
+        self.clearTextView()
+        
         self.postViewModel.addComment(postKey: post.key!, message: message) {
-            self.clearTextView()
             self.postViewModel.fetchAllComment(postKey: self.post.key!, completion: { (allComment) in
                 self.post.comments = allComment
                 let indexPath = IndexPath(row: allComment.count - 1, section: PostSection.Comments.rawValue)
@@ -79,16 +91,8 @@ class PostDetailViewController: BaseViewController {
     }
     
     private func clearTextView() {
-        self.messageTextView.text = "Write a comment..."
-        self.messageTextView.textColor = AnidesuColor.DarkGray.color()
+        self.messageTextView.text = ""
         self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
-    }
-    
-    private func fetchAllComment() {
-        self.postViewModel.fetchAllComment(postKey: self.post.key!) { (allComment) in
-            self.post.comments = allComment
-            self.postDetailTableView.reloadData()
-        }
     }
 }
 

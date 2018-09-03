@@ -17,24 +17,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_no_data" translatesAutoresizingMaskIntoConstraints="NO" id="JMi-Qh-pAw">
-                    <rect key="frame" x="152" y="132" width="70" height="50"/>
+                    <rect key="frame" x="152" y="152" width="70" height="50"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="6r5-NB-7CD"/>
                         <constraint firstAttribute="width" constant="70" id="9da-KP-Xa4"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0Y-ka-UIS">
-                    <rect key="frame" x="142" y="194" width="90" height="29"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                    <color key="textColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="150" y="214" width="75.5" height="24"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.098039215686274508" green="0.12941176470588234" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="g0Y-ka-UIS" firstAttribute="top" secondItem="JMi-Qh-pAw" secondAttribute="bottom" constant="12" id="FCb-dy-Lw7"/>
                 <constraint firstItem="JMi-Qh-pAw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cSU-JZ-cMY"/>
-                <constraint firstItem="JMi-Qh-pAw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-30" id="nwm-bK-a05"/>
+                <constraint firstItem="JMi-Qh-pAw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-10" id="nwm-bK-a05"/>
                 <constraint firstItem="g0Y-ka-UIS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="p5p-cf-iPp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -43,6 +44,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_no_data" width="37" height="37"/>
+        <image name="ic_no_data" width="25" height="25"/>
     </resources>
 </document>

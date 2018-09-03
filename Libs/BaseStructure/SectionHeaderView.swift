@@ -17,11 +17,12 @@ class SectionHeaderView: UIView {
         return Bundle.main.loadNibNamed("SectionHeaderView", owner: self, options: nil)!.first as! SectionHeaderView
     }
     
-    public static func loadViewFromNib(title: String, backgroundColor: AnidesuColor) -> SectionHeaderView {
+    public static func loadViewFromNib(title: String, backgroundColor: AnidesuColor, contentViewColor: AnidesuColor) -> SectionHeaderView {
         let view = SectionHeaderView.loadViewFromNib()
         view.headerLabel.text = title
         view.headerLabel.textColor = AnidesuColor.White.color()
         view.roundView.backgroundColor = backgroundColor.color()
+        view.backgroundColor = contentViewColor.color()
         return view
     }
     

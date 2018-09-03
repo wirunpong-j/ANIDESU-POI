@@ -20,10 +20,10 @@ class AnimeExtrasCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setUpTableView()
+        self.setUpCollectionView()
     }
     
-    private func setUpTableView() {
+    private func setUpCollectionView() {
         self.characterCollectionView.delegate = self
         self.characterCollectionView.dataSource = self
         self.staffCollectionView.delegate = self
@@ -32,7 +32,7 @@ class AnimeExtrasCell: UITableViewCell {
         self.staffCollectionView.register(CharacterCell.nib, forCellWithReuseIdentifier: CharacterCell.identifier)
     }
     
-    func setUpCell(characters: [CharacterStaff]?, staffs: [CharacterStaff]?) {
+    public func setUpCell(characters: [CharacterStaff]?, staffs: [CharacterStaff]?) {
         if let characters = characters, let staffs = staffs {
             self.characters = characters
             self.staffs = staffs
@@ -43,11 +43,31 @@ class AnimeExtrasCell: UITableViewCell {
 }
 
 extension AnimeExtrasCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == characterCollectionView {
+            if let characters = self.characters, !characters.isEmpty {
+                collectionView.backgroundView = nil
+                return 1
+            } else {
+                collectionView.backgroundView = NoDataView.loadViewFromNib()
+                return 0
+            }
+        } else {
+            if let staffs = self.staffs, !staffs.isEmpty {
+                collectionView.backgroundView = nil
+                return 1
+            } else {
+                collectionView.backgroundView = NoDataView.loadViewFromNib()
+                return 0
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == characterCollectionView {
-            return self.characters?.count != nil ? (self.characters?.count)! : 0
+            return self.characters?.count ?? 0
         } else {
-            return self.staffs?.count != nil ? (self.staffs?.count)! : 0
+            return self.staffs?.count ?? 0
         }
     }
     
@@ -71,12 +91,10 @@ extension AnimeExtrasCell: UICollectionViewDelegate, UICollectionViewDataSource 
 
 extension AnimeExtrasCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: 120, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
         return UIEdgeInsets(top: 1, left: 2.5, bottom: 1, right: 2.5)
     }
     

@@ -41,14 +41,10 @@ class PostViewModel {
     }
     
     public func addComment(postKey: String, message: String, completion: @escaping () -> ()) {
-        self.isLoading.onNext(true)
-        
         self.firebaseManager.addComment(postKey: postKey, message: message, onSuccess: {
             completion()
-            self.isLoading.onNext(false)
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
-            self.isLoading.onNext(false)
         }
     }
     
