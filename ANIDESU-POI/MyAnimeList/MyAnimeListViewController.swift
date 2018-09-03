@@ -78,6 +78,16 @@ extension MyAnimeListViewController: UICollectionViewDataSource {
 
 extension MyAnimeListViewController: UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if self.myAnimeList.isEmpty {
+            collectionView.backgroundView  = NoDataView.loadViewFromNib()
+            return 0
+        } else {
+            collectionView.backgroundView = nil
+            return 1
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = self.view.frame.width
         return CGSize(width: (screenWidth / 2) - 5, height: 300)

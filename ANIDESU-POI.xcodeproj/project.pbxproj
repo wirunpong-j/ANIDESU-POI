@@ -58,6 +58,8 @@
 		43706EE8213CEA5800D88326 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43706EE7213CEA5800D88326 /* ReviewDetailViewController.swift */; };
 		43706EEB213CEE3800D88326 /* ReviewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43706EE9213CEE3700D88326 /* ReviewHeaderCell.swift */; };
 		43706EEC213CEE3800D88326 /* ReviewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43706EEA213CEE3700D88326 /* ReviewHeaderCell.xib */; };
+		43706EF0213CFDF200D88326 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43706EEF213CFDF200D88326 /* NoDataView.xib */; };
+		43706EF2213CFE3700D88326 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43706EF1213CFE3700D88326 /* NoDataView.swift */; };
 		437285512126CBAC007388C6 /* AniListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285502126CBAC007388C6 /* AniListManager.swift */; };
 		437285532126CE30007388C6 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285522126CE30007388C6 /* APIManager.swift */; };
 		437285562126DB9F007388C6 /* AnilistAuthenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437285552126DB9F007388C6 /* AnilistAuthenResponse.swift */; };
@@ -173,6 +175,8 @@
 		43706EE7213CEA5800D88326 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
 		43706EE9213CEE3700D88326 /* ReviewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewHeaderCell.swift; sourceTree = "<group>"; };
 		43706EEA213CEE3700D88326 /* ReviewHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewHeaderCell.xib; sourceTree = "<group>"; };
+		43706EEF213CFDF200D88326 /* NoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
+		43706EF1213CFE3700D88326 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		437285502126CBAC007388C6 /* AniListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AniListManager.swift; sourceTree = "<group>"; };
 		437285522126CE30007388C6 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		437285552126DB9F007388C6 /* AnilistAuthenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnilistAuthenResponse.swift; sourceTree = "<group>"; };
@@ -275,9 +279,11 @@
 		4307BA7821184B80001FF8A1 /* BaseStructure */ = {
 			isa = PBXGroup;
 			children = (
+				43557191212D96A300479886 /* SectionHeaderView.swift */,
 				43E838892129A03D00E8C32F /* MenuViewController.swift */,
 				4307BA7921184BAD001FF8A1 /* BaseViewController.swift */,
 				4307BA972119602A001FF8A1 /* BaseNavigationViewController.swift */,
+				43706EF1213CFE3700D88326 /* NoDataView.swift */,
 			);
 			path = BaseStructure;
 			sourceTree = "<group>";
@@ -298,7 +304,6 @@
 				4307BA9921197986001FF8A1 /* AnidesuColor.swift */,
 				4307BA9C21198D5A001FF8A1 /* ImageRoundView.swift */,
 				4306CCEA212AD5E1008DAFB1 /* AnidesuRoundView.swift */,
-				43557191212D96A300479886 /* SectionHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				4355718F212D958000479886 /* SectionHeaderView.xib */,
+				43706EEF213CFDF200D88326 /* NoDataView.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				4306CCD8212A7B7E008DAFB1 /* PostCell.xib in Resources */,
 				4355718E212D92FC00479886 /* AnimeInfoCell.xib in Resources */,
 				43939F17211432BB001CCC48 /* Assets.xcassets in Resources */,
+				43706EF0213CFDF200D88326 /* NoDataView.xib in Resources */,
 				43FF0C32212E7026005EE970 /* ExternalLinkCell.xib in Resources */,
 				43557190212D958000479886 /* SectionHeaderView.xib in Resources */,
 				43FF0C36212E7E38005EE970 /* AnimeExtrasCell.xib in Resources */,
@@ -963,6 +970,7 @@
 				4328D2022137FEDC0047625D /* ReviewViewController.swift in Sources */,
 				43E8388E2129AA1400E8C32F /* AnimeCell.swift in Sources */,
 				43557189212D82A800479886 /* AnimeHeaderCell.swift in Sources */,
+				43706EF2213CFE3700D88326 /* NoDataView.swift in Sources */,
 				43557192212D96A300479886 /* SectionHeaderView.swift in Sources */,
 				4355718D212D92FC00479886 /* AnimeInfoCell.swift in Sources */,
 				43FF0C2D212E688C005EE970 /* AnimeStatsCell.swift in Sources */,
