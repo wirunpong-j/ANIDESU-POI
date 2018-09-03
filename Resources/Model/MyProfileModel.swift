@@ -8,9 +8,9 @@
 
 import Foundation
 
-class UserDataModel {
+class MyProfileModel {
     
-    static var instance = UserDataModel()
+    static var instance = MyProfileModel()
     
     var uid: String {
         get {
@@ -28,19 +28,19 @@ class UserDataModel {
         }
     }
     
-    var display_name: String {
+    var displayName: String {
         get {
-            return UserDefaults.standard.string(forKey: "display_name")!
+            return UserDefaults.standard.string(forKey: "displayName")!
         } set {
-            UserDefaults.standard.set(newValue, forKey: "display_name")
+            UserDefaults.standard.set(newValue, forKey: "displayName")
         }
     }
     
-    var image_url_profile: String {
+    var imageUrlProfile: String {
         get {
-            return UserDefaults.standard.string(forKey: "image_url_profile")!
+            return UserDefaults.standard.string(forKey: "imageUrlProfile")!
         } set {
-            UserDefaults.standard.set(newValue, forKey: "image_url_profile")
+            UserDefaults.standard.set(newValue, forKey: "imageUrlProfile")
         }
     }
     

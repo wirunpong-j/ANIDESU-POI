@@ -13,29 +13,44 @@ import RxSwift
 import RxCocoa
 
 class RegisterViewModel {
-    
     var firebaseManager = FirebaseManager()
-    let errorRelay: PublishRelay<String> = PublishRelay()
     
-    func register(displayName: String, email: String, password: String, image: UIImage, completion: @escaping () -> ()) {
-        firebaseManager.signUp(displayName: displayName, email: email, password: password, image: image, onSuccess: { (imageURL) in
-            self.createInitialUserProfile(uid: (Auth.auth().currentUser?.uid)!, displayName: displayName, email: email, imageURL: imageURL, onSuccess: {
+    let isLoading = PublishSubject<Bool>()
+    let errorRelay = PublishRelay<String>()
+    
+    public func register(displayName: String, email: String, password: String, image: UIImage, completion: @escaping () -> ()) {
+        self.isLoading.onNext(true)
+        
+        let user = UserModel(displayName: displayName, email: email, password: password)
+        
+        self.firebaseManager.signUp(user: user, image: image, onSuccess: { (imageURL) in
+            
+            user.uid = (Auth.auth().currentUser?.uid)!
+            user.imageUrlProfile = imageURL
+            
+            self.createInitialUserProfile(user: user, onSuccess: {
                 completion()
+                self.isLoading.onNext(false)
                 
             }, onFailure: { (error) in
                 self.errorRelay.accept(error.localizedDescription)
+                self.isLoading.onNext(false)
             })
         }, onFailure: { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         })
     }
     
-    private func createInitialUserProfile(uid: String, displayName: String, email: String, imageURL: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
-        firebaseManager.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL, onSuccess: {
+    private func createInitialUserProfile(user: UserModel, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        self.isLoading.onNext(true)
+        
+        self.firebaseManager.setUpProfile(user: user, onSuccess: {
             onSuccess()
+            self.isLoading.onNext(false)
         }, onFailure: { (error) in
             onFailure(error)
+            self.isLoading.onNext(false)
         })
     }
-    
 }

@@ -16,42 +16,60 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var loginViewModel: LoginViewModel!
+    var viewModel: MyAccountViewModel!
     let disposeBag = DisposeBag()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+//        try! Auth.auth().signOut()
+        self.setUpViewModel()
+        self.setUpView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.setUpViewModel()
-        self.showLoading()
-        if Auth.auth().currentUser != nil {
-            self.loginViewModel.getUserData {
+    private func setUpViewModel() {
+        self.viewModel = MyAccountViewModel()
+        
+        self.viewModel.errorRelay.subscribe(onNext: { (errorString) in
+            self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.viewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
                 self.hideLoading()
-                self.showStoryboard(storyboardName: .Main)
             }
-        } else {
-            self.hideLoading()
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.viewModel.getCurrentUser { (isCurrent) in
+            if isCurrent {
+                self.showMainStoryboard()
+            }
         }
     }
     
-    func setUpViewModel() {
-        self.loginViewModel = LoginViewModel()
-        self.loginViewModel.errorRelay.subscribe(onNext: { (errorString) in
-            self.showAlert(title: "Error", message: errorString)
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+    private func setUpView() {
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         let email = emailTextField.text!
         let password = passwordTextField.text!
-        self.loginViewModel.login(email: email, password: password) {
-            self.showStoryboard(storyboardName: .Main)
+        
+        self.viewModel.login(email: email, password: password) {
+            self.showMainStoryboard()
         }
     }
     
     @IBAction func registerBtnPressed(_ sender: Any) {
-        self.showStoryboard(storyboardName: .Register)
+        self.performSegue(withIdentifier: RegisterViewController.identifier, sender: nil)
+    }
+    
+    private func showMainStoryboard() {
+        let storyboard = UIStoryboard(name: AnidesuStoryboard.Main.name, bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()!
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }

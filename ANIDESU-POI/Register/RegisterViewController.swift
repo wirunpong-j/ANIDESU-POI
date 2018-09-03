@@ -12,72 +12,41 @@ import RxSwift
 import RxCocoa
 
 class RegisterViewController: BaseViewController {
+    static let identifier = "RegisterViewController"
     
-    @IBOutlet weak var displayNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var rePasswordTextField: UITextField!
+    @IBOutlet weak var displayNameTextField: AnidesuTextField!
+    @IBOutlet weak var emailTextField: AnidesuTextField!
+    @IBOutlet weak var passwordTextField: AnidesuTextField!
+    @IBOutlet weak var rePasswordTextField: AnidesuTextField!
     @IBOutlet weak var imageView: ImageRoundView!
     
     let imagePicker = UIImagePickerController()
-    var registerViewModel: RegisterViewModel!
+    var viewModel: RegisterViewModel!
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpViewModel()
-        self.setUpView()
     }
     
     func setUpViewModel() {
         self.imagePicker.delegate = self
-        self.registerViewModel = RegisterViewModel()
+        self.viewModel = RegisterViewModel()
         
-        self.registerViewModel.errorRelay.subscribe(onNext: { (errorString) in
+        self.viewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
-    }
-    
-    private func setUpView() {
-        self.title = "Create Account"
-        self.createRightBarBtnItem()
-        self.createRightBarBtnItem()
-    }
-    
-    private func createLeftBarBtnItem() {
-        // Create Back Button
-        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        backButton.setTitle("Cancel", for: .normal)
-        backButton.setTitleColor(AnidesuColor.DarkBlue.color(), for: .normal)
-        backButton.setTitleColor(AnidesuColor.Blue.color(), for: .highlighted)
-        backButton.addTarget(self, action: #selector(self.backBtnPressed), for: .touchUpInside)
         
-        let backButtonItem = UIBarButtonItem(customView: backButton)
-        self.navigationItem.leftBarButtonItem = backButtonItem
+        self.viewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
-    private func createRightBarBtnItem() {
-        // Create Submit Button
-        let submitBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        submitBtn.setTitle("Submit", for: .normal)
-        submitBtn.setTitleColor(AnidesuColor.DarkBlue.color(), for: .normal)
-        submitBtn.setTitleColor(AnidesuColor.Blue.color(), for: .highlighted)
-        submitBtn.addTarget(self, action: #selector(self.submitBtnPressed), for: .touchUpInside)
-        
-        let submitButtonItem = UIBarButtonItem(customView: submitBtn)
-        self.navigationItem.rightBarButtonItem = submitButtonItem
-    }
-    
-    @objc func backBtnPressed() {
-        if let navBar = self.navigationController, navBar.viewControllers.first != self {
-            navBar.popViewController(animated: true)
-        } else {
-            self.dismiss(animated: true)
-        }
-    }
-    
-    @objc func submitBtnPressed() {
-        self.showLoading()
+    @IBAction func submitBtnPressed(_ sender: Any) {
         let displayName = displayNameTextField.text!
         let email = emailTextField.text!
         let password = passwordTextField.text!
@@ -85,14 +54,12 @@ class RegisterViewController: BaseViewController {
         let image = imageView.image!
         
         if password == rePassword {
-            registerViewModel.register(displayName: displayName, email: email, password: password, image: image) {
-                self.hideLoading()
+            self.viewModel.register(displayName: displayName, email: email, password: password, image: image) {
                 self.showAlert(title: "Success", message: "Register Completed.", completion: {
                     self.dismiss(animated: true, completion: nil)
                 })
             }
         } else {
-            self.hideLoading()
             self.showAlert(title: "Error", message: "Password and Re-Password not match.")
         }
     }
@@ -101,21 +68,24 @@ class RegisterViewController: BaseViewController {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         
-        present(imagePicker, animated: true, completion: nil)
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFill
             imageView.image = pickedImage
-            dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

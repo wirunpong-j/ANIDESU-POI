@@ -30,8 +30,17 @@ class FirebaseManager {
         }
     }
     
-    func signUp(displayName: String, email: String, password: String, image: UIImage, onSuccess: @escaping (String) -> (), onFailure: @escaping (Error) -> ()) {
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+    func signOut(onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            onSuccess()
+        } catch {
+            onFailure(error)
+        }
+    }
+    
+    func signUp(user: UserModel, image: UIImage, onSuccess: @escaping (String) -> (), onFailure: @escaping (Error) -> ()) {
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { (result, error) in
             if error == nil {
                 self.uploadImage(image: image, uid: (result?.user.uid)!, onSuccess: { (url) in
                     onSuccess(url.absoluteString)
@@ -44,9 +53,9 @@ class FirebaseManager {
         }
     }
     
-    func setUpProfile(uid: String, displayName: String, email: String, imageURL: String, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
+    func setUpProfile(user: UserModel, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let db = Firestore.firestore()
-        let router = FirestoreRouter.setUpProfile(uid: uid, displayName: displayName, email: email, imageURL: imageURL)
+        let router = FirestoreRouter.setUpProfile(uid: user.uid, displayName: user.displayName, email: user.email, imageURL: user.imageUrlProfile)
         
         db.document(router.path).setData(router.parameters!) { (error) in
             if let error = error {
@@ -56,6 +65,7 @@ class FirebaseManager {
             }
         }
     }
+    
     
     private func uploadImage(image: UIImage, uid: String, onSuccess: @escaping (URL) -> (), onFailure: @escaping (Error) -> ()) {
         let data = image.jpeg(.high)
@@ -292,7 +302,7 @@ class FirebaseManager {
         
         db.collection(router.path)
             .whereField("anime_id", isEqualTo: animeID)
-            .whereField("uid", isEqualTo: UserDataModel.instance.uid).getDocuments { (data, error) in
+            .whereField("uid", isEqualTo: MyProfileModel.instance.uid).getDocuments { (data, error) in
             if let error = error {
                 onFailure(error)
             } else {

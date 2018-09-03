@@ -46,16 +46,16 @@ extension FirestoreRouter {
             return "posts/\(params.postKey)/comment"
             
         case .fetchMyAnimeList(let animeID):
-            return "users/\(UserDataModel.instance.uid)/list_anime/\(animeID)"
+            return "users/\(MyProfileModel.instance.uid)/list_anime/\(animeID)"
             
         case .fetchAllMyAnimeList:
-            return "users/\(UserDataModel.instance.uid)/list_anime"
+            return "users/\(MyProfileModel.instance.uid)/list_anime"
             
         case .updateMyAnimeList(let params):
-            return "users/\(UserDataModel.instance.uid)/list_anime/\(params.animeID)"
+            return "users/\(MyProfileModel.instance.uid)/list_anime/\(params.animeID)"
             
         case .removeMyAnimeList(let animeID):
-            return "users/\(UserDataModel.instance.uid)/list_anime/\(animeID)"
+            return "users/\(MyProfileModel.instance.uid)/list_anime/\(animeID)"
             
         case .fetchAllReview, .fetchReviewPage, .addReviewAnime:
             return "reviews"
@@ -75,13 +75,13 @@ extension FirestoreRouter {
                     "about": "Welcome To AniDesu."]
             
         case .createPost(let message):
-            return ["uid": UserDataModel.instance.uid,
+            return ["uid": MyProfileModel.instance.uid,
                     "message": message,
                     "post_date": AnidesuConverter.getCurrentTime(),
                     "like_count": 0]
         
         case .addComment(let params):
-            return [ "uid": UserDataModel.instance.uid,
+            return [ "uid": MyProfileModel.instance.uid,
                      "comment_message": params.message,
                      "comment_date": AnidesuConverter.getCurrentTime()]
         

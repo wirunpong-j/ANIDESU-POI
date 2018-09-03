@@ -45,9 +45,9 @@ class CreatePostViewController: BaseViewController {
     
     private func setUpView() {
         messageTextView.delegate = self
-        profileImage.setImageWithRounded(urlStr: UserDataModel.instance.image_url_profile, borderColor: AnidesuColor.Clear)
-        displayNameLabel.text = UserDataModel.instance.display_name
-        aboutLabel.text = UserDataModel.instance.about
+        profileImage.setImageWithRounded(urlStr: MyProfileModel.instance.imageUrlProfile, borderColor: AnidesuColor.Clear)
+        displayNameLabel.text = MyProfileModel.instance.displayName
+        aboutLabel.text = MyProfileModel.instance.about
     }
     
     private func setTapGestureRecognizer() {

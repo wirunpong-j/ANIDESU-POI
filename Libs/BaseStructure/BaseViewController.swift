@@ -12,13 +12,16 @@ import MBProgressHUD
 public enum AnidesuStoryboard {
     case Login
     case Main
-    case Register
+    case MyProfile
     
-    func getName() -> String {
+    var name: String {
         switch self {
-        case .Login: return "Login"
-        case .Main: return "Main"
-        case .Register: return "Register"
+        case .Login:
+            return "Login"
+        case .Main:
+            return "Main"
+        case .MyProfile:
+            return "MyProfile"
         }
     }
 }
@@ -35,16 +38,14 @@ class BaseViewController: UIViewController {
         loadingNotification.label.text = "Loading"
     }
     
-    func hideLoading() {
-        MBProgressHUD.hide(for: view, animated: true)
+    func showLoading(message: String) {
+        let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = message
     }
     
-    func showStoryboard(storyboardName: AnidesuStoryboard) {
-        let storyboard = UIStoryboard(name: storyboardName.getName(), bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()!
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+    func hideLoading() {
+        MBProgressHUD.hide(for: view, animated: true)
     }
     
     func showAlert(title: String, message: String) {

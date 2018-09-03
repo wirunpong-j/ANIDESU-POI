@@ -19,7 +19,7 @@ class MyAnimeListViewModel {
     let errorRelay = PublishRelay<String>()
     
     public func fetchAllMyAnimeList(status: MyAnimeListStatus, completion: @escaping ([MyAnimeList]) -> ()) {
-        self.firebaseManager.fetchAllMyAnimeList(status: status, uid: UserDataModel.instance.uid, onSuccess: { (allResponse) in
+        self.firebaseManager.fetchAllMyAnimeList(status: status, uid: MyProfileModel.instance.uid, onSuccess: { (allResponse) in
             var myAnimeList = [MyAnimeList]()
             
             if allResponse.isEmpty {

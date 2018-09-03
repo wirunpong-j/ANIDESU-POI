@@ -73,7 +73,7 @@ class CreateReviewViewController: BaseViewController {
             let rating = self.ratingBar.rating
             let key = self.review?.key ?? ""
             
-            self.viewModel.updateReviewAnime(key: key, animeID: (anime?.id)!, title: titleText, desc: reviewText, rating: rating, reviewDate: AnidesuConverter.getCurrentTime(), uid: UserDataModel.instance.uid) {
+            self.viewModel.updateReviewAnime(key: key, animeID: (anime?.id)!, title: titleText, desc: reviewText, rating: rating, reviewDate: AnidesuConverter.getCurrentTime(), uid: MyProfileModel.instance.uid) {
                 self.navigationController?.popViewController(animated: true)
             }
         
