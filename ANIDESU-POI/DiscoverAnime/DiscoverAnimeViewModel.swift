@@ -14,8 +14,8 @@ class DiscoverAnimeViewModel {
     
     var anilistManager = AniListManager()
     var listAnime = [AnimeResponse]()
-    var isLoading = PublishSubject<Bool>()
     
+    var isLoading = PublishSubject<Bool>()
     let errorRelay: PublishRelay<String> = PublishRelay()
     
     func fetchListAnimeBySeason(season: AnimeSeason, completion: @escaping ([Anime]) -> ()) {

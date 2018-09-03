@@ -15,7 +15,7 @@ class PostDetailViewController: BaseViewController {
     static let identifier = "PostDetailViewController"
     
     @IBOutlet weak var postDetailTableView: UITableView!
-    @IBOutlet weak var messageTextField: UITextView!
+    @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var sendBtn: AnidesuButton!
     
@@ -54,7 +54,7 @@ class PostDetailViewController: BaseViewController {
     
     private func setUpView() {
         KeyboardAvoiding.avoidingView = self.commentView
-        self.messageTextField.delegate = self
+        self.messageTextView.delegate = self
         
         self.title = (post.user?.display_name)! + "'s Post"
         let btnImage = UIImage(named: "ic_send")!
@@ -64,7 +64,7 @@ class PostDetailViewController: BaseViewController {
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        let message = messageTextField.text!
+        let message = messageTextView.text!
         self.view.endEditing(true)
         
         self.postViewModel.addComment(postKey: post.key!, message: message) {
@@ -79,8 +79,8 @@ class PostDetailViewController: BaseViewController {
     }
     
     private func clearTextView() {
-        self.messageTextField.text = "Write a comment..."
-        self.messageTextField.textColor = AnidesuColor.DarkGray.color()
+        self.messageTextView.text = "Write a comment..."
+        self.messageTextView.textColor = AnidesuColor.DarkGray.color()
         self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
     }
     
@@ -93,25 +93,11 @@ class PostDetailViewController: BaseViewController {
 }
 
 extension PostDetailViewController: UITextViewDelegate{
-    
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.isEmpty {
             self.sendBtn.switchButton(isEnabled: false, tintColor: AnidesuColor.Gray)
         } else {
-            self.sendBtn.switchButton(isEnabled: true, tintColor: AnidesuColor.MiddleBlue)
-        }
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Write a comment..." {
-            textView.text = ""
-            textView.textColor = AnidesuColor.DarkBlue.color()
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            self.clearTextView()
+            self.sendBtn.switchButton(isEnabled: true, tintColor: AnidesuColor.Blue)
         }
     }
 }

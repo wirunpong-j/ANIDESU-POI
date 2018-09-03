@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import UITextView_Placeholder
 
 protocol CreatePostDelegate {
     func createPostCompleted()
@@ -31,39 +32,35 @@ class CreatePostViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpViewModel()
-        self.setTapGestureRecognizer()
         self.setUpView()
     }
     
     private func setUpViewModel() {
         self.postViewModel = PostViewModel()
+        
         self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
-            self.hideLoading()
             self.showAlert(title: "Error", message: errorString)
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.postViewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
     private func setUpView() {
-        messageTextView.delegate = self
-        profileImage.setImageWithRounded(urlStr: MyProfileModel.instance.imageUrlProfile, borderColor: AnidesuColor.Clear)
-        displayNameLabel.text = MyProfileModel.instance.displayName
-        aboutLabel.text = MyProfileModel.instance.about
-    }
-    
-    private func setTapGestureRecognizer() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+        self.messageTextView.delegate = self
+        self.profileImage.setImageWithRounded(urlStr: MyProfileModel.instance.imageUrlProfile, borderColor: AnidesuColor.Clear)
+        self.displayNameLabel.text = MyProfileModel.instance.displayName
+        self.aboutLabel.text = MyProfileModel.instance.about
     }
     
     @IBAction func shareBtnPressed(_ sender: Any) {
-        self.showLoading()
         let message = messageTextView.text!
         self.postViewModel.createPost(message: message) {
-            self.hideLoading()
             self.dismiss(animated: true, completion: {
                 self.createPostDelegate.createPostCompleted()
             })
@@ -83,20 +80,6 @@ extension CreatePostViewController: UITextViewDelegate {
             shareBtn.isEnabled = false
         } else {
             shareBtn.isEnabled = true
-        }
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "What's on your mind?" {
-            textView.text = ""
-            textView.textColor = AnidesuColor.DarkBlue.color()
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "What's on your mind?"
-            textView.textColor = AnidesuColor.DarkGray.color()
         }
     }
 }

@@ -37,7 +37,7 @@ class HomeViewController: BaseViewController {
         self.postTableView.register(PostCell.nib, forCellReuseIdentifier: PostCell.identifier)
         
         // set refresh control
-        var refreshControl = UIRefreshControl()
+        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         
         if #available(iOS 10.0, *) {
@@ -53,12 +53,6 @@ class HomeViewController: BaseViewController {
         
         self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
-        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
-        
-        self.postViewModel.createPostCompleted.subscribe(onNext: { (isCompleted) in
-            if isCompleted {
-                self.fetchAllPost()
-            }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     

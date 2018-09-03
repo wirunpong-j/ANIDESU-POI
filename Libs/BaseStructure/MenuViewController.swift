@@ -40,9 +40,9 @@ class MenuViewController: TabmanViewController, PageboyViewControllerDataSource 
             appearance.layout.minimumItemWidth = 100
         })
         
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1336890757, green: 0.1912626624, blue: 0.2462295294, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = AnidesuColor.MiddleDarkBlue.color()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 0.1336890757, green: 0.1912626624, blue: 0.2462295294, alpha: 1)
+        self.tabBarController?.tabBar.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
         self.setViewController()
         self.reloadPages()
     }
