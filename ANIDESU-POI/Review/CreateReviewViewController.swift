@@ -11,7 +11,6 @@ import Cosmos
 import RxCocoa
 import RxSwift
 import IHKeyboardAvoiding
-import UITextView_Placeholder
 
 class CreateReviewViewController: BaseViewController {
     static let identifier = "CreateReviewViewController"
@@ -56,8 +55,6 @@ class CreateReviewViewController: BaseViewController {
     
     private func setUpView() {
         KeyboardAvoiding.avoidingView = self.view
-        self.reviewTextView.placeholder = "Review (Optional)"
-        self.reviewTextView.placeholderColor = AnidesuColor.Gray.color()
         self.navigationController?.navigationBar.tintColor = AnidesuColor.White.color()
         self.title = "Review"
         self.animeNameLabel.text = "Review: " + (self.anime?.titleRomaji)!
