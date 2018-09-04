@@ -18,79 +18,47 @@ class AnidesuRoundView: UIView {
     @IBInspectable var borderWidth: CGFloat = 0.0
     @IBInspectable var borderColor: UIColor = UIColor.clear
     
-    private var frameLayer: CAShapeLayer?
-    private var corners: UIRectCorner {
-        get {
-            var corners = UIRectCorner()
-            
-            if self.bottomLeft {
-                corners.insert(.bottomLeft)
-            }
-            if self.bottomRight {
-                corners.insert(.bottomRight)
-            }
-            if self.topLeft {
-                corners.insert(.topLeft)
-            }
-            if self.topRight {
-                corners.insert(.topRight)
-            }
-            
-            return corners
-        }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setInterface()
     }
     
-    private var maskPath: UIBezierPath {
-        get {
-            return UIBezierPath(roundedRect: self.bounds, byRoundingCorners: self.corners, cornerRadii: CGSize(width: self.cornerRadius, height: self.cornerRadius))
-        }
+    override func layoutSubviews() {
+        self.setInterface()
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
+    public func setInterface() {
         if self.cornerRadius > 0 {
-            setRoundCornersWithCorners(corners: corners, Radius: cornerRadius)
-        }
-        if self.borderWidth > 0 {
-            setBorderWithColor(color: borderColor)
+            self.setRoundCornersWithRadius(radius: self.cornerRadius)
         }
     }
     
-    func updateCornersAndBorder() {
-        layoutIfNeeded()
-        
-        setRoundCornersWithCorners(corners: self.corners, Radius: self.cornerRadius)
-        setBorderWithColor(color: borderColor)
-    }
-    
-    private func setRoundCornersWithCorners(corners: UIRectCorner, Radius radius: CGFloat) {
+    private func setRoundCornersWithRadius(radius: CGFloat) {
         let bounds = self.bounds
         let maskLayer = CAShapeLayer()
         maskLayer.frame = bounds
         let maskPath = UIBezierPath(roundedRect: bounds,
-                                    byRoundingCorners: self.corners,
+                                    byRoundingCorners: getCorners(),
                                     cornerRadii: CGSize(width: radius, height: radius))
         maskLayer.path = maskPath.cgPath
         self.layer.mask = maskLayer
     }
     
-    
-    private func setBorderWithColor(color: UIColor) {
-        if let frameLayer = self.frameLayer {
-            frameLayer.removeFromSuperlayer()
-            self.frameLayer = nil
+    private func getCorners() -> UIRectCorner {
+        var corners = UIRectCorner()
+        if self.bottomLeft {
+            corners.insert(.bottomLeft)
+        }
+        if self.bottomRight {
+            corners.insert(.bottomRight)
+        }
+        if self.topLeft {
+            corners.insert(.topLeft)
+        }
+        if self.topRight {
+            corners.insert(.topRight)
         }
         
-        if self.frameLayer == nil {
-            self.frameLayer = CAShapeLayer()
-            self.frameLayer!.frame = self.bounds
-            self.frameLayer!.path = self.maskPath.cgPath
-            self.frameLayer!.strokeColor = color.cgColor
-            self.frameLayer!.fillColor = nil
-            self.frameLayer!.lineWidth = self.borderWidth * 2
-            self.layer.addSublayer(self.frameLayer!)
-            self.layoutIfNeeded()
-        }
+        return corners
     }
 }

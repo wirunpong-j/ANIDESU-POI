@@ -23,7 +23,7 @@ class AnimeHeaderCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setUpCell(anime: Anime) {
+    public func setUpCell(anime: Anime) {
         self.coverImage.setImage(urlStr: anime.imageUrlLarge)
         self.animeNameLabel.text = anime.titleRomaji
         self.airingLabel.text = anime.airingStatus.uppercased()

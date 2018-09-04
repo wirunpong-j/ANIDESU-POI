@@ -22,130 +22,175 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Mg-oo4" userLabel="View" customClass="AnidesuRoundView" customModule="ANIDESU_POI" customModuleProvider="target">
                         <rect key="frame" x="12" y="0.0" width="351" height="642.5"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="zVX-pA-jS9">
-                                <rect key="frame" x="12" y="8" width="327" height="626.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anime English Name:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-0Z-eU2">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danganronpa V3: Killing Harmony" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ow-1s-X0g">
-                                        <rect key="frame" x="0.0" y="25.5" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anime Type : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqr-qM-Yh6">
-                                        <rect key="frame" x="0.0" y="49.5" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TV" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-VZ-0uq">
-                                        <rect key="frame" x="0.0" y="75" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Episode : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7m-vC-f07">
-                                        <rect key="frame" x="0.0" y="99" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57H-ee-XID">
-                                        <rect key="frame" x="0.0" y="124.5" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anime Tag : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xy4-0K-dbR">
-                                        <rect key="frame" x="0.0" y="148.5" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#DanganronpaV3, #Monokuma" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQO-z2-VXN">
-                                        <rect key="frame" x="0.0" y="174" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anime Genres : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnv-Kw-WRz">
-                                        <rect key="frame" x="0.0" y="198" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game, Pyschological" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="107-bd-Vd9">
-                                        <rect key="frame" x="0.0" y="223.5" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HashTag : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsA-W9-dcP">
-                                        <rect key="frame" x="0.0" y="247.5" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#ニューダンガンロンパV3 みんなのコロシアイ新学期" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gc-dR-koW">
-                                        <rect key="frame" x="0.0" y="273" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anime Origin :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMX-Qr-KU0">
-                                        <rect key="frame" x="0.0" y="297" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video Game" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrL-al-c9b">
-                                        <rect key="frame" x="0.0" y="322.5" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Studio :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ai-MB-nt8">
-                                        <rect key="frame" x="0.0" y="346.5" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spike Chunsoft" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLU-Xk-2nz">
-                                        <rect key="frame" x="0.0" y="372" width="327" height="17"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-8G-K3d">
-                                        <rect key="frame" x="0.0" y="396" width="327" height="18.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrq-4R-mID">
-                                        <rect key="frame" x="0.0" y="421.5" width="327" height="205"/>
-                                        <string key="text">Danganronpa V3: Killing Harmony, known in Japan as New Dangan Ronpa V3: Everyone's New Semester of Killing (ニューダンガンロンパV3 みんなのコロシアイ新学期) is a Japanese visual novel game developed by Spike Chunsoft. It is the third main title in the Danganronpa series. It was released in Japan on January 12th, 2017 for PlayStation 4 and PlayStation Vita. It was launched on PlayStation 4, PlayStation Vita, and Steam for PC in North America on September 26th, 2017, and in Europe on September 29th, 2017.</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Anime English Name:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-0Z-eU2">
+                                <rect key="frame" x="16" y="16" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Danganronpa V3: Killing Harmony" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ow-1s-X0g">
+                                <rect key="frame" x="16" y="38" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Anime Type : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqr-qM-Yh6">
+                                <rect key="frame" x="16" y="62" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TV" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-VZ-0uq">
+                                <rect key="frame" x="16" y="84" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total Episode : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7m-vC-f07">
+                                <rect key="frame" x="16" y="108.5" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="20" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57H-ee-XID">
+                                <rect key="frame" x="16" y="130.5" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Anime Tag : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xy4-0K-dbR">
+                                <rect key="frame" x="16" y="155" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="#DanganronpaV3, #Monokuma" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQO-z2-VXN">
+                                <rect key="frame" x="16" y="177" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Anime Genres : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnv-Kw-WRz">
+                                <rect key="frame" x="16" y="201.5" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Game, Pyschological" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="107-bd-Vd9">
+                                <rect key="frame" x="16" y="223.5" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="HashTag : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsA-W9-dcP">
+                                <rect key="frame" x="16" y="248" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="#ニューダンガンロンパV3 みんなのコロシアイ新学期" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gc-dR-koW">
+                                <rect key="frame" x="16" y="270" width="319" height="33"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Anime Origin :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMX-Qr-KU0">
+                                <rect key="frame" x="16" y="311" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Video Game" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrL-al-c9b">
+                                <rect key="frame" x="16" y="333" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Main Studio :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ai-MB-nt8">
+                                <rect key="frame" x="16" y="357.5" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Spike Chunsoft" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLU-Xk-2nz">
+                                <rect key="frame" x="16" y="379.5" width="319" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-8G-K3d">
+                                <rect key="frame" x="16" y="404" width="319" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.2784313725" green="0.41568627450000001" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrq-4R-mID">
+                                <rect key="frame" x="16" y="426" width="319" height="196"/>
+                                <string key="text">Danganronpa V3: Killing Harmony, known in Japan as New Dangan Ronpa V3: Everyone's New Semester of Killing (ニューダンガンロンパV3 みんなのコロシアイ新学期) is a Japanese visual novel game developed by Spike Chunsoft. It is the third main title in the Danganronpa series. It was released in Japan on January 12th, 2017 for PlayStation 4 and PlayStation Vita. It was launched on PlayStation 4, PlayStation Vita, and Steam for PC in North America on September 26th, 2017, and in Europe on September 29th, 2017.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.1843137255" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zVX-pA-jS9" firstAttribute="leading" secondItem="bEX-Mg-oo4" secondAttribute="leading" constant="12" id="254-qE-odk"/>
-                            <constraint firstAttribute="bottom" secondItem="zVX-pA-jS9" secondAttribute="bottom" constant="8" id="7qN-ZE-06i"/>
-                            <constraint firstItem="zVX-pA-jS9" firstAttribute="top" secondItem="bEX-Mg-oo4" secondAttribute="top" constant="8" id="L4a-ee-JcZ"/>
-                            <constraint firstAttribute="trailing" secondItem="zVX-pA-jS9" secondAttribute="trailing" constant="12" id="sUG-Bc-Pk3"/>
+                            <constraint firstItem="8Ow-1s-X0g" firstAttribute="trailing" secondItem="t4f-0Z-eU2" secondAttribute="trailing" id="18s-jo-HdP"/>
+                            <constraint firstItem="0Ai-MB-nt8" firstAttribute="top" secondItem="hrL-al-c9b" secondAttribute="bottom" constant="8" id="1l7-yL-Lht"/>
+                            <constraint firstItem="uMa-VZ-0uq" firstAttribute="trailing" secondItem="nqr-qM-Yh6" secondAttribute="trailing" id="2Zg-se-Wa3"/>
+                            <constraint firstItem="rsA-W9-dcP" firstAttribute="trailing" secondItem="107-bd-Vd9" secondAttribute="trailing" id="4dH-ku-Gba"/>
+                            <constraint firstItem="0Gc-dR-koW" firstAttribute="leading" secondItem="rsA-W9-dcP" secondAttribute="leading" id="54v-M8-WCO"/>
+                            <constraint firstItem="WSb-8G-K3d" firstAttribute="leading" secondItem="ZLU-Xk-2nz" secondAttribute="leading" id="5mc-5y-M6k"/>
+                            <constraint firstItem="hrq-4R-mID" firstAttribute="leading" secondItem="WSb-8G-K3d" secondAttribute="leading" id="7TH-Om-ZNr"/>
+                            <constraint firstItem="ZLU-Xk-2nz" firstAttribute="leading" secondItem="0Ai-MB-nt8" secondAttribute="leading" id="7p9-Bl-lgm"/>
+                            <constraint firstItem="107-bd-Vd9" firstAttribute="trailing" secondItem="Fnv-Kw-WRz" secondAttribute="trailing" id="7uy-up-BBQ"/>
+                            <constraint firstItem="Fnv-Kw-WRz" firstAttribute="leading" secondItem="yQO-z2-VXN" secondAttribute="leading" id="7yZ-eN-Qzv"/>
+                            <constraint firstItem="ZLU-Xk-2nz" firstAttribute="top" secondItem="0Ai-MB-nt8" secondAttribute="bottom" constant="4" id="8Em-bv-Ujh"/>
+                            <constraint firstItem="8Ow-1s-X0g" firstAttribute="top" secondItem="t4f-0Z-eU2" secondAttribute="bottom" constant="4" id="BAp-nm-L1b"/>
+                            <constraint firstItem="yQO-z2-VXN" firstAttribute="top" secondItem="Xy4-0K-dbR" secondAttribute="bottom" constant="4" id="Bdr-Nn-zac"/>
+                            <constraint firstItem="rsA-W9-dcP" firstAttribute="leading" secondItem="107-bd-Vd9" secondAttribute="leading" id="CjC-ej-072"/>
+                            <constraint firstItem="Fnv-Kw-WRz" firstAttribute="trailing" secondItem="yQO-z2-VXN" secondAttribute="trailing" id="F4Q-aj-eZL"/>
+                            <constraint firstItem="Fnv-Kw-WRz" firstAttribute="top" secondItem="yQO-z2-VXN" secondAttribute="bottom" constant="8" id="GwK-zY-xv5"/>
+                            <constraint firstItem="t4f-0Z-eU2" firstAttribute="top" secondItem="bEX-Mg-oo4" secondAttribute="top" constant="16" id="Ins-qm-GOq"/>
+                            <constraint firstItem="nqr-qM-Yh6" firstAttribute="leading" secondItem="8Ow-1s-X0g" secondAttribute="leading" id="LB1-K5-231"/>
+                            <constraint firstItem="57H-ee-XID" firstAttribute="top" secondItem="u7m-vC-f07" secondAttribute="bottom" constant="4" id="Mcb-Cf-qPh"/>
+                            <constraint firstItem="u7m-vC-f07" firstAttribute="trailing" secondItem="uMa-VZ-0uq" secondAttribute="trailing" id="Of0-PQ-C0z"/>
+                            <constraint firstItem="u7m-vC-f07" firstAttribute="top" secondItem="uMa-VZ-0uq" secondAttribute="bottom" constant="8" id="PB0-vl-KXD"/>
+                            <constraint firstItem="Xy4-0K-dbR" firstAttribute="leading" secondItem="57H-ee-XID" secondAttribute="leading" id="QWn-11-Qzu"/>
+                            <constraint firstItem="WSb-8G-K3d" firstAttribute="top" secondItem="ZLU-Xk-2nz" secondAttribute="bottom" constant="8" id="Qgv-p3-fyj"/>
+                            <constraint firstItem="57H-ee-XID" firstAttribute="leading" secondItem="u7m-vC-f07" secondAttribute="leading" id="Rur-fF-Ckn"/>
+                            <constraint firstItem="Xy4-0K-dbR" firstAttribute="top" secondItem="57H-ee-XID" secondAttribute="bottom" constant="8" id="ShT-UL-Orw"/>
+                            <constraint firstItem="hrL-al-c9b" firstAttribute="top" secondItem="FMX-Qr-KU0" secondAttribute="bottom" constant="4" id="Tpi-Iq-nfc"/>
+                            <constraint firstAttribute="bottom" secondItem="hrq-4R-mID" secondAttribute="bottom" constant="16" id="UXw-Cs-MxK"/>
+                            <constraint firstItem="ZLU-Xk-2nz" firstAttribute="trailing" secondItem="0Ai-MB-nt8" secondAttribute="trailing" id="VKm-r6-ZyG"/>
+                            <constraint firstItem="yQO-z2-VXN" firstAttribute="trailing" secondItem="Xy4-0K-dbR" secondAttribute="trailing" id="Vla-d0-cCb"/>
+                            <constraint firstItem="hrL-al-c9b" firstAttribute="leading" secondItem="FMX-Qr-KU0" secondAttribute="leading" id="Z81-r8-OxH"/>
+                            <constraint firstItem="uMa-VZ-0uq" firstAttribute="top" secondItem="nqr-qM-Yh6" secondAttribute="bottom" constant="4" id="ZRO-DG-hUe"/>
+                            <constraint firstItem="FMX-Qr-KU0" firstAttribute="leading" secondItem="0Gc-dR-koW" secondAttribute="leading" id="ZgH-tz-LpX"/>
+                            <constraint firstItem="t4f-0Z-eU2" firstAttribute="leading" secondItem="bEX-Mg-oo4" secondAttribute="leading" constant="16" id="b8q-EX-WfK"/>
+                            <constraint firstItem="u7m-vC-f07" firstAttribute="leading" secondItem="uMa-VZ-0uq" secondAttribute="leading" id="bHn-bb-lAe"/>
+                            <constraint firstItem="nqr-qM-Yh6" firstAttribute="trailing" secondItem="8Ow-1s-X0g" secondAttribute="trailing" id="cEn-a6-vpe"/>
+                            <constraint firstItem="uMa-VZ-0uq" firstAttribute="leading" secondItem="nqr-qM-Yh6" secondAttribute="leading" id="cFa-fX-Etc"/>
+                            <constraint firstItem="WSb-8G-K3d" firstAttribute="trailing" secondItem="ZLU-Xk-2nz" secondAttribute="trailing" id="dDG-yJ-wO2"/>
+                            <constraint firstItem="57H-ee-XID" firstAttribute="trailing" secondItem="u7m-vC-f07" secondAttribute="trailing" id="dGy-aG-YJu"/>
+                            <constraint firstItem="hrq-4R-mID" firstAttribute="trailing" secondItem="WSb-8G-K3d" secondAttribute="trailing" id="e1e-4J-dGD"/>
+                            <constraint firstItem="107-bd-Vd9" firstAttribute="top" secondItem="Fnv-Kw-WRz" secondAttribute="bottom" constant="4" id="gvS-aj-MB1"/>
+                            <constraint firstItem="FMX-Qr-KU0" firstAttribute="trailing" secondItem="0Gc-dR-koW" secondAttribute="trailing" id="hxd-FB-XMj"/>
+                            <constraint firstItem="hrL-al-c9b" firstAttribute="trailing" secondItem="FMX-Qr-KU0" secondAttribute="trailing" id="klo-Lr-LLz"/>
+                            <constraint firstItem="Xy4-0K-dbR" firstAttribute="trailing" secondItem="57H-ee-XID" secondAttribute="trailing" id="lyW-bd-Uot"/>
+                            <constraint firstAttribute="trailing" secondItem="t4f-0Z-eU2" secondAttribute="trailing" constant="16" id="ntL-L1-lwj"/>
+                            <constraint firstItem="FMX-Qr-KU0" firstAttribute="top" secondItem="0Gc-dR-koW" secondAttribute="bottom" constant="8" id="oxq-Mh-Thx"/>
+                            <constraint firstItem="0Ai-MB-nt8" firstAttribute="trailing" secondItem="hrL-al-c9b" secondAttribute="trailing" id="pEf-jM-KHs"/>
+                            <constraint firstItem="8Ow-1s-X0g" firstAttribute="leading" secondItem="t4f-0Z-eU2" secondAttribute="leading" id="qca-RS-Bb4"/>
+                            <constraint firstItem="0Ai-MB-nt8" firstAttribute="leading" secondItem="hrL-al-c9b" secondAttribute="leading" id="qgx-fL-vN3"/>
+                            <constraint firstItem="hrq-4R-mID" firstAttribute="top" secondItem="WSb-8G-K3d" secondAttribute="bottom" constant="4" id="rSK-iH-Ogi"/>
+                            <constraint firstItem="0Gc-dR-koW" firstAttribute="trailing" secondItem="rsA-W9-dcP" secondAttribute="trailing" id="tBL-dY-yhS"/>
+                            <constraint firstItem="0Gc-dR-koW" firstAttribute="top" secondItem="rsA-W9-dcP" secondAttribute="bottom" constant="4" id="uUy-oS-4D5"/>
+                            <constraint firstItem="nqr-qM-Yh6" firstAttribute="top" secondItem="8Ow-1s-X0g" secondAttribute="bottom" constant="8" id="uWR-9G-r8X"/>
+                            <constraint firstItem="rsA-W9-dcP" firstAttribute="top" secondItem="107-bd-Vd9" secondAttribute="bottom" constant="8" id="wfy-bM-p59"/>
+                            <constraint firstItem="107-bd-Vd9" firstAttribute="leading" secondItem="Fnv-Kw-WRz" secondAttribute="leading" id="yQf-w5-JbX"/>
+                            <constraint firstItem="yQO-z2-VXN" firstAttribute="leading" secondItem="Xy4-0K-dbR" secondAttribute="leading" id="yl9-1w-U1B"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
@@ -175,8 +220,7 @@
                 <outlet property="descLabel" destination="hrq-4R-mID" id="wQv-AZ-yEJ"/>
                 <outlet property="hashTagLabel" destination="0Gc-dR-koW" id="OMu-Qa-FGa"/>
                 <outlet property="mainStudioLabel" destination="ZLU-Xk-2nz" id="at8-GZ-9of"/>
-                <outlet property="roundView" destination="bEX-Mg-oo4" id="cvc-xa-A7r"/>
-                <outlet property="stackView" destination="zVX-pA-jS9" id="gbM-L1-bKc"/>
+                <outlet property="roundView" destination="bEX-Mg-oo4" id="GV8-Qx-XYn"/>
                 <outlet property="totalEPLabel" destination="57H-ee-XID" id="axY-f4-EjA"/>
             </connections>
             <point key="canvasLocation" x="144.5" y="-168.5"/>

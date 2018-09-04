@@ -158,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faJ-79-hhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="869"/>
+            <point key="canvasLocation" x="1833" y="837"/>
         </scene>
         <!--Danganronpa V3-->
         <scene sceneID="afx-nD-m5v">
@@ -217,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkZ-gw-NlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="1593"/>
+            <point key="canvasLocation" x="3412" y="1593"/>
         </scene>
         <!--Create My Anime List View Controller-->
         <scene sceneID="TyJ-j5-q3a">
@@ -243,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8X-mA-KtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4182" y="869"/>
+            <point key="canvasLocation" x="4182" y="835"/>
         </scene>
         <!--Review Detail View Controller-->
         <scene sceneID="b1q-LP-yOk">
@@ -497,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="72I-Ju-Xqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3412" y="869"/>
+            <point key="canvasLocation" x="3412" y="836"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sLz-7r-kry">
@@ -881,7 +881,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTU-vZ-Glq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="869"/>
+            <point key="canvasLocation" x="2553" y="1593"/>
         </scene>
         <!--My List-->
         <scene sceneID="Qaw-wW-nWX">
