@@ -9,30 +9,29 @@
 import Foundation
 
 class MyAnimeList {
-    var animeID: Int?
-    var score: Int?
-    var progress: Int?
-    var note: String?
-    var status: String?
-    var dateTime: String?
+    var animeID: Int
+    var score: Int
+    var progress: Int
+    var note: String
+    var status: String
+    var dateTime: String
     var anime: Anime?
     
-    init() {}
-    
-    init(response: MyAnimeListResponse) {
-        self.animeID = response.anime_id
-        self.score = response.score
-        self.progress = response.progress
-        self.note = response.note
-        self.status = response.status
-        self.dateTime = response.date_time
+    init(animeID: Int, form: [String: Any]) {
+        self.animeID = animeID
+        self.note = form["notes"] as? String ?? ""
+        self.status = form["status"] as? String ?? ""
+        self.progress = form["progress"] as? Int ?? 0
+        self.score = form["score"] as? Int ?? 0
+        self.dateTime = ""
     }
     
-    init(animeID: Int, note: String, status: String, progress: Int, score: Int) {
-        self.animeID = animeID
-        self.note = note
-        self.status = status
-        self.progress = progress
-        self.score = score
+    init(response: MyAnimeListResponse) {
+        self.animeID = response.anime_id ?? 0
+        self.score = response.score ?? 0
+        self.progress = response.progress ?? 0
+        self.note = response.note ?? ""
+        self.status = response.status ?? ""
+        self.dateTime = response.date_time ?? ""
     }
 }

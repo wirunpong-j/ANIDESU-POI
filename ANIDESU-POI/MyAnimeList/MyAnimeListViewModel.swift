@@ -19,11 +19,14 @@ class MyAnimeListViewModel {
     let errorRelay = PublishRelay<String>()
     
     public func fetchAllMyAnimeList(status: MyAnimeListStatus, completion: @escaping ([MyAnimeList]) -> ()) {
+        self.isLoading.onNext(true)
+        
         self.firebaseManager.fetchAllMyAnimeList(status: status, uid: MyProfileModel.instance.uid, onSuccess: { (allResponse) in
             var myAnimeList = [MyAnimeList]()
             
             if allResponse.isEmpty {
                 completion(myAnimeList)
+                self.isLoading.onNext(false)
             } else {
                 for response in allResponse {
                     let myList = MyAnimeList(response: response)
@@ -33,14 +36,16 @@ class MyAnimeListViewModel {
                         myAnimeList.append(myList)
                         
                         if myAnimeList.count == allResponse.count {
-                            myAnimeList = myAnimeList.sorted(by: { $0.dateTime! > $1.dateTime! })
+                            myAnimeList = myAnimeList.sorted(by: { $0.dateTime > $1.dateTime })
                             completion(myAnimeList)
+                            self.isLoading.onNext(false)
                         }
                     })
                 }
             }
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         }
     }
     
@@ -49,27 +54,37 @@ class MyAnimeListViewModel {
             completion(anime)
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         }
     }
     
     public func updateMyAnimeList(myAnimeList: MyAnimeList, completion: @escaping () -> ()) {
+        self.isLoading.onNext(true)
+        
         self.firebaseManager.updateMyAnimeList(myAnimeList: myAnimeList, onSuccess: {
             completion()
+            self.isLoading.onNext(false)
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         }
     }
     
     public func removeMyAnimeList(animeID: Int, completion: @escaping () -> ()) {
+        self.isLoading.onNext(true)
+        
         self.firebaseManager.removeMyAnimeList(animeID: animeID, onSuccess: {
             completion()
+            self.isLoading.onNext(false)
         }) { (error) in
             self.errorRelay.accept(error.localizedDescription)
+            self.isLoading.onNext(false)
         }
     }
     
     public func fetchMyAnimeList(animeID: Int, completion: @escaping (MyAnimeList?) -> ()) {
         self.isLoading.onNext(true)
+        
         self.firebaseManager.fetchMyAnimeList(animeID: animeID, onSuccess: { (response) in
             if let response = response {
                 let myAnimeList = MyAnimeList(response: response)

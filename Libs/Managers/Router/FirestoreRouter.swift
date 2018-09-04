@@ -88,7 +88,7 @@ extension FirestoreRouter {
         case .updateMyAnimeList(let params):
             return ["anime_id": params.animeID,
                     "note": params.note,
-                    "status": params.status,
+                    "status": params.status.lowercased(),
                     "progress": params.progress,
                     "score": params.score,
                     "date_time": AnidesuConverter.getCurrentTime()]

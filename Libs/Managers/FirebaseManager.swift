@@ -230,7 +230,7 @@ class FirebaseManager {
     
     public func updateMyAnimeList(myAnimeList: MyAnimeList, onSuccess: @escaping () -> (), onFailure: @escaping (Error) -> ()) {
         let db = Firestore.firestore()
-        let router = FirestoreRouter.updateMyAnimeList(animeID: myAnimeList.animeID!, note: myAnimeList.note!, status: myAnimeList.status!, progress: myAnimeList.progress!, score: myAnimeList.score!)
+        let router = FirestoreRouter.updateMyAnimeList(animeID: myAnimeList.animeID, note: myAnimeList.note, status: myAnimeList.status, progress: myAnimeList.progress, score: myAnimeList.score)
         
         db.document(router.path).setData(router.parameters!) { (error) in
             if let error = error {

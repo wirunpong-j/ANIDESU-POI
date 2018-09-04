@@ -24,8 +24,8 @@ class MyAnimeListCell: UICollectionViewCell {
     func setUpCell(myAnimeList: MyAnimeList) {
         self.coverImage.setImage(urlStr: (myAnimeList.anime?.imageUrlLarge)!)
         self.animeTitleLabel.text = (myAnimeList.anime?.titleRomaji)!
-        self.progressLabel.text = "EP: \(myAnimeList.progress!)/\((myAnimeList.anime?.totalEP)!)"
-        self.scoreLabel.text = "Score: \(myAnimeList.score!)/10"
+        self.progressLabel.text = "EP: \(myAnimeList.progress)/\((myAnimeList.anime?.totalEP)!)"
+        self.scoreLabel.text = "Score: \(myAnimeList.score)/10"
     }
 
 }

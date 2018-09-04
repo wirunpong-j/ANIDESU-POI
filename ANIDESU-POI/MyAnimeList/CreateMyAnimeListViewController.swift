@@ -29,7 +29,6 @@ class CreateMyAnimeListViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showLoading()
         self.setUpViewModel()
         self.setUpView()
     }
@@ -39,7 +38,14 @@ class CreateMyAnimeListViewController: FormViewController {
         
         self.viewModel.errorRelay.subscribe(onNext: { (errorString) in
             print("Error :" + errorString)
-            self.hideLoading()
+        }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
+        
+        self.viewModel.isLoading.subscribe(onNext: { (isLoading) in
+            if isLoading {
+                self.showLoading()
+            } else {
+                self.hideLoading()
+            }
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
     }
     
@@ -48,34 +54,58 @@ class CreateMyAnimeListViewController: FormViewController {
         self.title = self.myAnimeList == nil ? "Add: " + (anime?.titleRomaji)! : "Edit: " + (anime?.titleRomaji)!
         self.addBtn.title = self.myAnimeList == nil ? "Add" : "Edit"
         self.setUpForm()
-        self.hideLoading()
     }
     
     private func setUpForm() {
+        self.tableView.backgroundColor = AnidesuColor.DarkBlue.color()
+            
         form +++ Section("Add to My Anime List *")
             <<< PickerInputRow<String>() {
                 $0.tag = "status"
                 $0.title = "Status"
                 $0.options = ALL_STATUS
-                $0.value = self.myAnimeList == nil ? ALL_STATUS[0] : (self.myAnimeList?.status?.capitalized)!
+                $0.value = self.myAnimeList == nil ? ALL_STATUS[0] : (self.myAnimeList?.status.capitalized)!
+                $0.cell.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
+                $0.cell.detailTextLabel?.textColor = AnidesuColor.DarkGray.color()
+                $0.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = AnidesuColor.White.color()
+                })
             }
             <<< PickerInputRow<Int>() {
                 $0.tag = "progress"
                 $0.title = "Progress (EP)"
                 $0.options = Array(0...(anime?.totalEP)!)
-                $0.value = self.myAnimeList == nil ? 0 : self.myAnimeList?.progress!
+                $0.value = self.myAnimeList == nil ? 0 : self.myAnimeList?.progress
+                $0.cell.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
+                $0.cell.detailTextLabel?.textColor = AnidesuColor.DarkGray.color()
+                $0.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = AnidesuColor.White.color()
+                })
             }
             <<< PickerInputRow<Int>() {
                 $0.tag = "score"
                 $0.title = "Score"
                 $0.options = Array(0...10)
-                $0.value = self.myAnimeList == nil ? 0 : self.myAnimeList?.score!
+                $0.value = self.myAnimeList == nil ? 0 : self.myAnimeList?.score
+                $0.cell.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
+                $0.cell.detailTextLabel?.textColor = AnidesuColor.DarkGray.color()
+                $0.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = AnidesuColor.White.color()
+                })
             }
             +++ Section("Notes (Optional)")
             <<< TextAreaRow() {
                 $0.tag = "notes"
                 $0.placeholder = "Write your notes..."
-                $0.value = self.myAnimeList == nil ? "" : self.myAnimeList?.note!
+                $0.value = self.myAnimeList == nil ? "" : self.myAnimeList?.note
+                $0.cell.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
+                $0.cell.textView.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
+                $0.cell.placeholderLabel?.textColor = AnidesuColor.DarkGray.color()
+                $0.cell.textView.textColor = AnidesuColor.White.color()
+                
+                $0.cellUpdate({ (textAreaCell, textAreaRow) in
+                    textAreaCell.textView.textColor = AnidesuColor.White.color()
+                })
             }
             +++ Section()
             <<< ButtonRow ("Delete") {
@@ -83,6 +113,7 @@ class CreateMyAnimeListViewController: FormViewController {
                 }.cellUpdate { cell, row in
                     cell.isHidden = self.myAnimeList == nil ? true : false
                     cell.textLabel?.textColor = UIColor.red
+                    cell.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
                 }.onCellSelection { cell, row in
                     let alert = UIAlertController(title: "Alert", message: "Are you sure you want to remove this form your list ?", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
@@ -97,18 +128,9 @@ class CreateMyAnimeListViewController: FormViewController {
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
-        self.showLoading()
-        
-        let result = form.values()
-        let status = result["status"] as? String ?? ""
-        let progress = result["progress"] as? Int ?? 0
-        let score = result["score"] as? Int ?? 0
-        let note = result["notes"] as? String ?? ""
-        
-        let newList = MyAnimeList(animeID: (anime?.id)!, note: note, status: status.lowercased(), progress: progress, score: score)
+        let newList = MyAnimeList(animeID: (anime?.id)!, form: form.values())
         
         self.viewModel.updateMyAnimeList(myAnimeList: newList) {
-            self.hideLoading()
             self.navigationController?.popViewController(animated: true)
         }
     }
