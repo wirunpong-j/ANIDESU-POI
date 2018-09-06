@@ -9,12 +9,14 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Hero
 
 class MyProfileViewController: BaseViewController {
     @IBOutlet weak var profileTableView: UITableView!
     
     var viewModel: MyAccountViewModel!
     var disposeBag = DisposeBag()
+    var tempHeroID: String?
     
     private enum Sections: Int {
         case MyProfileImage, ProfileData
@@ -92,6 +94,7 @@ extension MyProfileViewController: UITableViewDataSource, UITableViewDelegate {
         switch Sections(rawValue: indexPath.section)! {
         case .MyProfileImage:
             if let cell = tableView.dequeueReusableCell(withIdentifier: MyProfileImageCell.identifier) as? MyProfileImageCell {
+                cell.profileImage.hero.id = "profileImage"
                 return cell
             }
         case .ProfileData:
