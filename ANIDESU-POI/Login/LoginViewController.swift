@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import RxCocoa
 import RxSwift
+import IHKeyboardAvoiding
 
 class LoginViewController: BaseViewController {
     
@@ -48,6 +49,7 @@ class LoginViewController: BaseViewController {
     }
     
     private func setUpView() {
+        KeyboardAvoiding.avoidingView = self.emailTextField
         self.emailTextField.text = ""
         self.passwordTextField.text = ""
     }
@@ -71,5 +73,9 @@ class LoginViewController: BaseViewController {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

@@ -127,7 +127,7 @@
                     <constraint firstItem="G8B-3Q-a4n" firstAttribute="leading" secondItem="Tg1-3a-zDR" secondAttribute="leading" constant="8" id="wyv-7b-4sj"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.94118285180000005" green="0.94116520879999999" blue="0.94117718939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.098039215690000001" green="0.12941176469999999" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="bgView" destination="G8B-3Q-a4n" id="mDm-mt-KGS"/>
                 <outlet property="bgViewBottomConstraint" destination="3iR-Ha-AST" id="PWR-UT-7js"/>

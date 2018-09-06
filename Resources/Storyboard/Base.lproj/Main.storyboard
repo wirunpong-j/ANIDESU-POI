@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="0.098039215686274508" green="0.12941176470588234" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.12941176469999999" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XXf-qr-cek" firstAttribute="leading" secondItem="f4B-9k-bYt" secondAttribute="leading" id="7iG-Yb-58X"/>
                             <constraint firstItem="XXf-qr-cek" firstAttribute="top" secondItem="f4B-9k-bYt" secondAttribute="top" id="9II-Rj-Y8K"/>
@@ -658,7 +658,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGn-Ru-j8c">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JGn-Ru-j8c">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
                                 <color key="backgroundColor" red="0.098039215686274508" green="0.12941176470588234" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -817,6 +817,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.12941176469999999" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Kdn-Jb-AKA" firstAttribute="leading" secondItem="ZuV-TC-mMd" secondAttribute="leading" id="0kQ-oB-DAM"/>
                             <constraint firstItem="JGn-Ru-j8c" firstAttribute="leading" secondItem="ZuV-TC-mMd" secondAttribute="leading" id="6mT-Xt-XVN"/>
@@ -837,7 +838,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaH-Jr-qy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773.60000000000002" y="868.51574212893559"/>
+            <point key="canvasLocation" x="774" y="869"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PAa-sj-yrM">

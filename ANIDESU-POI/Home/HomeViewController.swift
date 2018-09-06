@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Hero
 
 class HomeViewController: BaseViewController {
     @IBOutlet weak var postTableView: UITableView!
@@ -23,9 +24,13 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hero.isEnabled = true
+        self.navigationController?.hero.isEnabled = true
+        self.navigationController?.hero.navigationAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
+        self.navigationController?.modalPresentationStyle = .overCurrentContext
+        
         self.setUpTableView()
         self.setUpViewModel()
-        self.setUpView()
     }
     
     private func setUpTableView() {
@@ -54,10 +59,7 @@ class HomeViewController: BaseViewController {
         self.postViewModel.errorRelay.subscribe(onNext: { (errorString) in
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
-    }
-    
-    private func setUpView() {
-        self.title = "Home"
+        
         self.fetchAllPost()
     }
     
@@ -78,11 +80,17 @@ class HomeViewController: BaseViewController {
         case CreatePostViewController.identifier:
             let navbar = segue.destination as? UINavigationController
             if let viewController = navbar?.viewControllers.first as? CreatePostViewController {
+                navbar?.hero.isEnabled = true
+                navbar?.modalPresentationStyle = .overCurrentContext
+                navbar?.hero.modalAnimationType = .selectBy(presenting: .pageIn(direction: .up), dismissing: .pageOut(direction: .down))
                 viewController.createPostDelegate = self
             }
         case PostDetailViewController.identifier:
             if let viewController = segue.destination as? PostDetailViewController {
-                viewController.post = sender as! PostResponse
+                let indexRow = sender as! Int
+                viewController.hero.isEnabled = true
+                viewController.post = self.allPost[indexRow]
+                viewController.tempHeroId = "detail\(indexRow)"
             }
         default:
             break
@@ -102,7 +110,7 @@ extension HomeViewController: PostCellDidTapDelegate {
     }
     
     func commentBtnDidTap(indexPath: IndexPath) {
-        self.performSegue(withIdentifier: PostDetailViewController.identifier, sender: self.allPost[indexPath.row])
+        self.performSegue(withIdentifier: PostDetailViewController.identifier, sender: indexPath.row)
     }
 }
 
@@ -131,6 +139,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.setUpCell(post: self.allPost[indexPath.row], isBorder: true)
                 cell.indexPath = indexPath
                 cell.postCellDidTapDelegate = self
+                cell.contentView.hero.id = "detail\(indexPath.row)"
                 return cell
             }
         }
@@ -143,7 +152,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         case .PrePost:
             self.performSegue(withIdentifier: CreatePostViewController.identifier, sender: nil)
         case .Post:
-            self.performSegue(withIdentifier: PostDetailViewController.identifier, sender: self.allPost[indexPath.row])
+            self.performSegue(withIdentifier: PostDetailViewController.identifier, sender: indexPath.row)
         }
     }
 }

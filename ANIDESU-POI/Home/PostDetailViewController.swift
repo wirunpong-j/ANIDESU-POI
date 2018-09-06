@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import IHKeyboardAvoiding
+import Hero
 
 class PostDetailViewController: BaseViewController {
     static let identifier = "PostDetailViewController"
@@ -18,6 +19,8 @@ class PostDetailViewController: BaseViewController {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var sendBtn: AnidesuButton!
+    
+    var tempHeroId: String?
     
     var postViewModel: PostViewModel!
     var disposeBag = DisposeBag()
@@ -32,6 +35,8 @@ class PostDetailViewController: BaseViewController {
         self.setUpTableView()
         self.setUpViewModel()
         self.setUpView()
+        
+        self.view.isOpaque = false
     }
     
     private func setUpTableView() {
@@ -125,6 +130,7 @@ extension PostDetailViewController: UITableViewDataSource, UITableViewDelegate {
         case .PostDetail:
             if let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.identifier, for: indexPath) as? PostCell {
                 cell.setUpCell(post: self.post, isBorder: false)
+                cell.contentView.hero.id = self.tempHeroId!
                 return cell
             }
         case .Comments:

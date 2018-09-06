@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import UITextView_Placeholder
+import Hero
 
 protocol CreatePostDelegate {
     func createPostCompleted()
