@@ -24,6 +24,7 @@ class AnimeDetailViewController: BaseViewController {
     var anime: Anime?
     var myAnimeList: MyAnimeList?
     var review: Review?
+    var tempHeroID: String?
     
     private enum AnimeDetailSections: Int {
         case detail, info, stats, extras
@@ -176,6 +177,7 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
         case .detail:
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeHeaderCell.identifier) as? AnimeHeaderCell {
                 cell.setUpCell(anime: self.anime!)
+                cell.coverImage.hero.id = self.tempHeroID
                 return cell
             }
         case .info:

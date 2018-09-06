@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Hero
 
 class DiscoverAnimeViewController: BaseViewController {
     static let identifier = "DiscoverAnimeViewController"
@@ -22,8 +23,13 @@ class DiscoverAnimeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setHeroTransition()
         self.setUpViewModel()
         self.setUpCollectionView()
+    }
+    
+    private func setHeroTransition() {
+        self.hero.isEnabled = true
     }
     
     func setUpViewModel() {
@@ -50,7 +56,12 @@ class DiscoverAnimeViewController: BaseViewController {
         case AnimeDetailViewController.identifier:
             let navbar = segue.destination as? UINavigationController
             if let viewController = navbar?.viewControllers.first as? AnimeDetailViewController {
-                viewController.anime = sender as? Anime
+                let indexRow = sender as! Int
+                navbar?.hero.isEnabled = true
+                navbar?.hero.modalAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
+                viewController.hero.isEnabled = true
+                viewController.tempHeroID = "animeDetail\(indexRow)"
+                viewController.anime = self.listAnime[indexRow]
             }
         default:
             break
@@ -66,6 +77,7 @@ extension DiscoverAnimeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnimeCell.identifier, for: indexPath) as? AnimeCell {
             cell.setUpView(anime: self.listAnime[indexPath.row])
+            cell.animeImg.hero.id = "animeDetail\(indexPath.row)"
             return cell
         }
         
@@ -73,7 +85,7 @@ extension DiscoverAnimeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: AnimeDetailViewController.identifier, sender: self.listAnime[indexPath.row])
+        self.performSegue(withIdentifier: AnimeDetailViewController.identifier, sender: indexPath.row)
     }
 }
 

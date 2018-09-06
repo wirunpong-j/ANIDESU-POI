@@ -24,13 +24,16 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setHeroTransition()
+        self.setUpTableView()
+        self.setUpViewModel()
+    }
+    
+    private func setHeroTransition() {
         self.hero.isEnabled = true
         self.navigationController?.hero.isEnabled = true
         self.navigationController?.hero.navigationAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
         self.navigationController?.modalPresentationStyle = .overCurrentContext
-        
-        self.setUpTableView()
-        self.setUpViewModel()
     }
     
     private func setUpTableView() {
@@ -60,19 +63,21 @@ class HomeViewController: BaseViewController {
             self.showAlert(title: "Error", message: errorString)
         }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: self.disposeBag)
         
-        self.fetchAllPost()
+        self.fetchAllPost {}
     }
     
-    private func fetchAllPost() {
+    private func fetchAllPost(completion: @escaping () -> ()) {
         self.postViewModel.fetchAllPost { (allPost) in
             self.allPost = allPost
             self.postTableView.reloadData()
+            completion()
         }
     }
     
     @objc func refresh(_ refreshControl: UIRefreshControl) {
-        self.fetchAllPost()
-        refreshControl.endRefreshing()
+        self.fetchAllPost {
+            refreshControl.endRefreshing()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,7 +86,6 @@ class HomeViewController: BaseViewController {
             let navbar = segue.destination as? UINavigationController
             if let viewController = navbar?.viewControllers.first as? CreatePostViewController {
                 navbar?.hero.isEnabled = true
-                navbar?.modalPresentationStyle = .overCurrentContext
                 navbar?.hero.modalAnimationType = .selectBy(presenting: .pageIn(direction: .up), dismissing: .pageOut(direction: .down))
                 viewController.createPostDelegate = self
             }
@@ -100,7 +104,7 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController: CreatePostDelegate {
     func createPostCompleted() {
-        self.fetchAllPost()
+        self.fetchAllPost {}
     }
 }
 

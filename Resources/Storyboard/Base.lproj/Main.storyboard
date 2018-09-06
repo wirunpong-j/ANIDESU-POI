@@ -882,7 +882,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTU-vZ-Glq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="1593"/>
+            <point key="canvasLocation" x="2490" y="1584"/>
         </scene>
         <!--My List-->
         <scene sceneID="Qaw-wW-nWX">
@@ -938,6 +938,6 @@
         <image name="img_cover" width="230" height="324"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ysK-A0-TIn"/>
+        <segue reference="QZt-WP-hQf"/>
     </inferredMetricsTieBreakers>
 </document>
