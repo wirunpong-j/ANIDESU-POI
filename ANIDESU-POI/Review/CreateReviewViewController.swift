@@ -29,6 +29,7 @@ class CreateReviewViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpView()
         self.setUpViewModel()
     }
     
@@ -49,16 +50,18 @@ class CreateReviewViewController: BaseViewController {
         
         self.viewModel.fetchReviewPage(animeID: (self.anime?.id)!) { (review) in
             self.review = review
-            self.setUpView()
+            self.setUpReviewData()
         }
     }
     
     private func setUpView() {
         KeyboardAvoiding.avoidingView = self.view
         self.navigationController?.navigationBar.tintColor = AnidesuColor.White.color()
-        self.title = "Review"
         self.animeNameLabel.text = "Review: " + (self.anime?.titleRomaji)!
         self.animeBannerImage.setImage(urlStr: (self.anime?.imageUrlLarge)!)
+    }
+    
+    private func setUpReviewData() {
         self.titleTextField.text = self.review == nil ? "" : self.review?.title
         self.reviewTextView.text = self.review == nil ? "" : self.review?.desc
         self.ratingBar.rating = self.review == nil ? 0 : (self.review?.rating)!

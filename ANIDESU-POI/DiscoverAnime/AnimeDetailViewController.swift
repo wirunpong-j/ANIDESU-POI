@@ -32,9 +32,15 @@ class AnimeDetailViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.setHeroTransition()
         self.setUpTableView()
         self.setUpViewModel()
         self.setUpView()
+    }
+    
+    private func setHeroTransition() {
+        self.navigationController?.hero.isEnabled = true
+        self.navigationController?.hero.navigationAnimationType = .selectBy(presenting: .pageIn(direction: .left), dismissing: .pageOut(direction: .right))
     }
     
     private func setUpTableView() {

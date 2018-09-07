@@ -286,7 +286,7 @@
             </objects>
             <point key="canvasLocation" x="5774" y="869"/>
         </scene>
-        <!--Create Review View Controller-->
+        <!--Review-->
         <scene sceneID="PAI-17-Fmn">
             <objects>
                 <viewController id="EEE-L9-dss" customClass="CreateReviewViewController" customModule="ANIDESU_POI" customModuleProvider="target" sceneMemberID="viewController">
@@ -431,7 +431,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IpE-lS-umb"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Zp0-C0-os9">
+                    <navigationItem key="navigationItem" title="Review" id="Zp0-C0-os9">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="CLN-r6-hYW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -872,6 +872,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
