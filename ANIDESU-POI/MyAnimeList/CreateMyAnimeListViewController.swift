@@ -11,6 +11,7 @@ import Eureka
 import RxCocoa
 import RxSwift
 import MBProgressHUD
+import Hero
 
 class CreateMyAnimeListViewController: FormViewController {
     static let identifier = "CreateMyAnimeListViewController"

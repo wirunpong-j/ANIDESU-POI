@@ -17,9 +17,9 @@ class DiscoverAnimeViewController: BaseViewController {
     @IBOutlet weak var listAnimeCollectionView: UICollectionView!
     
     var discoverAnimeViewModel: DiscoverAnimeViewModel!
+    let disposeBag = DisposeBag()
     var animeSeason: AnimeSeason!
     var listAnime = [Anime]()
-    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,7 @@ class DiscoverAnimeViewController: BaseViewController {
                 navbar?.hero.isEnabled = true
                 navbar?.hero.modalAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
                 viewController.hero.isEnabled = true
-                viewController.tempHeroID = "animeDetail\(indexRow)"
+                viewController.tempHeroID = MyHeroTransition.animeDetailCoverImage(row: indexRow)
                 viewController.anime = self.listAnime[indexRow]
             }
         default:
@@ -77,7 +77,7 @@ extension DiscoverAnimeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnimeCell.identifier, for: indexPath) as? AnimeCell {
             cell.setUpView(anime: self.listAnime[indexPath.row])
-            cell.animeImg.hero.id = "animeDetail\(indexPath.row)"
+            cell.animeImg.hero.id = MyHeroTransition.animeDetailCoverImage(row: indexPath.row).id
             return cell
         }
         

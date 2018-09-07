@@ -13,14 +13,17 @@ class BaseNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hero.isEnabled = true
         self.setUpNavBar()
+        self.setUpProfileImage()
+    }
+    
+    private func setHeroTransition() {
+        self.hero.isEnabled = true
     }
     
     func setUpNavBar() {
         self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AnidesuColor.White.color()]
         self.navigationItem.backBarButtonItem?.tintColor = AnidesuColor.White.color()
-        self.setUpProfileImage()
     }
     
     func setUpProfileImage() {

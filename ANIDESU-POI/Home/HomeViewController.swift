@@ -33,7 +33,6 @@ class HomeViewController: BaseViewController {
         self.hero.isEnabled = true
         self.navigationController?.hero.isEnabled = true
         self.navigationController?.hero.navigationAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
-        self.navigationController?.modalPresentationStyle = .overCurrentContext
     }
     
     private func setUpTableView() {

@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Hero
 
 class AnimeDetailViewController: BaseViewController {
     static let identifier = "AnimeDetailViewController"
@@ -24,18 +25,16 @@ class AnimeDetailViewController: BaseViewController {
     var anime: Anime?
     var myAnimeList: MyAnimeList?
     var review: Review?
-    var tempHeroID: String?
+    var tempHeroID: MyHeroTransition?
     
     private enum AnimeDetailSections: Int {
         case detail, info, stats, extras
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.showLoading()
         self.setUpTableView()
         self.setUpViewModel()
         self.setUpView()
-        self.hideLoading()
     }
     
     private func setUpTableView() {
@@ -177,7 +176,7 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
         case .detail:
             if let cell = tableView.dequeueReusableCell(withIdentifier: AnimeHeaderCell.identifier) as? AnimeHeaderCell {
                 cell.setUpCell(anime: self.anime!)
-                cell.coverImage.hero.id = self.tempHeroID
+                cell.coverImage.hero.id = self.tempHeroID?.id
                 return cell
             }
         case .info:

@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Hero
 
 class ReviewViewController: BaseViewController {
     
@@ -19,8 +20,15 @@ class ReviewViewController: BaseViewController {
     var allReview = [Review]()
     
     override func viewWillAppear(_ animated: Bool) {
+        self.setHeroTransition()
         self.setUpTableView()
         self.setUpViewModel()
+    }
+    
+    private func setHeroTransition() {
+        self.hero.isEnabled = true
+        self.navigationController?.hero.isEnabled = true
+        self.navigationController?.hero.navigationAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
     }
     
     private func setUpTableView() {
@@ -48,7 +56,10 @@ class ReviewViewController: BaseViewController {
         
         if segue.identifier == ReviewDetailViewController.identifier {
             if let viewController = segue.destination as? ReviewDetailViewController {
-                viewController.review = sender as? Review
+                let indexRow = sender as! Int
+                viewController.tempHeroID = [MyHeroTransition.reviewBannerImage(row: indexRow),
+                                             MyHeroTransition.reviewerImage(row: indexRow)]
+                viewController.review = self.allReview[indexRow]
             }
         }
     }
@@ -72,12 +83,14 @@ extension ReviewViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ReviewCell.identifier) as? ReviewCell {
             cell.setUpCell(review: self.allReview[indexPath.row])
+            cell.reviewBannerImageView.hero.id = MyHeroTransition.reviewBannerImage(row: indexPath.row).id
+            cell.reviewerImage.hero.id = MyHeroTransition.reviewerImage(row: indexPath.row).id
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: ReviewDetailViewController.identifier, sender: self.allReview[indexPath.row])
+        self.performSegue(withIdentifier: ReviewDetailViewController.identifier, sender: indexPath.row)
     }
 }

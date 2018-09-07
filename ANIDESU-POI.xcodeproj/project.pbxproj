@@ -76,6 +76,7 @@
 		437ACECC212412A500DF56F2 /* Image+KF+RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ACECB212412A500DF56F2 /* Image+KF+RoundView.swift */; };
 		437ACECF212420C900DF56F2 /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ACECE212420C900DF56F2 /* MyProfileModel.swift */; };
 		437ACED121242DAF00DF56F2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437ACED021242DAF00DF56F2 /* UserManager.swift */; };
+		438FD5AB2142337800335575 /* MyHeroTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438FD5AA2142337800335575 /* MyHeroTransition.swift */; };
 		43939F10211432B7001CCC48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43939F0F211432B7001CCC48 /* AppDelegate.swift */; };
 		43939F15211432B7001CCC48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43939F13211432B7001CCC48 /* Main.storyboard */; };
 		43939F17211432BB001CCC48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43939F16211432BB001CCC48 /* Assets.xcassets */; };
@@ -199,6 +200,7 @@
 		437ACECB212412A500DF56F2 /* Image+KF+RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+KF+RoundView.swift"; sourceTree = "<group>"; };
 		437ACECE212420C900DF56F2 /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
 		437ACED021242DAF00DF56F2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		438FD5AA2142337800335575 /* MyHeroTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeroTransition.swift; sourceTree = "<group>"; };
 		43939F0C211432B7001CCC48 /* ANIDESU-POI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ANIDESU-POI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43939F0F211432B7001CCC48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43939F14211432B7001CCC48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				43706EF1213CFE3700D88326 /* NoDataView.swift */,
 				43706EF8213D0F3B00D88326 /* DetailLabelCell.swift */,
 				43706EFA213D0F9500D88326 /* MoreDetailLabelCell.swift */,
+				438FD5AA2142337800335575 /* MyHeroTransition.swift */,
 			);
 			path = BaseStructure;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				43557189212D82A800479886 /* AnimeHeaderCell.swift in Sources */,
 				43706EF2213CFE3700D88326 /* NoDataView.swift in Sources */,
 				43557192212D96A300479886 /* SectionHeaderView.swift in Sources */,
+				438FD5AB2142337800335575 /* MyHeroTransition.swift in Sources */,
 				4355718D212D92FC00479886 /* AnimeInfoCell.swift in Sources */,
 				43FF0C2D212E688C005EE970 /* AnimeStatsCell.swift in Sources */,
 				4307BAA521199BF0001FF8A1 /* RegisterViewModel.swift in Sources */,

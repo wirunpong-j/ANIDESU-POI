@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Hero
 
 class MyAnimeListViewController: BaseViewController {
     static let identifier = "MyAnimeListViewController"
@@ -21,8 +22,13 @@ class MyAnimeListViewController: BaseViewController {
     var myAnimeList = [MyAnimeList]()
     
     override func viewWillAppear(_ animated: Bool) {
+        self.setHeroTransition()
         self.setUpViewModel()
         self.setUpCollectionView()
+    }
+    
+    private func setHeroTransition() {
+        self.hero.isEnabled = true
     }
     
     private func setUpViewModel() {
@@ -35,6 +41,7 @@ class MyAnimeListViewController: BaseViewController {
         self.myAnimeListViewModel.fetchAllMyAnimeList(status: myAnimeListStatus) { (myAnimeList) in
             self.myAnimeList = myAnimeList
             self.myAnimeListCollectionView.reloadData()
+            self.checkNodata()
         }
     }
     
@@ -44,12 +51,23 @@ class MyAnimeListViewController: BaseViewController {
         self.myAnimeListCollectionView.register(MyAnimeListCell.nib, forCellWithReuseIdentifier: MyAnimeListCell.identifier)
     }
     
+    private func checkNodata() {
+        if self.myAnimeList.isEmpty {
+            self.myAnimeListCollectionView.backgroundView  = NoDataView.loadViewFromNib()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case AnimeDetailViewController.identifier:
             let navbar = segue.destination as? UINavigationController
             if let viewController = navbar?.viewControllers.first as? AnimeDetailViewController {
-                viewController.anime = sender as? Anime
+                let indexRow = sender as! Int
+                navbar?.hero.isEnabled = true
+                navbar?.hero.modalAnimationType = .selectBy(presenting: .zoom, dismissing: .zoomOut)
+                viewController.hero.isEnabled = true
+                viewController.tempHeroID = MyHeroTransition.animeDetailCoverImage(row: indexRow)
+                viewController.anime = self.myAnimeList[indexRow].anime
             }
         default:
             break
@@ -65,6 +83,7 @@ extension MyAnimeListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAnimeListCell.identifier, for: indexPath) as? MyAnimeListCell {
             cell.setUpCell(myAnimeList: self.myAnimeList[indexPath.row])
+            cell.coverImage.hero.id = MyHeroTransition.animeDetailCoverImage(row: indexPath.row).id
             return cell
         }
         
@@ -72,15 +91,13 @@ extension MyAnimeListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: AnimeDetailViewController.identifier, sender: myAnimeList[indexPath.row].anime)
+        self.performSegue(withIdentifier: AnimeDetailViewController.identifier, sender: indexPath.row)
     }
 }
 
 extension MyAnimeListViewController: UICollectionViewDelegateFlowLayout {
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if self.myAnimeList.isEmpty {
-            collectionView.backgroundView  = NoDataView.loadViewFromNib()
             return 0
         } else {
             collectionView.backgroundView = nil

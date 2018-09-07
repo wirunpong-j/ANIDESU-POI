@@ -15,11 +15,17 @@ class ReviewDetailViewController: BaseViewController {
     @IBOutlet weak var animeBannerImage: UIImageView!
     
     var review: Review?
+    var tempHeroID: [MyHeroTransition]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setHeroTransition()
         self.setUpTableView()
         self.setUpView()
+    }
+    
+    private func setHeroTransition() {
+        self.animeBannerImage.hero.id = self.tempHeroID![0].id
     }
     
     private func setUpTableView() {
@@ -44,6 +50,7 @@ extension ReviewDetailViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ReviewHeaderCell.identifier) as? ReviewHeaderCell {
             cell.setUpCell(review: self.review!)
+            cell.reviewerImage.hero.id = self.tempHeroID![1].id
             return cell
         }
         
