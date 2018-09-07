@@ -31,6 +31,10 @@ class AnimeDetailViewController: BaseViewController {
         case detail, info, stats, extras
     }
     
+    private enum AlertButton {
+        case myAnimeList, review, share, cancel
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setHeroTransition()
         self.setUpTableView()
@@ -122,24 +126,42 @@ class AnimeDetailViewController: BaseViewController {
     
     private func showAlertController() {
         let alert = UIAlertController(title: "Choose option", message: "", preferredStyle: .actionSheet)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
+        alert.view.tintColor = AnidesuColor.Blue.color()
         
-        let animeListTitle = self.myAnimeList == nil ? "Add to My Anime List" : "Edit My Anime List"
-        alert.addAction(UIAlertAction(title: animeListTitle, style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: CreateMyAnimeListViewController.identifier, sender: nil)
-        }))
-        
-        let reviewTitle = self.review == nil ? "Review" : "Edit Review"
-        alert.addAction(UIAlertAction(title: reviewTitle, style: .default, handler: { (action) in
-            self.performSegue(withIdentifier: CreateReviewViewController.identifier, sender: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (action) in
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
+        alert.addAction(createAlertAction(alertButton: .myAnimeList))
+        alert.addAction(createAlertAction(alertButton: .review))
+        alert.addAction(createAlertAction(alertButton: .share))
+        alert.addAction(createAlertAction(alertButton: .cancel))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func createAlertAction(alertButton: AlertButton) -> UIAlertAction {
+        var alertAction = UIAlertAction()
+        
+        switch alertButton {
+        case .myAnimeList:
+            let animeListTitle = self.myAnimeList == nil ? "Add to My Anime List" : "Edit My Anime List"
+            alertAction = UIAlertAction(title: animeListTitle, style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: CreateMyAnimeListViewController.identifier, sender: nil)
+            })
+        case .review:
+            let reviewTitle = self.review == nil ? "Review" : "Edit Review"
+            alertAction = UIAlertAction(title: reviewTitle, style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: CreateReviewViewController.identifier, sender: nil)
+            })
+        case .share:
+            alertAction = UIAlertAction(title: "Share", style: .default, handler: { (action) in
+                
+            })
+        case .cancel:
+            alertAction = UIAlertAction(title: "Cancel", style: .cancel)
+            if let cancelBackgroundViewType = NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView") as? UIView.Type {
+                cancelBackgroundViewType.appearance().subviewsBackgroundColor = AnidesuColor.MiddleDarkBlue.color()
+            }
+        }
+        
+        return alertAction
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -164,6 +186,7 @@ class AnimeDetailViewController: BaseViewController {
     private func setBackButton() {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
+        backItem.tintColor = AnidesuColor.Blue.color()
         navigationItem.backBarButtonItem = backItem
     }
 }
@@ -224,6 +247,23 @@ extension AnimeDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 50
         default:
             return 0
+        }
+    }
+}
+
+fileprivate extension UIView {
+    private struct AssociatedKey {
+        static var subviewsBackgroundColor = "subviewsBackgroundColor"
+    }
+    
+    @objc dynamic var subviewsBackgroundColor: UIColor? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKey.subviewsBackgroundColor) as? UIColor
+        }
+        
+        set {
+            objc_setAssociatedObject(self, &AssociatedKey.subviewsBackgroundColor, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            subviews.forEach { $0.backgroundColor = newValue }
         }
     }
 }

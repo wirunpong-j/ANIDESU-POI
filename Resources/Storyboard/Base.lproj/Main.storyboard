@@ -193,13 +193,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Danganronpa V3" id="2cq-Hd-UO8">
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="YYp-Nh-EAP">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.32156862749999998" green="0.64313725489999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="backBtnPressed:" destination="XPK-7t-waq" id="CsX-6Q-eKH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_3dots" id="qOA-Jc-R5r">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.32156862749999998" green="0.64313725489999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="menuBtnPressed:" destination="XPK-7t-waq" id="GxE-L4-4tn"/>
                             </connections>
@@ -231,7 +231,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hBG-fx-wk0">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="pOj-UG-5TD">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.32156862749999998" green="0.64313725489999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addBtnPressed:" destination="YCA-Mt-7jL" id="oES-RS-QvI"/>
                             </connections>
@@ -433,7 +433,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Review" id="Zp0-C0-os9">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="CLN-r6-hYW">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.32156862749999998" green="0.64313725489999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="saveBtnPressed:" destination="EEE-L9-dss" id="xIO-Pm-Grh"/>
                             </connections>
@@ -627,6 +627,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Create Post" id="ABe-mo-KXa">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="uV5-KR-YMY">
+                            <color key="tintColor" red="0.32156862749999998" green="0.64313725489999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="cancelBtnPressed:" destination="het-xs-W5N" id="ust-uF-cNW"/>
                             </connections>
@@ -943,4 +944,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="ysK-A0-TIn"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.32156862749999998" green="0.64313725489999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

@@ -67,6 +67,7 @@ class ReviewViewController: BaseViewController {
     private func setBackButton() {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
+        backItem.tintColor = AnidesuColor.Blue.color()
         navigationItem.backBarButtonItem = backItem
     }
 }

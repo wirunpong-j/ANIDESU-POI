@@ -80,6 +80,8 @@ class HomeViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.setBackButton()
+        
         switch segue.identifier {
         case CreatePostViewController.identifier:
             let navbar = segue.destination as? UINavigationController
@@ -98,6 +100,13 @@ class HomeViewController: BaseViewController {
         default:
             break
         }
+    }
+    
+    private func setBackButton() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        backItem.tintColor = AnidesuColor.Blue.color()
+        navigationItem.backBarButtonItem = backItem
     }
 }
 
