@@ -12,13 +12,15 @@ import Pageboy
 import RxSwift
 import RxCocoa
 
-class MenuViewController: TabmanViewController, PageboyViewControllerDataSource {
+class MenuViewController: TabmanViewController {
     
-    var menus = [UIViewController]()
+    private let bar = TMBar.ButtonBar()
     let ALL_SEASON = [AnimeSeason.Winter, AnimeSeason.Spring, AnimeSeason.Fall, AnimeSeason.Summer]
     let ALL_STATUS = [MyAnimeListStatus.PlanToWatch, MyAnimeListStatus.Watching, MyAnimeListStatus.Completed, MyAnimeListStatus.Dropped]
     let discoverAnimeMenuIdentifier = "DiscoverAnimeMenuViewController"
     let myAnimeListMenuIdentifier = "MyAnimeListMenuViewController"
+    
+    var menus = [UIViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,41 +29,32 @@ class MenuViewController: TabmanViewController, PageboyViewControllerDataSource 
     
     func setUpView() {
         self.dataSource = self
-        self.bar.items = self.setMenuItems()
-        self.bar.style = .scrollingButtonBar
-        self.bar.appearance = TabmanBar.Appearance({ (appearance) in
-            // customize appearance here
-            appearance.state.selectedColor = AnidesuColor.Green.color()
-            appearance.state.color = AnidesuColor.White.color()
-            appearance.indicator.color = AnidesuColor.Green.color()
-            appearance.indicator.lineWeight = .thick
-            appearance.style.background = .solid(color: AnidesuColor.DarkBlue.color())
-            appearance.text.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
-            appearance.layout.minimumItemWidth = 100
-        })
         
+        self.bar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 16, bottom: 0.0, right: 16)
+        self.bar.layout.interButtonSpacing = 24.0
+        self.bar.layout.contentMode = .intrinsic
+        
+        self.bar.indicator.weight = .medium
+        self.bar.indicator.cornerStyle = .eliptical
+        self.bar.indicator.tintColor = AnidesuColor.Green.color()
+        self.bar.indicator.overscrollBehavior = .compress
+        
+        self.bar.fadesContentEdges = true
+        
+        self.bar.backgroundColor = AnidesuColor.DarkBlue.color()
+        self.bar.backgroundView.style = .clear
+        self.bar.buttons.customize { (button) in
+            button.selectedTintColor = AnidesuColor.Green.color()
+            button.tintColor = AnidesuColor.White.color()
+            button.font = UIFont(name: "HelveticaNeue-Bold", size: 16)!
+        }
+        
+        self.setViewController()
+        self.addBar(bar, dataSource: self, at: .top)
         self.navigationController?.navigationBar.barTintColor = AnidesuColor.MiddleDarkBlue.color()
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.tabBarController?.tabBar.backgroundColor = AnidesuColor.MiddleDarkBlue.color()
-        self.setViewController()
-        self.reloadPages()
-    }
-    
-    private func setMenuItems() -> [TabmanBar.Item]? {
-        switch self.restorationIdentifier {
-        case discoverAnimeMenuIdentifier:
-            return [Item(title: ALL_SEASON[0].rawValue.uppercased()),
-                    Item(title: ALL_SEASON[1].rawValue.uppercased()),
-                    Item(title: ALL_SEASON[2].rawValue.uppercased()),
-                    Item(title: ALL_SEASON[3].rawValue.uppercased())]
-        case myAnimeListMenuIdentifier:
-            return [Item(title: ALL_STATUS[0].rawValue.uppercased()),
-                    Item(title: ALL_STATUS[1].rawValue.uppercased()),
-                    Item(title: ALL_STATUS[2].rawValue.uppercased()),
-                    Item(title: ALL_STATUS[3].rawValue.uppercased())]
-        default:
-            return nil
-        }
+        self.reloadData()
     }
     
     private func setViewController() {
@@ -82,7 +75,8 @@ class MenuViewController: TabmanViewController, PageboyViewControllerDataSource 
             break
         }
     }
-
+}
+extension MenuViewController: PageboyViewControllerDataSource, TMBarDataSource {
     func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
         return self.menus.count
     }
@@ -94,5 +88,22 @@ class MenuViewController: TabmanViewController, PageboyViewControllerDataSource 
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
         return nil
     }
-
+    
+    func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
+        if let title = self.getMenuTitle(at: index) {
+            return TMBarItem(title: title)
+        }
+        return TMBarItem(title: "N/A")
+    }
+    
+    private func getMenuTitle(at index: Int) -> String? {
+        switch self.restorationIdentifier {
+        case discoverAnimeMenuIdentifier:
+            return ALL_SEASON[index].rawValue.uppercased()
+        case myAnimeListMenuIdentifier:
+            return ALL_STATUS[index].rawValue.uppercased()
+        default:
+            return nil
+        }
+    }
 }

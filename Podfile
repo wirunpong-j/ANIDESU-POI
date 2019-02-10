@@ -17,12 +17,13 @@ target 'ANIDESU-POI' do
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
   pod 'MBProgressHUD'
-  pod 'Tabman'
+  pod 'Tabman', '~> 2.1'
   pod 'WCLShineButton'
   pod 'IHKeyboardAvoiding'
   pod 'Eureka'
   pod 'Cosmos', '~> 16.0'
   pod 'UITextView+Placeholder'
+  pod 'Apollo'
   
   post_install do |installer|
       installer.pods_project.build_configurations.each do |config|

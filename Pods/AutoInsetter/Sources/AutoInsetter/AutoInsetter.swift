@@ -13,7 +13,8 @@ public final class AutoInsetter {
     
     // MARK: Properties
     
-    private var currentScrollViewInsets = [UIScrollView: UIEdgeInsets]()
+    private var currentContentInsets = [UIScrollView: UIEdgeInsets]()
+    private var currentContentOffsets = [UIScrollView: CGPoint]()
     
     /// Whether auto-insetting is enabled.
     public var isEnabled: Bool = true
@@ -36,7 +37,9 @@ public final class AutoInsetter {
         }
         
         if #available(iOS 11, *) {
-            childViewController.additionalSafeAreaInsets = requiredInsetSpec.additionalRequiredInsets
+            if requiredInsetSpec.additionalRequiredInsets != childViewController.additionalSafeAreaInsets {
+                childViewController.additionalSafeAreaInsets = requiredInsetSpec.additionalRequiredInsets
+            }
         }
         
         childViewController.forEachEmbeddedScrollView { (scrollView) in
@@ -60,9 +63,22 @@ public final class AutoInsetter {
                                 
                 // only update contentOffset if the top contentInset has updated.
                 if isTopInsetChanged {
-                    var contentOffset = scrollView.contentOffset
-                    let candidateYOffset = contentOffset.y - topInsetDelta
-                    contentOffset.y = min(candidateYOffset, 0.0) // Only update content offset if we're pushing content 'down' ( < 0.0)
+                    var contentOffset = self.currentContentOffsets[scrollView] ?? .zero
+                    
+                    // Calculate the user 'delta' - the amount that the user has scrolled
+                    // the scroll view before insetting.
+                    var userDelta = scrollView.contentOffset.y - contentOffset.y
+                    if userDelta > 0 { // If offset delta exists compare to insets to ensure it is user.
+                        userDelta += contentOffset.y + scrollView.contentInset.top
+                    }
+    
+                    contentOffset.y -= topInsetDelta
+                    self.currentContentOffsets[scrollView] = contentOffset
+                    
+                    if userDelta > 0 { // apply user delta
+                        contentOffset.y += userDelta
+                    }
+                    
                     scrollView.contentOffset = contentOffset
                 }
             }
@@ -103,7 +119,7 @@ private extension AutoInsetter {
         viewController.view.layoutIfNeeded()
         
         let requiredContentInset = requiredInsetSpec.allRequiredInsets
-        let previousContentInset = currentScrollViewInsets[scrollView] ?? .zero
+        let previousContentInset = currentContentInsets[scrollView] ?? .zero
         
         // Calculate top / bottom insets relative to view position in child vc.
         var proposedContentInset: UIEdgeInsets
@@ -117,7 +133,7 @@ private extension AutoInsetter {
             let relativeFrame = viewController.view.convert(scrollView.frame, from: relativeSuperview)
             let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
             let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
-            let relativeBottomInset = fabs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
+            let relativeBottomInset = abs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
             let originalContentInset = scrollView.contentInset
             
             proposedContentInset = UIEdgeInsets(top: relativeTopInset,
@@ -126,7 +142,7 @@ private extension AutoInsetter {
                                                 right: originalContentInset.right)
         }
         
-        currentScrollViewInsets[scrollView] = proposedContentInset
+        currentContentInsets[scrollView] = proposedContentInset
                 
         var actualRequiredContentInset = proposedContentInset
         

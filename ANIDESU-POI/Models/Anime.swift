@@ -66,7 +66,7 @@ class Anime {
         self.imageUrlSmall = AnidesuConverter.checkNilString(str: response.image_url_sml)
         self.imageUrlMed = AnidesuConverter.checkNilString(str: response.image_url_med)
         self.imageUrlLarge = AnidesuConverter.checkNilString(str: response.image_url_lge)
-        self.imageUrlBanner = response.image_url_banner ?? response.image_url_lge!
+        self.imageUrlBanner = response.image_url_banner ?? ""
         self.updatedAt = response.updated_at ?? 0
         self.totalEP = response.total_episodes ?? 0
         self.duration = response.duration ?? 0

@@ -24,7 +24,8 @@ class AnimeCell: UICollectionViewCell {
     }
     
     func setUpView(anime: Anime) {
-        animeImg.setImage(urlStr: anime.imageUrlLarge)
+        animeImg.setImage(urlStr: "https://s3.anilist.co/media/anime/cover/medium/\(anime.id).jpg")
+        print("Image : https://s3.anilist.co/media/anime/cover/medium/\(anime.id).jpg")
         animeTitleLabel.text = anime.titleRomaji
         seriesTypeLabel.text = anime.seriesType.uppercased()
         airingStatusLabel.text = anime.airingStatus.uppercased()
