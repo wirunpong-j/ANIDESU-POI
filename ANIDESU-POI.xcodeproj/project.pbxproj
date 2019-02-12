@@ -273,14 +273,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4306CCCE212A6E4B008DAFB1 /* View */ = {
+		4306CCCE212A6E4B008DAFB1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				4306CCD3212A70A3008DAFB1 /* PrePostCell.swift */,
 				4306CCD5212A7B7E008DAFB1 /* PostCell.swift */,
 				4306CCE8212AD4B1008DAFB1 /* CommentCell.swift */,
 			);
-			path = View;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		4307BA7721184B5B001FF8A1 /* LaunchScreen */ = {
@@ -309,9 +309,9 @@
 			isa = PBXGroup;
 			children = (
 				4307BA7F211850FB001FF8A1 /* LoginViewController.swift */,
-				4307BA8821185A94001FF8A1 /* MyAccountViewModel.swift */,
 			);
-			path = Login;
+			name = Login;
+			path = ../Login;
 			sourceTree = "<group>";
 		};
 		4307BA812118515D001FF8A1 /* Components */ = {
@@ -339,15 +339,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		4307BA9421195EDD001FF8A1 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-				4307BA9521195EF0001FF8A1 /* RegisterViewController.swift */,
-				4307BAA421199BF0001FF8A1 /* RegisterViewModel.swift */,
-			);
-			path = Register;
-			sourceTree = "<group>";
-		};
 		4307BAA12119919F001FF8A1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,9 +352,7 @@
 		4328D1FE2137FEA90047625D /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				4328D208213800C30047625D /* View */,
 				4328D2012137FEDC0047625D /* ReviewViewController.swift */,
-				4328D20D213808890047625D /* ReviewViewModel.swift */,
 				43994950213947DA0099F48E /* CreateReviewViewController.swift */,
 				43706EE7213CEA5800D88326 /* ReviewDetailViewController.swift */,
 			);
@@ -379,21 +368,19 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
-		4328D208213800C30047625D /* View */ = {
+		4328D208213800C30047625D /* Review */ = {
 			isa = PBXGroup;
 			children = (
 				4328D2042138001D0047625D /* ReviewCell.swift */,
 				43706EE9213CEE3700D88326 /* ReviewHeaderCell.swift */,
 			);
-			path = View;
+			path = Review;
 			sourceTree = "<group>";
 		};
 		43490F062133B947006BBD9D /* MyAnimeList */ = {
 			isa = PBXGroup;
 			children = (
-				43490F0E2133BC03006BBD9D /* View */,
 				43490F072133B971006BBD9D /* MyAnimeListViewController.swift */,
-				43490F112133BF6C006BBD9D /* MyAnimeListViewModel.swift */,
 				4335C1D72136B6D8006F1755 /* CreateMyAnimeListViewController.swift */,
 			);
 			path = MyAnimeList;
@@ -407,12 +394,12 @@
 			path = MyAnimeList;
 			sourceTree = "<group>";
 		};
-		43490F0E2133BC03006BBD9D /* View */ = {
+		43490F0E2133BC03006BBD9D /* MyAnimeList */ = {
 			isa = PBXGroup;
 			children = (
 				43490F0A2133BBEC006BBD9D /* MyAnimeListCell.swift */,
 			);
-			path = View;
+			path = MyAnimeList;
 			sourceTree = "<group>";
 		};
 		43490F0F2133BC8D006BBD9D /* Home */ = {
@@ -446,18 +433,17 @@
 		43706EF3213D065B00D88326 /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
-				43706EFC213D0FC900D88326 /* View */,
 				43706EF6213D072800D88326 /* MyProfileViewController.swift */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
-		43706EFC213D0FC900D88326 /* View */ = {
+		43706EFC213D0FC900D88326 /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
 				43706EFD213D0FD600D88326 /* MyProfileImageCell.swift */,
 			);
-			path = View;
+			path = MyProfile;
 			sourceTree = "<group>";
 		};
 		437285542126DB6B007388C6 /* Response */ = {
@@ -481,10 +467,8 @@
 		43747D4E211D7A2F005879F7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4306CCCE212A6E4B008DAFB1 /* View */,
 				43747D4F211D7A4B005879F7 /* HomeViewController.swift */,
 				4306CCD9212A8979008DAFB1 /* CreatePostViewController.swift */,
-				4306CCDB212A9490008DAFB1 /* PostViewModel.swift */,
 				4306CCE6212ABFD8008DAFB1 /* PostDetailViewController.swift */,
 			);
 			path = Home;
@@ -493,9 +477,7 @@
 		437ACEC62124108C00DF56F2 /* DiscoverAnime */ = {
 			isa = PBXGroup;
 			children = (
-				43E838902129AA3D00E8C32F /* View */,
 				437ACEC7212410A800DF56F2 /* DiscoverAnimeViewController.swift */,
-				437ACEC9212410B900DF56F2 /* DiscoverAnimeViewModel.swift */,
 				43557185212D81FE00479886 /* AnimeDetailViewController.swift */,
 			);
 			path = DiscoverAnime;
@@ -537,13 +519,9 @@
 		43939F0E211432B7001CCC48 /* ANIDESU-POI */ = {
 			isa = PBXGroup;
 			children = (
-				43747D4E211D7A2F005879F7 /* Home */,
-				437ACEC62124108C00DF56F2 /* DiscoverAnime */,
-				43490F062133B947006BBD9D /* MyAnimeList */,
-				4328D1FE2137FEA90047625D /* Review */,
-				4307BA9421195EDD001FF8A1 /* Register */,
-				4307BA7E211850D9001FF8A1 /* Login */,
-				43706EF3213D065B00D88326 /* MyProfile */,
+				43F847FE2212B8000029B501 /* View */,
+				43F847FF2212B80A0029B501 /* ViewModel */,
+				43F848002212B8110029B501 /* ViewController */,
 				43FF0C3C212E93B8005EE970 /* Models */,
 			);
 			path = "ANIDESU-POI";
@@ -623,7 +601,7 @@
 			path = XIBs;
 			sourceTree = "<group>";
 		};
-		43E838902129AA3D00E8C32F /* View */ = {
+		43E838902129AA3D00E8C32F /* DiscoverAnime */ = {
 			isa = PBXGroup;
 			children = (
 				43E8388C2129AA1400E8C32F /* AnimeCell.swift */,
@@ -634,7 +612,54 @@
 				43FF0C33212E7E38005EE970 /* AnimeExtrasCell.swift */,
 				43FF0C37212E8176005EE970 /* CharacterCell.swift */,
 			);
+			path = DiscoverAnime;
+			sourceTree = "<group>";
+		};
+		43F847FE2212B8000029B501 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43E838902129AA3D00E8C32F /* DiscoverAnime */,
+				4306CCCE212A6E4B008DAFB1 /* Home */,
+				43490F0E2133BC03006BBD9D /* MyAnimeList */,
+				43706EFC213D0FC900D88326 /* MyProfile */,
+				4328D208213800C30047625D /* Review */,
+			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		43F847FF2212B80A0029B501 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				437ACEC9212410B900DF56F2 /* DiscoverAnimeViewModel.swift */,
+				43490F112133BF6C006BBD9D /* MyAnimeListViewModel.swift */,
+				4307BA8821185A94001FF8A1 /* MyAccountViewModel.swift */,
+				4306CCDB212A9490008DAFB1 /* PostViewModel.swift */,
+				4307BAA421199BF0001FF8A1 /* RegisterViewModel.swift */,
+				4328D20D213808890047625D /* ReviewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		43F848002212B8110029B501 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				437ACEC62124108C00DF56F2 /* DiscoverAnime */,
+				43747D4E211D7A2F005879F7 /* Home */,
+				43490F062133B947006BBD9D /* MyAnimeList */,
+				43706EF3213D065B00D88326 /* MyProfile */,
+				43F848032212B9D20029B501 /* Register */,
+				4328D1FE2137FEA90047625D /* Review */,
+				4307BA7E211850D9001FF8A1 /* Login */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		43F848032212B9D20029B501 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				4307BA9521195EF0001FF8A1 /* RegisterViewController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		43FF0C3B212E9219005EE970 /* DiscoverAnime */ = {

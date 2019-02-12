@@ -124,7 +124,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Pageboy (3.0.1)
+  - Pageboy (3.0.2)
   - Protobuf (3.6.1)
   - RxAtomic (4.4.1)
   - RxCocoa (4.4.1):
@@ -221,7 +221,7 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  Pageboy: ec0170fd880ea6fa3589219edfd64b554443ff6e
+  Pageboy: 0e955738f7a46d617e8f6ee11c77f1658bb878c2
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
