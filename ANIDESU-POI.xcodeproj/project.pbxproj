@@ -283,24 +283,11 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		4307BA7721184B5B001FF8A1 /* LaunchScreen */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LaunchScreen;
-			sourceTree = "<group>";
-		};
 		4307BA7821184B80001FF8A1 /* BaseStructure */ = {
 			isa = PBXGroup;
 			children = (
-				43557191212D96A300479886 /* SectionHeaderView.swift */,
-				43E838892129A03D00E8C32F /* MenuViewController.swift */,
 				4307BA7921184BAD001FF8A1 /* BaseViewController.swift */,
 				4307BA972119602A001FF8A1 /* BaseNavigationViewController.swift */,
-				43706EF1213CFE3700D88326 /* NoDataView.swift */,
-				43706EF8213D0F3B00D88326 /* DetailLabelCell.swift */,
-				43706EFA213D0F9500D88326 /* MoreDetailLabelCell.swift */,
-				438FD5AA2142337800335575 /* MyHeroTransition.swift */,
 			);
 			path = BaseStructure;
 			sourceTree = "<group>";
@@ -326,17 +313,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		4307BA8A21185B35001FF8A1 /* Managers */ = {
+		4307BA8A21185B35001FF8A1 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				43F848052212BA8D0029B501 /* Manager */,
 				435CC31A213696730058AF41 /* Router */,
 				437285542126DB6B007388C6 /* Response */,
-				4307BA8B21185B4B001FF8A1 /* FirebaseManager.swift */,
-				437ACED021242DAF00DF56F2 /* UserManager.swift */,
-				437285502126CBAC007388C6 /* AniListManager.swift */,
-				437285522126CE30007388C6 /* APIManager.swift */,
 			);
-			path = Managers;
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 		4307BAA12119919F001FF8A1 /* Extensions */ = {
@@ -411,13 +395,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		43490F102133BC9D006BBD9D /* Base */ = {
+		43490F102133BC9D006BBD9D /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				4355718F212D958000479886 /* SectionHeaderView.xib */,
 				43706EEF213CFDF200D88326 /* NoDataView.xib */,
 			);
-			path = Base;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		435CC31A213696730058AF41 /* Router */ = {
@@ -483,14 +467,6 @@
 			path = DiscoverAnime;
 			sourceTree = "<group>";
 		};
-		437ACECD212420B600DF56F2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				437ACECE212420C900DF56F2 /* MyProfileModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		43939F03211432B7001CCC48 = {
 			isa = PBXGroup;
 			children = (
@@ -548,11 +524,12 @@
 		43939F3D211433B5001CCC48 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				4307BAA12119919F001FF8A1 /* Extensions */,
-				4307BA8A21185B35001FF8A1 /* Managers */,
-				4307BA812118515D001FF8A1 /* Components */,
+				4307BA8A21185B35001FF8A1 /* APIManager */,
 				4307BA7821184B80001FF8A1 /* BaseStructure */,
-				4307BA7721184B5B001FF8A1 /* LaunchScreen */,
+				43F848072212BB000029B501 /* Common */,
+				4307BA812118515D001FF8A1 /* Components */,
+				4307BAA12119919F001FF8A1 /* Extensions */,
+				43F848062212BAA20029B501 /* Singelton */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -560,9 +537,8 @@
 		43939F3E211433C9001CCC48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				43E8388B2129A9DE00E8C32F /* XIBs */,
-				437ACECD212420B600DF56F2 /* Model */,
 				43939F3F21143401001CCC48 /* Storyboard */,
+				43E8388B2129A9DE00E8C32F /* XIBs */,
 				43939F16211432BB001CCC48 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -592,11 +568,11 @@
 		43E8388B2129A9DE00E8C32F /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				4328D2032137FF660047625D /* Review */,
-				43490F102133BC9D006BBD9D /* Base */,
+				43490F102133BC9D006BBD9D /* Common */,
+				43FF0C3B212E9219005EE970 /* DiscoverAnime */,
 				43490F0F2133BC8D006BBD9D /* Home */,
 				43490F092133BB9C006BBD9D /* MyAnimeList */,
-				43FF0C3B212E9219005EE970 /* DiscoverAnime */,
+				4328D2032137FF660047625D /* Review */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -660,6 +636,38 @@
 				4307BA9521195EF0001FF8A1 /* RegisterViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		43F848052212BA8D0029B501 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4307BA8B21185B4B001FF8A1 /* FirebaseManager.swift */,
+				437ACED021242DAF00DF56F2 /* UserManager.swift */,
+				437285502126CBAC007388C6 /* AniListManager.swift */,
+				437285522126CE30007388C6 /* APIManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		43F848062212BAA20029B501 /* Singelton */ = {
+			isa = PBXGroup;
+			children = (
+				437ACECE212420C900DF56F2 /* MyProfileModel.swift */,
+			);
+			path = Singelton;
+			sourceTree = "<group>";
+		};
+		43F848072212BB000029B501 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				43557191212D96A300479886 /* SectionHeaderView.swift */,
+				43E838892129A03D00E8C32F /* MenuViewController.swift */,
+				43706EF1213CFE3700D88326 /* NoDataView.swift */,
+				43706EF8213D0F3B00D88326 /* DetailLabelCell.swift */,
+				43706EFA213D0F9500D88326 /* MoreDetailLabelCell.swift */,
+				438FD5AA2142337800335575 /* MyHeroTransition.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		43FF0C3B212E9219005EE970 /* DiscoverAnime */ = {
