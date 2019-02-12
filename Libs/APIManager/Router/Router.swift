@@ -28,6 +28,17 @@ extension Router {
         return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
     }
     
+//    private func getHeaders(urlRequest: inout URLRequest) {
+//        switch self {
+//        case .authRefreshToken:
+//            urlRequest.setValue("bearer " + KeychainManager().string(forKey: KeychainManager.keyRefreshToken)!, forHTTPHeaderField: "Authorization")
+//        default:
+//            urlRequest.setValue("bearer " + (KeychainManager().string(forKey: KeychainManager.keyAccessToken) ?? ""), forHTTPHeaderField: "Authorization")
+//        }
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+//    }
+    
     public var path: String {
         switch self {
         case .authAnilist:

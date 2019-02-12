@@ -27,25 +27,25 @@ public enum AnidesuStoryboard {
 }
 
 class BaseViewController: UIViewController {
+    
+    var isLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func showLoading() {
-        let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.indeterminate
-        loadingNotification.label.text = "Loading"
-    }
-    
-    func showLoading(message: String) {
-        let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
-        loadingNotification.mode = MBProgressHUDMode.indeterminate
-        loadingNotification.label.text = message
+        if !isLoading {
+            let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
+            loadingNotification.mode = MBProgressHUDMode.indeterminate
+            loadingNotification.label.text = "Loading"
+            self.isLoading = true
+        }
     }
     
     func hideLoading() {
         MBProgressHUD.hide(for: view, animated: true)
+        self.isLoading = false
     }
     
     func showAlert(title: String, message: String) {
